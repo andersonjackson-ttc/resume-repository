@@ -83,7 +83,7 @@ input, select, .input {
 		height: 160px;
 	}
 	.gradDiv{
-	float: none;
+		float: none;
 	}
 }
 @media only screen and (max-width: 976px) {
@@ -103,7 +103,7 @@ input, select, .input {
 		height: 160px;
 	}
 	.gradDiv{
-	float: none;
+		float: none;
 	}
 }
 @media only screen and (max-width: 514px) {
@@ -123,6 +123,6 @@ input, select, .input {
 		height: 160px;
 	}
 	.gradDiv{
-	float: none;
+		float: none;
 	}
 }
