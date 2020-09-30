@@ -8,8 +8,7 @@
 	</head>
 	<body>
 		<?php
-		#If we include a header
-		#include ('includes/header.html');
+		include ('../includes/header.html');
 		$page_title = 'Create a New Student Form';
 		extract($_POST);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -125,8 +124,7 @@
 			</fieldset>
 		</form>
 		<?php
-		#If we include a footer
-		#include ('includes/footer.html');
+		include ('../includes/footer.html');
 		?>
 	</body>
 </html>
