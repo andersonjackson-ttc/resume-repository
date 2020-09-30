@@ -17,12 +17,12 @@ h1{
 	text-align: center;
 }
 input{
-  border: 2px solid #67AC76;
-  border-radius: 4px;
+	border: 2px solid #67AC76;
+	border-radius: 4px;
 }
 /*Submission button color*/
 input[type=submit]{
-  background-color: #8DE8A1;
+	background-color: #8DE8A1;
 }
 #inputField{
 	display: inline-block;
@@ -30,9 +30,9 @@ input[type=submit]{
 }
 /*Sets a static size for the open ended text-areas. Does not like percentages.*/
 .skillsBox{
-   resize: none;
-   width: 723px;
-   height: 80px;
+	resize: none;
+	width: 723px;
+	height: 80px;
 }
 .longBar{
 	resize: none;
@@ -68,9 +68,9 @@ input, select, .input {
 	}
 	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
 	.skillsBox{
-	   resize: none;
-	   width: 445px;
-	   height: 80px;
+		resize: none;
+		width: 445px;
+		height: 80px;
 	}
 	.longBar, .education{
 		resize: none;
@@ -93,9 +93,9 @@ input, select, .input {
 	}
 	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
 	.skillsBox, .longBar, .education{
-	   resize: none;
-	   width: 445px;
-	   height: 80px;
+		resize: none;
+		width: 445px;
+		height: 80px;
 	}
 	.certifications{
 		resize: none;
@@ -113,9 +113,9 @@ input, select, .input {
 	}
 	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
 	.skillsBox, .longBar, .education{
-	   resize: none;
-	   width: 280px;
-	   height: 80px;
+		resize: none;
+		width: 280px;
+		height: 80px;
 	}
 	.certifications{
 		resize: none;
