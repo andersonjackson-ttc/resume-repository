@@ -1,0 +1,128 @@
+/*Nicholas Justus
+9/29/20*/
+body {
+	background:#ffffff;
+	color:#555;
+	width: min-content;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+/*Errors that appear from PHP validation*/
+.error{
+	font-weight: bold;
+	color: red;
+}
+h1{
+	text-align: center;
+}
+input{
+  border: 2px solid #67AC76;
+  border-radius: 4px;
+}
+/*Submission button color*/
+input[type=submit]{
+  background-color: #8DE8A1;
+}
+#inputField{
+	display: inline-block;
+	padding-bottom: 2px;
+}
+/*Sets a static size for the open ended text-areas. Does not like percentages.*/
+.skillsBox{
+   resize: none;
+   width: 723px;
+   height: 80px;
+}
+.longBar{
+	resize: none;
+	width: 1456px;
+	height: 80px;
+}
+.education{
+	resize: none;
+	width: 1135px;
+	height: 80px;
+}
+.certifications{
+	resize: none;
+	width: 1456px;
+	height: 160px;
+}
+/*Positioning Graduation Status and Graduation Date*/
+.gradDiv{
+	float: right;
+}
+.gradFields{
+	width: 300px;
+}
+input, select, .input {
+	padding: 5px;
+	font-size: 1em;
+	background: #FFFFFF;
+	border: 1px solid #004080;
+}
+@media only screen and (max-width: 1520px) {
+	#inputField{
+		padding-bottom: 2px;
+	}
+	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
+	.skillsBox{
+	   resize: none;
+	   width: 445px;
+	   height: 80px;
+	}
+	.longBar, .education{
+		resize: none;
+		width: 900px;
+		height: 80px;
+	}
+	.certifications{
+		resize: none;
+		width: 900px;
+		height: 160px;
+	}
+	.gradDiv{
+	float: none;
+	}
+}
+@media only screen and (max-width: 976px) {
+	#inputField{
+		display: block;
+		padding-bottom: 2px;
+	}
+	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
+	.skillsBox, .longBar, .education{
+	   resize: none;
+	   width: 445px;
+	   height: 80px;
+	}
+	.certifications{
+		resize: none;
+		width: 445px;
+		height: 160px;
+	}
+	.gradDiv{
+	float: none;
+	}
+}
+@media only screen and (max-width: 514px) {
+	#inputField{
+		display: block;
+		padding-bottom: 2px;
+	}
+	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
+	.skillsBox, .longBar, .education{
+	   resize: none;
+	   width: 280px;
+	   height: 80px;
+	}
+	.certifications{
+		resize: none;
+		width: 280px;
+		height: 160px;
+	}
+	.gradDiv{
+	float: none;
+	}
+}
