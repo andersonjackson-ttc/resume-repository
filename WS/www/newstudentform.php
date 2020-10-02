@@ -95,7 +95,6 @@
 						</select>
 					</div>
 					<div>
-						<!--Should Graduation Date always be shown, or only when the status is Graduated? It could be argued that the date would be when someone graduates in the future. Leaving it visible for now, easily reversable-->
 						<label>Graduation Date *<br><input class="gradFields" required name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
 					</div>
 				</div>
@@ -118,9 +117,11 @@
 					<label>Attachments *<br><input required name="attachments" type="file"></label>
 				</div>
 				<!--End seventh row-->
-				<!--Submit button-->
+				<!--Submit button and Exit button-->
 				<br>
-				<br><input type="submit" value="Submit Form">
+				<br>
+				<input id="finalButton" type="submit" value="Save Form">
+				<a href="index.php"><input id="finalButton" type="button" value="Cancel and Exit"></a>
 			</fieldset>
 		</form>
 		<?php
