@@ -1,15 +1,15 @@
 <!--Nicholas Justus -->
 <!--9/29/20 -->
-<!doctype HTML>
+<!-- <!doctype HTML>
 <html>
 	<head>
 		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
 		<title>Create a New Student Form</title>
 	</head>
 	<body>
-		<?php
+		<?php 
 		#If we include a header
-		#include ('includes/header.html');
+		include('../includes/header.html');
 		$page_title = 'Create a New Student Form';
 		extract($_POST);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -126,7 +126,7 @@
 		</form>
 		<?php
 		#If we include a footer
-		#include ('includes/footer.html');
+		include('../includes/footer.html');
 		?>
-	</body>
-</html>
+	<!-- </body>
+</html> -->
