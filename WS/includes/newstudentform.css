@@ -21,7 +21,7 @@ input{
 	border-radius: 4px;
 }
 /*Submission button color*/
-input[type=submit]{
+#finalButton{
 	background-color: #8DE8A1;
 }
 #inputField{
