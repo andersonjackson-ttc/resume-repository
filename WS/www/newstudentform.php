@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
 		<title>Create a New Student Form</title>
 	</head>
-	<body>
+	<body> -->
 		<?php
 		include ('../includes/header.html');
 		$page_title = 'Create a New Student Form';
