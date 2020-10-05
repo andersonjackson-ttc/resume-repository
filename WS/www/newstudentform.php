@@ -9,6 +9,7 @@
 	<body> -->
 		<?php
 		include ('../includes/header.html');
+		include ('../src/test.php');
 		$page_title = 'Create a New Student Form';
 		extract($_POST);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
