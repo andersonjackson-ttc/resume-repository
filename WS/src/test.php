@@ -1,16 +1,17 @@
 
 
 
-$dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
-$dbName = "ResumeRepo";
+$host = "192.168.6.3";
+$port =3306;
+$socket="";
+$user = "root";
+$password = "rsdbTtc1!";
+$dbName = "resume_schema";
 
-$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-if (!$conn) 
-{
-die("Connection failed: " . mysqli_connect_error());
-}
+$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+or die ('Could not connect to the database server' . mysqli_connect_error());
+
+//$con->close();
 
 
 
@@ -23,4 +24,4 @@ die("Connection failed: " . mysqli_connect_error());
 
  $sql = "INSERT INTO Students (first_name, last_name, email, phone) VALUES ('$first', '$last', '$email', '$phone');";
 
- mysqli_query($conn, $sql);
+ mysqli_query($con, $sql);
