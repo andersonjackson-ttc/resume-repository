@@ -70,108 +70,247 @@
 					<br>
 					<label>Security Clearance *<br><input name="securityClearance" type="checkbox" value="<?php if (isset($_POST['securityClearance'])) echo $_POST['securityClearance']; ?>"></label>
 				</div>
+				<div id="radio">
+					<label>Work Hours</label>
+					<label>Full-Time <input name="workHours" type="radio" value="fullTime"></label>
+					<label> Part-Time <input name="workHours" type="radio" value="partTime"></label>
+				</div>
+				<div id="radio">
+					<label>Work Time</label>
+					<label>Days <input name="workTime" type="radio" value="days"></label>
+					<label>Nights <input name="workTime" type="radio" value="nights"></label>
+				</div>
 				<!--End first row-->
 				<br>
 				<!--Begin second row-->
 				<div id="inputField">
 					<label>Technical Skills<br><textarea class="skillsBox" name="techSkills" type="text"><?php if (isset($_POST['techSkills'])) echo $_POST['techSkills']; ?></textarea></label>
 					<!-- Start of Technical Skills Checkboxes -->
-					<ul style="column-count: 2; list-style-type: none;">
-						<li>
-							<input type="checkbox" id="skillProgram" name="skillProgram" value="skillProgram">
-							<label for="skillProgram">Programming Languages (1 or more)</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillProject" name="skillProject" value="skillProject">
-							<label for="skillProject">Project Management</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillData" name="skillData" value="skillData">
-							<label for="skillData">Data Analysis</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillWriting" name="skillWriting" value="skillWriting">
-							<label for="skillWriting">Technical Writing</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillLogistics" name="skillLogistics" value="skillLogistics">
-							<label for="skillLogistics">Logistics Management</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillAdobe" name="skillAdobe" value="skillAdobe">
-							<label for="skillAdobe">Adobe Software</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillCad" name="skillCad" value="skillCad">
-							<label for="skillCad">CAD Software</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillBookkeeping" name="skillBookkeeping" value="skillBookkeeping">
-							<label for="skillBookkeeping">Bookkeeping Software</label>
-						</li>
-					</ul> <!-- End of Technical Skills Checkboxes -->
+					<div id="techSkills" style="display: inline-block;">
+						<ul style="list-style-type: none;">
+							<h3>Technical Skills</h3>
+							<li>
+								<input type="checkbox" id="skillProgram" name="skillProgram" value="skillProgram">
+								<label for="skillProgram">Programming Languages (1 or more)</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillProject" name="skillProject" value="skillProject">
+								<label for="skillProject">Project Management</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillData" name="skillData" value="skillData">
+								<label for="skillData">Data Analysis</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillWriting" name="skillWriting" value="skillWriting">
+								<label for="skillWriting">Technical Writing</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillLogistics" name="skillLogistics" value="skillLogistics">
+								<label for="skillLogistics">Logistics Management</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillAdobe" name="skillAdobe" value="skillAdobe">
+								<label for="skillAdobe">Adobe Software</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillCad" name="skillCad" value="skillCad">
+								<label for="skillCad">CAD Software</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillBookkeeping" name="skillBookkeeping" value="skillBookkeeping">
+								<label for="skillBookkeeping">Bookkeeping Software</label>
+							</li>
+						</ul>
+					</div> <!-- End of Technical Skills Checkboxes -->
+					<!-- Start of Technical Skills Ratings -->
+					<div id="techSkillsRating" style="display: inline-block; margin-left: 20px;">
+						<ul style="list-style-type: none;">
+							<li>
+								<label for="skillProgramRating"><text>Fair</text><text style="margin-left: 15px;">Good</text><text style="margin-left: 15px;">Excellent</text><br>
+								<input type="radio" id="skillProgramRating" name="skillProgramRating" value="fair">
+								<input type="radio" id="skillProgramRating" name="skillProgramRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillProgramRating" name="skillProgramRating" value="excellent" style="margin-left: 40px;">
+								</label>
+							</li>
+							<li>
+								<input type="radio" id="skillProjectRating" name="skillProjectRating" value="fair">
+								<input type="radio" id="skillProjectRating" name="skillProjectRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillProjectRating" name="skillProjectRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillDataRating" name="skillDataRating" value="fair">
+								<input type="radio" id="skillDataRating" name="skillDataRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillDataRating" name="skillDataRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillWritingRating" name="skillWritingRating" value="fair">
+								<input type="radio" id="skillWritingRating" name="skillWritingRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillWritingRating" name="skillWritingRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillLogisticsRating" name="skillLogisticsRating" value="fair">
+								<input type="radio" id="skillLogisticsRating" name="skillLogisticsRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillLogisticsRating" name="skillLogisticsRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillAdobeRating" name="skillAdobeRating" value="fair">
+								<input type="radio" id="skillAdobeRating" name="skillAdobeRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillAdobeRating" name="skillAdobeRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillCadRating" name="skillCadRating" value="fair">
+								<input type="radio" id="skillCadRating" name="skillCadRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillCadRating" name="skillCadRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillBookkeepingRating" name="skillBookkeepingRating" value="fair">
+								<input type="radio" id="skillBookkeepingRating" name="skillBookkeepingRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillBookkeepingRating" name="skillBookkeepingRating" value="excellent" style="margin-left: 40px;">
+							</li>
+						</ul>
+					</div> <!-- End of Technical Skills Ratings -->
 				</div>
 				<div id="inputField">
 					<label>Professional Skills<br><textarea class="skillsBox" name="profSkills" type="text"><?php if (isset($_POST['profSkills'])) echo $_POST['profSkills']; ?></textarea></label>
 					<!-- Start of Professional Skills Checkboxes -->
-					<ul style="column-count: 2; list-style-type: none;">
-						<li>
-							<input type="checkbox" id="skillCritThinking" name="skillCritThinking" value="skillCritThinking">
-							<label for="skillCritThinking">Critical Thinking and Problem Solving</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillInterpersonal" name="skillInterpersonal" value="skillInterpersonal">
-							<label for="skillInterpersonal">Interpersonal Skills</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillCommunication" name="skillCommunication" value="skillCommunication">
-							<label for="skillCommunication">Communication Ability</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillAttitude" name="skillAttitude" value="skillAttitude">
-							<label for="skillAttitude">Professional Attitude and Demeanor</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillAlertness" name="skillAlertness" value="skillAlertness">
-							<label for="skillAlertness">Alertness, Ability to Focus</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillAdaptability" name="skillAdaptability" value="skillAdaptability">
-							<label for="skillAdaptability">Agility and Adaptability</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillResearching" name="skillResearching" value="skillResearching">
-							<label for="skillResearching">Researching Information</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillPersMan" name="skillPersMan" value="skillPersMan">
-							<label for="skillPersMan">Personal Management</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillCreativity" name="skillCreativity" value="skillCreativity">
-							<label for="skillCreativity">Creativity and Innovation</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillLiteracy" name="skillLiteracy" value="skillLiteracy">
-							<label for="skillLiteracy">Literacy</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillLeadership" name="skillLeadership" value="skillLeadership">
-							<label for="skillLeadership">Leadership</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillStressMgmt" name="skillStressMgmt" value="skillStressMgmt">
-							<label for="skillStressMgmt">Stress Management</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillStudy" name="skillStudy" value="skillStudy">
-							<label for="skillStudy">Study Skills</label>
-						</li>
-						<li>
-							<input type="checkbox" id="skillHonesty" name="skillHonesty" value="skillHonesty">
-							<label for="skillHonesty">Honesty and Integrity</label>
-						</li>
-					</ul> <!-- End of Professional Skills Checkboxes -->
+					<div id="profSkills" style="display: inline-block;">
+						<ul style="list-style-type: none;">
+							<li>
+								<input type="checkbox" id="skillCritThinking" name="skillCritThinking" value="skillCritThinking">
+								<label for="skillCritThinking">Critical Thinking and Problem Solving</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillInterpersonal" name="skillInterpersonal" value="skillInterpersonal">
+								<label for="skillInterpersonal">Interpersonal Skills</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillCommunication" name="skillCommunication" value="skillCommunication">
+								<label for="skillCommunication">Communication Ability</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillAttitude" name="skillAttitude" value="skillAttitude">
+								<label for="skillAttitude">Professional Attitude and Demeanor</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillAlertness" name="skillAlertness" value="skillAlertness">
+								<label for="skillAlertness">Alertness, Ability to Focus</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillAdaptability" name="skillAdaptability" value="skillAdaptability">
+								<label for="skillAdaptability">Agility and Adaptability</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillResearching" name="skillResearching" value="skillResearching">
+								<label for="skillResearching">Researching Information</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillPersMgmt" name="skillPersMgmt" value="skillPersMgmt">
+								<label for="skillPersMgmt">Personal Management</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillCreativity" name="skillCreativity" value="skillCreativity">
+								<label for="skillCreativity">Creativity and Innovation</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillLiteracy" name="skillLiteracy" value="skillLiteracy">
+								<label for="skillLiteracy">Literacy</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillLeadership" name="skillLeadership" value="skillLeadership">
+								<label for="skillLeadership">Leadership</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillStressMgmt" name="skillStressMgmt" value="skillStressMgmt">
+								<label for="skillStressMgmt">Stress Management</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillStudy" name="skillStudy" value="skillStudy">
+								<label for="skillStudy">Study Skills</label>
+							</li>
+							<li>
+								<input type="checkbox" id="skillHonesty" name="skillHonesty" value="skillHonesty">
+								<label for="skillHonesty">Honesty and Integrity</label>
+							</li>
+						</ul>
+					</div> <!-- End of Professional Skills Checkboxes -->
+					<!-- Start of Professional Skills Ratings -->
+					<div id="profSkillsRating" style="display: inline-block; margin-left: 20px;">
+						<ul style="list-style-type: none;">
+							<li>
+								<label for="skillCritThinkingRating"><text>Fair</text><text style="margin-left: 15px;">Good</text><text style="margin-left: 15px;">Excellent</text><br>
+								<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="fair">
+								<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="excellent" style="margin-left: 40px;">
+								</label>
+							</li>
+							<li>
+								<input type="radio" id="skillInterpersonalRating" name="skillInterpersonalRating" value="fair">
+								<input type="radio" id="skillInterpersonalRating" name="skillInterpersonalRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillInterpersonalRating" name="skillInterpersonalRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillCommunicationRating" name="skillCommunicationRating" value="fair">
+								<input type="radio" id="skillCommunicationRating" name="skillCommunicationRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillCommunicationRating" name="skillCommunicationRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillAttitudeRating" name="skillAttitudeRating" value="fair">
+								<input type="radio" id="skillAttitudeRating" name="skillAttitudeRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillAttitudeRating" name="skillAttitudeRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillAlertnessRating" name="skillAlertnessRating" value="fair">
+								<input type="radio" id="skillAlertnessRating" name="skillAlertnessRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillAlertnessRating" name="skillAlertnessRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillAdaptabilityRating" name="skillAdaptabilityRating" value="fair">
+								<input type="radio" id="skillAdaptabilityRating" name="skillAdaptabilityRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillAdaptabilityRating" name="skillAdaptabilityRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillResearchingRating" name="skillResearchingRating" value="fair">
+								<input type="radio" id="skillResearchingRating" name="skillResearchingRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillResearchingRating" name="skillResearchingRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillPersManRating" name="skillPersManRating" value="fair">
+								<input type="radio" id="skillPersManRating" name="skillPersManRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillPersManRating" name="skillPersManRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillCreativityRating" name="skillCreativityRating" value="fair">
+								<input type="radio" id="skillCreativityRating" name="skillCreativityRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillCreativityRating" name="skillCreativityRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillLiteracyRating" name="skillLiteracyRating" value="fair">
+								<input type="radio" id="skillLiteracyRating" name="skillLiteracyRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillLiteracyRating" name="skillLiteracyRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillLeadershipRating" name="skillLeadershipRating" value="fair">
+								<input type="radio" id="skillLeadershipRating" name="skillLeadershipRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillLeadershipRating" name="skillLeadershipRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillStressMgmtRating" name="skillStressMgmtRating" value="fair">
+								<input type="radio" id="skillStressMgmtRating" name="skillStressMgmtRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillStressMgmtRating" name="skillStressMgmtRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillStudyRating" name="skillStudyRating" value="fair">
+								<input type="radio" id="skillStudyRating" name="skillStudyRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillStudyRating" name="skillStudyRating" value="excellent" style="margin-left: 40px;">
+							</li>
+							<li>
+								<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="fair">
+								<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="good" style="margin-left: 30px;">
+								<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="excellent" style="margin-left: 40px;">
+							</li>
+						</ul>
+					</div> <!-- End of Professional Skills Ratings -->
 				</div>
 				<!--End second row-->
 				<br>
