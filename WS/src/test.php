@@ -4,13 +4,12 @@
 $host = "192.168.6.3";
 $port =3306;
 $socket="";
-$user = "root";
-$password = "rsdbTtc1!";
+$user = "administrator";
+$password = "";
 $dbName = "resume_schema";
 
-$con = mysqli_connect($host, $user, $password, $dbname, $port, $socket);
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+or die ('Could not connect to the database server' . mysqli_connect_error());
 }
 
 //$con->close();
