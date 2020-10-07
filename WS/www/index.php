@@ -12,7 +12,7 @@ include('../includes/header.html');
 <a href="../www/newstudentform.php">New Student</a>
 <a href="">Profiles List</a>
 <br>
-<a href="../www/phpsqldemo.php"PHP Demo</a>
+<a href="../www/phpsqldemo.php">PHP Demo</a>
 
 
 
