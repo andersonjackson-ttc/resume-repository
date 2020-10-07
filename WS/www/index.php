@@ -9,10 +9,7 @@ include('../includes/header.html');
 <hr />
 
 
-<a href="../newstudentform.php">New Student</a>
-<br>
-<a href="">Profiles List</a>
-<br>
+
 <a href="../phpsqldemo.php">PHP Demo</a>
 
 

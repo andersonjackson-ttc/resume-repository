@@ -1,18 +1,17 @@
 <?php
+		$page_title = 'Resume Repository Home';
 		include ('../includes/header.html');
-		
+?>
 
-		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
-		<title>Test Form</title>
+<?php
 	
 
 require('../src/test.php');
 
- // StudentList SQL table:
+
     $first = $_POST['first'];
 
-    $sql = "INSERT INTO test (fname)
-            VALUES ('$first');
+    $sql = "INSERT INTO test (fname) VALUES ('$first')";
 
     mysqli_query($con, $sql);
 	
