@@ -24,4 +24,8 @@ or die ('Could not connect to the database server' . mysqli_connect_error());
 
  $sql = "INSERT INTO Students (first_name, last_name, email, phone) VALUES ('$first', '$last', '$email', '$phone');";
 
+
+$testsql = "INSERT INTO test (fname) VALUES (Noah);";
+
+
  mysqli_query($con, $sql);
