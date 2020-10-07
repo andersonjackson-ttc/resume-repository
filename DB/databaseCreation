@@ -1,0 +1,64 @@
+CREATE DATABASE resume_schema
+CHARACTER SET utf8
+COLLATE utf8_general_ci;
+
+USE resume_schema;
+
+CREATE TABLE students (
+	profile_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	student_id INT UNSIGNED NOT NULL,
+	first_name VARCHAR(20) NOT NULL,
+	middle_initial CHAR(1) NOT NULL,
+	last_name VARCHAR(40) NOT NULL,
+	email VARCHAR(60) NOT NULL,
+	phone VARCHAR(20) NOT NULL,
+	graduated TINYINT(1) UNSIGNED NOT NULL,
+	graduation_date DATE,
+	resume_path VARCHAR(60) NOT NULL,
+	military_status TINYINT(1) UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id)
+);
+
+CREATE TABLE skills (
+	skill_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	skill_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (skill_id)
+);
+
+CREATE TABLE student_skills (
+	profile_id INT UNSIGNED NOT NULL,
+	skill_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, skill_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id),
+	FOREIGN KEY (skill_id) REFERENCES skills (skill_id)
+);
+
+CREATE TABLE certificates (
+	certificate_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	certificate_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (certificate_id)
+);
+
+CREATE TABLE student_certificates (
+	profile_id INT UNSIGNED NOT NULL,
+	certificate_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, certificate_id),
+	FOREIGN KEY (certificate_id) REFERENCES certificates (certificate_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
+);
+
+CREATE TABLE majors (
+	major_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	major_name VARCHAR(40) NOT NULL,
+	degree_type VARCHAR(40) NOT NULL,
+	school_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (major_id)
+);
+
+CREATE TABLE student_majors (
+	profile_id INT UNSIGNED NOT NULL,
+	major_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, major_id),
+	FOREIGN KEY (major_id) REFERENCES majors (major_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
+);
