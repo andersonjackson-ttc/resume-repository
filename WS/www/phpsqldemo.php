@@ -5,7 +5,6 @@
 		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
 		<title>Test Form</title>
 	
-	<body> 
 
 require('../src/test.php');
 
@@ -29,6 +28,6 @@ require('../src/test.php');
 <input id="finalButton" type="submit" value="Save Form">
 
 
-
+<?php
 include ('../includes/footer.html');
 ?>
