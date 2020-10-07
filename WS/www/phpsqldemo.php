@@ -3,7 +3,9 @@
 		include ('../includes/header.html');
 ?>
 
-
+<?php
+  include_once 'src/test.php';
+?>
 	
 	
 <form name="phpsqldemo.php" method="POST" action="entry.php">
