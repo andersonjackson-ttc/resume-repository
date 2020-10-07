@@ -15,7 +15,6 @@ require('../src/test.php');
 
     mysqli_query($con, $sql);
 	
-	header("Location: ../phpsqldemo.php?student_add=success");
 	
 	
 ?>	
