@@ -5,8 +5,16 @@ $page_title = 'Resume Repository Home';
 include('../includes/header.html');
 ?>
 
-<div class="page-header"><h1>Content Header</h1></div>
+<div class="page-header"><h1>Resume Repository</h1></div>
 <hr />
+
+<button>Profiles List</button>
+<button>New Student Profile</button>
+<button>Certification List</button>
+<button>Majors List</button>
+<button>Profiles List</button>
+<button>Profiles List</button>
+<button>Employment List</button>
 
 <p>A singulis tractavissent ad multos in ea varias offendit. Eiusmod distinguantur
 qui ingeniis eu ea magna noster quorum mandaremus, probant quorum lorem an enim
