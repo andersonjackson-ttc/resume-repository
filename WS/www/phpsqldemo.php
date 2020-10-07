@@ -22,8 +22,9 @@ require('../src/test.php');
 	
 <form name="phpsqldemo.php" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <label>First Name *<br><input required name="first" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['first'])) echo $_POST['first']; ?>"></label>
+<button type="submit" name="submit">Submit</button>
 </form>
-<input id="finalButton" type="submit" value="Save Form">
+
 
 
 <?php
