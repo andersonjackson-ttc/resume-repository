@@ -4,8 +4,8 @@
 $host = "192.168.6.3";
 $port =3306;
 $socket="";
-$user = "administrator";
-$password = "rsdbTtc1!";
+$user = "resumeuser";
+$password = "rsdbTtc9!";
 //$dbName = "testdb";
 $dbName = "resume_schema";
 
