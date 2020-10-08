@@ -6,11 +6,12 @@ $port =3306;
 $socket="";
 $user = "administrator";
 $password = "";
-$dbName = "resume_schema";
+$dbName = "testdb";
+//$dbName = "resume_schema";
 
-$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+$con = new mysqli($host, $user, $password, $dbName, $port, $socket)
 or die ('Could not connect to the database server' . mysqli_connect_error());
-}
+
 
 //$con->close();
 
