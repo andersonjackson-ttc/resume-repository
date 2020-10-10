@@ -1,12 +1,13 @@
 <!--Nicholas Justus -->
 <!--9/29/20 -->
 <!-- <!doctype HTML>
-<html>
+<html> -->
 	<head>
 		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
-		<title>Create a New Student Form</title>
+		<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script src="newstudentform.js"></script>
 	</head>
-	<body> -->
+	<!-- <body> -->
 		<?php
 		include ('../includes/header.html');
 		$page_title = 'Create a New Student Form';
@@ -64,18 +65,35 @@
 				<div id="inputField">
 					<label>Phone Number *<br><input required name="studentPhone" type="phone" size="30" maxlength="100" value="<?php if (isset($_POST['studentPhone'])) echo $_POST['studentPhone']; ?>"></label>
 				</div>
-				<div id="checkbox">
-					<label>Military Veteran<br><input name="militaryStatus" type="checkbox" value="<?php if (isset($_POST['militaryStatus'])) echo $_POST['militaryStatus']; ?>"></label>
-					<br>
-					<label>Security Clearance<br><input name="securityClearance" type="checkbox" value="<?php if (isset($_POST['securityClearance'])) echo $_POST['securityClearance']; ?>"></label>
+				<div id="checkbox" style="margin-top: 15px;">
+                  			  <label>Military Veteran *<br></label>
+                   			  <label for="militaryStatus">Yes<input name="militaryStatus" type="radio" value="yes"></label>
+                  			  <label for="militaryStatus">No<input name="militaryStatus" type="radio" value="no"></label>
+					  <br>
+                			</div>
+                			<div id="checkbox" style="margin-top: 15px;">
+                    				<label>Security Clearance *<br></label>
+                   			 	<label for="securityClearance">Yes<input id="securityClearanceYes" name="securityClearance" type="radio" value="yes"></label>
+                    				<label for="securityClearance">No<input id="securityClearanceNo" name="securityClearance" type="radio" value="no"></label>
+                    			<div id="securityAttributes" style="display: none; margin-top: 5px;">
+                        			<label>Select One: 
+                            				<label for="securityAttributes">Secret<input name="securityAttributes" type="radio" value="secret"></label>
+                            				<label for="securityAttributes">Top-Secret<input name="securityAttributes" type="radio" value="top-secret"></label>
+                            				<label for="securityAttributes">Confidential<input name="securityAttributes" type="radio" value="confidential"></label>
+                        			</label>
+                        			<label><br>Currently Active?: 
+                            				<label for="securityCurrent">Yes<input name="securityCurrent" type="radio" value="yes"></label>
+                            				<label for="securityCurrent">No<input name="securityCurrent" type="radio" value="no"></label>
+                        			</label>
+                    			</div>
 				</div>
-				<div id="radio">
-					<label>Work Hours</label>
+				<div id="radio" style="margin-top: 15px;">
+					<label>Work Hours *<br></label>
 					<label>Full-Time <input name="workHours" type="radio" value="fullTime"></label>
 					<label> Part-Time <input name="workHours" type="radio" value="partTime"></label>
 				</div>
-				<div id="radio">
-					<label>Work Time</label>
+				<div id="radio" style="margin-top: 15px;">
+					<label>Work Time *<br></label>
 					<label>Days <input name="workTime" type="radio" value="days"></label>
 					<label>Nights <input name="workTime" type="radio" value="nights"></label>
 				</div>
@@ -267,6 +285,18 @@
 									<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="fair">
 									<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="good" style="margin-left: 30px;">
 									<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label><br>Troubleshooting</label>
+								</div>
+								<div>
+									<label for="skillTroubleshootingRating"><text>Fair</text><text style="margin-left: 15px;">Good</text><text style="margin-left: 15px;">Excellent</text><br>
+										<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="fair">
+										<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="good" style="margin-left: 30px;">
+										<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="excellent" style="margin-left: 40px;">
+									</label>
 								</div>
 							</li>
 						</ul>
