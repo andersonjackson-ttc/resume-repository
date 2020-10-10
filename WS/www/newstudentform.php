@@ -296,6 +296,47 @@
 					<div>
 						<label>Graduation Date *<br><input class="gradFields" required name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
 					</div>
+					<div id="inputField">
+						<!-- Job Interest Checkboxes -->
+						<div id="jobInterest">
+							<ul style="list-style-type: none; display: inline-block;">
+									<h3>Job Interests</h3>
+									<li>
+											<input type="checkbox" id="itDirector" name="itDirector" value="itDirector">
+											<label for="itDirector">IT Director</label>
+									</li>
+									<li>
+											<input type="checkbox" id="dataAnalyst" name="dataAnalyst" value="dataAnalyst">
+											<label for="dataAnalyst">Data Analyst</label>
+									</li>
+									<li>
+											<input type="checkbox" id="cyberSecurity" name="cyberSecurity" value="cyberSecurity">
+											<label for="cyberSecurity">Cyber Security</label>
+									</li>
+									<li>
+											<input type="checkbox" id="applicationsEngineer" name="applicationsEngineer" value="applicationsEngineer">
+											<label for="applicationsEngineer">Applications Engineer</label>
+									</li>
+							</ul>
+							<ul style="list-style-type: none;  display:inline-block;">
+										<li>
+												<input type="checkbox" id="supportSpecialist" name="supportSpecialist" value="supportSpecialist">
+												<label for="supportSpecialist">Support Specialist</label>
+										</li>
+										<li>
+												<input type="checkbox" id="networkEngineer" name="networkEngineer" value="networkEngineer">
+												<label for="networkEngineer">Network Engineer</label>
+										</li>
+										<li>
+												<input type="checkbox" id="webDeveloper" name="webDeveloper" value="webDeveloper">
+												<label for="webDeveloper">Web Developer</label>
+										</li>
+										<li>
+												<input type="checkbox" id="dataAdministrator" name="dataAdministrator" value="dataAdministrator">
+												<label for="dataAdministrator">Database Administrator</label>
+										</li>
+							</ul>
+						</div><!-- End of Job Interest Checkboxes -->
 				</div>
 				<!--End fourth row-->
 				<br>
