@@ -311,9 +311,21 @@
 				<!--End third row-->
 				<br>
 				<!--Begin fourth row-->
-				<!-- <div id="inputField">
-					<label>Education<br><textarea class="education" name="education" type="text"><?php if (isset($_POST['education'])) echo $_POST['education']; ?></textarea></label>
-				</div> -->
+				<div id="inputField">
+					<label>Education<br></label>
+					<label>Select One: 
+                            			<label for="securityAttributes">Associates<input name="securityAttributes" type="radio" value="associates"></label>
+                            			<label for="securityAttributes">Bachelors<input name="securityAttributes" type="radio" value="bachelors"></label>
+                            			<label for="securityAttributes">Masters<input name="securityAttributes" type="radio" value="masters"></label>
+						<label for="securityAttributes">Doctorate<input name="securityAttributes" type="radio" value="doctorate"></label>
+						<label for="securityAttributes">PHD<input name="securityAttributes" type="radio" value="phd"></label>
+                        			<br>
+                       				<label for="collegeName">College: <br><input name="collegeName" type="text" value="<?php if (isset($_POST['collegeName'])) echo $_POST['collegeName']; ?>" style="margin-top: 5px;"></label>
+                        			<br>
+                        			<label for="degreeName">Degree: <br><input name="degreeName" type="text" value="<?php if (isset($_POST['degreeName'])) echo $_POST['degreeName']; ?>" style="margin-left: 4px; margin-top: 5px;"></label>
+                        		</label>
+					<br>
+				</div>
 				<div id="inputField" class="gradDiv">
 					<div>
 						<label for="gradStatus">Graduation Status *<br></label>
@@ -390,8 +402,8 @@
 				<!--Submit button and Exit button-->
 				<br>
 				<br>
-				<input id="finalButton" type="submit" value="Save Form">
-				<a href="index.php"><input id="finalButton" type="button" value="Cancel and Exit"></a>
+				<input id="finalButton" type="submit" value="Save Form" style="float: left;">
+				<a href="index.php"><input id="finalButton" type="button" value="Cancel and Exit" style="float: left;"></a>
 			</fieldset>
 		</form>
 		<?php
