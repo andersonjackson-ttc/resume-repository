@@ -48,52 +48,52 @@
 			<fieldset>
 				<!--Begin first row-->
 				<div id="inputField">       <!--The ' value ' attributes below in PHP will keep whatever you entered in place if the page gets reloaded or you submit an incomplete form.-->
-					<label>Student ID *<br><input required name="studentID" type="number" size="30" maxlength="100" value="<?php if (isset($_POST['studentID'])) echo $_POST['studentID']; ?>"></label>
+					<label>Student ID <span class="requiredField">*</span><br><input name="studentID" type="number" size="30" maxlength="100" value="<?php if (isset($_POST['studentID'])) echo $_POST['studentID']; ?>"></label>
 				</div>                      <!--Google ignores/overrides ' autocomplete="off" '. Imagine lots of names will be added, flooding the autofill results. This could be an issue-->
 				<div id="inputField">       <!--The ' required ' attribute makes the field unable to submit unless it is filled out.-->
-					<label>First Name *<br><input required name="firstName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>"></label>
+					<label>First Name <span class="requiredField">*</span><br><input required name="firstName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>"></label>
 				</div>
 				<div id="inputField">
 					<label>MI<br><input name="middleInitial" type="text" size="5" maxlength="100" value="<?php if (isset($_POST['middleInitial'])) echo $_POST['middleInitial']; ?>"></label>
 				</div>
 				<div id="inputField">
-					<label>Last Name *<br><input required name="lastName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['lastName'])) echo $_POST['lastName']; ?>"></label>
+					<label>Last Name <span class="requiredField">*</span><br><input required name="lastName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['lastName'])) echo $_POST['lastName']; ?>"></label>
 				</div>
 				<div id="inputField">
-					<label>Email *<br><input required name="studentEmail" type="email" size="30" maxlength="100" value="<?php if (isset($_POST['studentEmail'])) echo $_POST['studentEmail']; ?>"></label>
+					<label>Email <span class="requiredField">*</span><br><input required name="studentEmail" type="email" size="30" maxlength="100" value="<?php if (isset($_POST['studentEmail'])) echo $_POST['studentEmail']; ?>"></label>
 				</div>
 				<div id="inputField">
-					<label>Phone Number *<br><input required name="studentPhone" type="phone" size="30" maxlength="100" value="<?php if (isset($_POST['studentPhone'])) echo $_POST['studentPhone']; ?>"></label>
+					<label>Phone Number <span class="requiredField">*</span><br><input required name="studentPhone" type="phone" size="30" maxlength="100" value="<?php if (isset($_POST['studentPhone'])) echo $_POST['studentPhone']; ?>"></label>
 				</div>
 				<div id="checkbox" style="margin-top: 15px;">
-                  			  <label>Military Veteran *<br></label>
+                  			  <label>Military Veteran <span class="requiredField">*</span><br></label>
                    			  <label for="militaryStatus">Yes<input name="militaryStatus" type="radio" value="yes"></label>
                   			  <label for="militaryStatus">No<input name="militaryStatus" type="radio" value="no"></label>
 					  <br>
                 			</div>
                 			<div id="checkbox" style="margin-top: 15px;">
-                    				<label>Security Clearance *<br></label>
+                    				<label>Security Clearance <span class="requiredField">*</span><br></label>
                    			 	<label for="securityClearance">Yes<input id="securityClearanceYes" name="securityClearance" type="radio" value="yes"></label>
                     				<label for="securityClearance">No<input id="securityClearanceNo" name="securityClearance" type="radio" value="no"></label>
                     			<div id="securityAttributes" style="display: none; margin-top: 5px;">
-                        			<label>Select One: 
+                        			<label>Select One:
                             				<label for="securityAttributes">Secret<input name="securityAttributes" type="radio" value="secret"></label>
                             				<label for="securityAttributes">Top-Secret<input name="securityAttributes" type="radio" value="top-secret"></label>
                             				<label for="securityAttributes">Confidential<input name="securityAttributes" type="radio" value="confidential"></label>
                         			</label>
-                        			<label><br>Currently Active?: 
+                        			<label><br>Currently Active?:
                             				<label for="securityCurrent">Yes<input name="securityCurrent" type="radio" value="yes"></label>
                             				<label for="securityCurrent">No<input name="securityCurrent" type="radio" value="no"></label>
                         			</label>
                     			</div>
 				</div>
 				<div id="radio" style="margin-top: 15px;">
-					<label>Work Hours *<br></label>
+					<label>Work Hours <span class="requiredField">*</span><br></label>
 					<label>Full-Time <input name="workHours" type="radio" value="fullTime"></label>
 					<label> Part-Time <input name="workHours" type="radio" value="partTime"></label>
 				</div>
 				<div id="radio" style="margin-top: 15px;">
-					<label>Work Time *<br></label>
+					<label>Work Time <span class="requiredField">*</span><br></label>
 					<label>Days <input name="workTime" type="radio" value="days"></label>
 					<label>Nights <input name="workTime" type="radio" value="nights"></label>
 				</div>
@@ -313,7 +313,7 @@
 				<!--Begin fourth row-->
 				<div id="inputField">
 					<label>Education<br></label>
-					<label>Select One: 
+					<label>Select One:<br>
                             			<label for="securityAttributes">Associates<input name="securityAttributes" type="radio" value="associates"></label>
                             			<label for="securityAttributes">Bachelors<input name="securityAttributes" type="radio" value="bachelors"></label>
                             			<label for="securityAttributes">Masters<input name="securityAttributes" type="radio" value="masters"></label>
@@ -328,7 +328,7 @@
 				</div>
 				<div id="inputField" class="gradDiv">
 					<div>
-						<label for="gradStatus">Graduation Status *<br></label>
+						<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label>
 						<select required name="gradStatus" id="gradStatus" class="gradFields">
 							<option disabled selected value="">-- select an option --</option>
 							<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="graduated">Graduated</option>
@@ -336,7 +336,7 @@
 						</select>
 					</div>
 					<div>
-						<label>Graduation Date *<br><input class="gradFields" required name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
+						<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" required name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
 					</div>
 					<div id="inputField">
 						<!-- Job Interest Checkboxes -->
@@ -384,7 +384,7 @@
 				<br>
 				<!--Begin fifth row-->
 				<div id="inputField">
-					<label>Majors *<br></label>
+					<label>Majors <span class="requiredField">*</span><br></label>
 				</div>
 				<!--End fifth row-->
 				<br>
@@ -396,7 +396,7 @@
 				<br>
 				<!--Begin seventh row-->
 				<div id="inputField">
-					<label>Attachments *<br><input required name="attachments" type="file"></label>
+					<label>Attachments <span class="requiredField">*</span><br><input required name="attachments" type="file"></label>
 				</div>
 				<!--End seventh row-->
 				<!--Submit button and Exit button-->

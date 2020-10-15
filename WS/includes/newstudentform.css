@@ -3,7 +3,7 @@
 body {
 	background:#ffffff;
 	color:#555;
-	width: min-content;
+	max-width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
@@ -28,6 +28,10 @@ input{
 	display: inline-block;
 	padding-bottom: 2px;
 }
+.requiredField{
+	color: red;
+}
+
 /*Sets a static size for the open ended text-areas. Does not like percentages.*/
 .skillsBox{
 	resize: none;
@@ -61,68 +65,4 @@ input, select, .input {
 	font-size: 1em;
 	background: #FFFFFF;
 	border: 1px solid #004080;
-}
-@media only screen and (max-width: 1520px) {
-	#inputField{
-		padding-bottom: 2px;
-	}
-	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
-	.skillsBox{
-		resize: none;
-		width: 445px;
-		height: 80px;
-	}
-	.longBar, .education{
-		resize: none;
-		width: 900px;
-		height: 80px;
-	}
-	.certifications{
-		resize: none;
-		width: 900px;
-		height: 160px;
-	}
-	.gradDiv{
-		float: none;
-	}
-}
-@media only screen and (max-width: 976px) {
-	#inputField{
-		display: block;
-		padding-bottom: 2px;
-	}
-	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
-	.skillsBox, .longBar, .education{
-		resize: none;
-		width: 445px;
-		height: 80px;
-	}
-	.certifications{
-		resize: none;
-		width: 445px;
-		height: 160px;
-	}
-	.gradDiv{
-		float: none;
-	}
-}
-@media only screen and (max-width: 514px) {
-	#inputField{
-		display: block;
-		padding-bottom: 2px;
-	}
-	/*Sets a static size for the open ended text-areas. Does not like percentages.*/
-	.skillsBox, .longBar, .education{
-		resize: none;
-		width: 280px;
-		height: 80px;
-	}
-	.certifications{
-		resize: none;
-		width: 280px;
-		height: 160px;
-	}
-	.gradDiv{
-		float: none;
-	}
 }
