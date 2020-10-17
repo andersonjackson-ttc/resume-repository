@@ -1,0 +1,398 @@
+TODO: 
+1. jQuery function: That takes profile ID and redirects to student display page with all database information.
+
+	EXAMPLE:
+	function studentDisplay($profileId) {
+		TODO: Code goes here...
+	}
+
+2. jQuery function: To get resume path to resume folder in data, add profile ID to path. return path as varchar.
+
+	EXAMPLE:
+	function storeResume($profileId) {
+		TODO: Code goes here...
+	}
+	
+	function retrieveResume($profileId) {
+		TODO: Code goes here...
+	}
+
+
+
+QUESTIONS:
+1. Is it faster to have an array of the students or to just keep pulling required information from the database each time?
+
+
+
+// DATABASE INFORMATION:
+resume_schema:
+	students
+		profile_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+		student_id INT UNSIGNED
+		first_name VARCHAR
+		middle_initial VARCHAR
+		last_name VARCHAR
+		email VARCHAR
+		phone VARCHAR
+		graduated TINYINT(1)
+		graduation_date DATE
+		resume_path VARCHAR
+		military_status TINYINT(1)
+		security_clearance TINYINT(1)
+
+	skills
+		skill_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+		skill_name VARCHAR
+
+	student_skills
+		profile_id FOREIGN KEY
+		skill_id FOREIGN KEY
+
+	certificates
+		certificate_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+		certificate_name VARCHAR
+	
+	student_certificates
+		profile_id FOREIGN KEY
+		certificate_id FOREIGN KEY
+
+	majors
+		major_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+		major_name VARCHAR
+		degree_type VARCHAR
+		school_name VARCHAR
+
+	student_majors
+		profile_id FOREIGN KEY
+		major_id FOREIGN KEY
+
+
+
+// VARIABLE INFORMATION:
+// php page variables:
+$page_title
+
+
+
+// Students table:
+$profileId = $_GET ? ----------> Use to get student info for display page
+$studentId = $_POST['studentID'];
+$firstName = $_POST['first'];
+$middleInitial = $_POST['middleInitial'];
+$lastName = $_POST['last'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$gradStatus = $_POST['graduated'];
+$gradDate = $_POST['gradDate'];
+$resumePath = $_POST['resume'];
+$milStatus = $_POST['militaryStatus'];
+$clearance = $_POST['securityClearance'];
+
+
+
+// Student retrieval -- Possible variables for searching student database?
+fName
+lName
+studentId
+gradStatus
+milStatus
+clearance
+gradDate ???
+major
+degree
+skill ???
+certificate
+
+
+
+// Majors Table:
+$major = $_POST['majorName'];
+$degree = $_POST['degreeType'];
+$school = $_POST['schoolName'];
+
+
+
+// Skills Table:
+$skillName = $_POST['skillName'];
+
+
+
+// Cert. Table:
+$certificateName = $_POST['certificateName'];
+
+
+
+// SQL variables
+$sqlStudentInsert
+$sqlStudentEdit
+$sqlStudentDelete
+$sqlStudentArchive
+$lastId
+
+
+
+//SQL connection
+$host
+$port
+$socket
+$user
+$password
+$dbName
+
+
+
+// Create new student (?) Values disguise entry:
+$sqlStudentInsert = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone, graduated, graduation_date, resume_path, military_status, security_clearance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+
+// SELECT STUDENTS BASIC:
+$sqlSelectStudent = "SELECT student_id, first_name, middle_initial, last_name, email, phone, graduated, military_status FROM students";
+$result = mysqli_query($conn, $sqlSelectStudent);
+
+if (mysqli_num_rows($result) > 0) {
+}
+
+
+
+// SELECT STUDENT WHERE:
+$sqlSelectStudent = "Select * FROM students WHERE profile_id =" . $profile_id;
+$result = mysqli_query($conn, $sqlSelectStudent);
+
+if (mysqli_num_rows($result) > 0) {
+	TODO: redirect to student display page?
+}
+
+
+
+// DELETE STUDENTS FROM DATABASE:
+$sqlDeleteStudent = "DELETE FROM students WHERE id=" . $profile_id;
+if ($conn->query($sqlDeleteStudent) === TRUE) {
+	echo "Record deleted successfully";
+} else {
+	echo "Error deleting record: " . $conn->error;
+}
+
+
+
+// UPDATE / EDIT STUDENTS FROM DATABASE:
+$sqlUpdateStudent = "UPDATE students SET student_id=" . $studentId . ", first_name=" . $fName . ", middle_initial=" . $middleInitial . 
+	", last_name=" . $lName . ", email=" . $email . ", phone=" . $phone . ", graduated=" . $gradStatus . "graduation_date=" . $gradDate . 
+	", resume_path=" . $resumePath . ", military_status=" . $milStatus . ", security_clearance=" . $clearance . "WHERE id=" . $profileId;
+
+
+
+// PREPARING THE SQL INSERT TO DATABASE:
+$stmt = $conn->prepare($sqlStudentInsert);
+
+
+
+// BIND THE DISGUISED (?) VARIABLES:
+$stmt->bind_param("isssssissii", $studentId, $firstName, $middleInitial, $lastName, $email, $phone, $gradStatus, $gradDate, $resumePath, $milStatus, $clearance);
+
+
+
+// RETREIVE LAST ID INSERTED TO DATABASE:
+$lastId = mysqli_insert_id($conn);
+
+
+
+// EXAMPLE: MySQLi PROCEDURAL:
+// CREATE AND CHECK CONNECTION:
+$host = "192.168.6.3";
+$port =3306;
+$socket="";
+$user = "resumeuser";
+$password = "rsdbTtc9!";
+$dbName = "resume_schema";
+
+$conn = new mysqli($host, $user, $password, $dbName, $port, $socket);
+
+if (!$conn) {
+	die("Connection failed: " . mysqli_connect_error());
+}
+
+
+
+// INSERT NEW STUDENT USING IF/ELSE:
+if (mysqli_query($conn, $sqlStudentInsert)) {
+	$lastId = mysqli_insert_id($conn);
+	echo "New record added successfully <br> Last ID inserted is: " . $lastId;
+	
+} else {
+	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+mysqli_close($conn);
+
+
+
+// LIMIT RETURNS BY PAGE NUMBER:
+
+// Records per page:
+$display = 25;
+
+// Set how many pages are generated:
+if (isset($_GET['p']) && is_numeric($_GET['p']))
+{
+  $pages = $_GET['p'];
+}
+else // Record count:
+{
+  $q = "SELECT COUNT(students) FROM resume_schema";
+  $r = @mysqli_query($dbc, $q);
+  $row = @mysqli_fetch_array ($r, MYSQLI_NUM);
+  $records = $row[0];
+  // Calc. number of pages:
+  if ($records > $display)
+  {
+    $pages = ceil ($records/$display);
+  }
+  else
+  {
+    $pages = 1;
+  }
+} // END 'p' IF.
+
+// Determine where in database to return results:
+if (isset($_GET['s']) && is_numeric($_GET['s'])) {
+  $start = $_GET['s'];
+}
+else
+{
+  $start = 0;
+}
+
+// Default sort by city name:
+$sort = (isset($_GET['sort'])) ? $_GET['sort'] : 'last_name';
+
+// Determine the sorting order:
+switch ($sort)
+{
+  case 'fName':
+    $order_by = 'first_name ASC';
+    break;
+  case 'mi':
+    $order_by = 'middle_initial ASC';
+    break;
+  case 'lName':
+    $order_by = 'last_name ASC';
+    break;
+  case 'grad':
+    $order_by = 'graduated ASC';
+    break;
+  case 'graduationDate':
+    $order_by = 'graduation_date ASC';
+    break;
+  case 'milStatus':
+    $order_by = 'military_status ASC';
+    break;
+  case 'clearance':
+    $order_by = 'security_clearance ASC';
+    break;
+  default:
+    $order_by = 'last_name ASC';
+    $sort = 'rd';
+    break;
+}
+
+// Define the query:
+$q = "SELECT * FROM resume_schema ORDER BY $order_by LIMIT $start, $display";
+$r = @mysqli_query ($dbc, $q); // Run query.
+
+// Check to make sure query returns more than 0 records:
+if (mysqli_num_rows($r) > 0)
+{
+  // Table header:
+  echo '<table align="center" cellspacing="0" cellpadding="5" width="100%">
+  <tr>
+    <td style="text-align:left"><b><a href="studentDisplay.php?sort=fName">First Name</a></b></td>
+    <td style="text-align:left"><b><a href="studentDisplay.php?sort=mi">Middle Initial</a></b></td>
+    <td style="text-align:right"><b><a href="studentDisplay.php?sort=lName">Last Name</a></b></td>
+    <td style="text-align:right"><b><a href="studentDisplay.php?sort=grad">Graduated Y/N</a></b></td>
+    <td style="text-align:right"><b><a href="studentDisplay.php?sort=graduationDate">Graduation Date</a></b></td>
+    <td style="text-align:right"><b><a href="studentDisplay.php?sort=milStatus">Military Status</a></b></td>
+    <td style="text-align:right"><b><a href="studentDisplay.php?sort=clearance">Security Clearance</a></b></td>
+    </tr>';
+
+    // Fetch and print records:
+    $bg = '#eeeeee';
+
+    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC))
+    {
+      $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
+      echo
+      '<tr bgcolor="' . $bg . '">
+      <td style="text-align:left">' . $row['first_name'] . '</td>
+      <td style="text-align:left">' . $row['middle_initial'] . '</td>
+      <td style="text-align:right">' . $row['last_name'] . '</td>
+      <td style="text-align:right">' . $row['graduated'] . '</td>
+      <td style="text-align:right">' . $row['graduation_date'] . '</td>
+      <td style="text-align:right">' . $row['military_status'] . '</td>
+      <td style="text-align:right">' . $row['security_clearance'] . '</td>
+      </tr>';
+    } // END WHILE loop.
+
+    // Close the table.
+    echo '</table>';
+
+  }// END IF mysqli_num_rows($r).
+else
+{
+  echo '<p class="error">There are currently no cities in the database.</p>';
+}// END ELSE mysqli_num_rows($r).
+
+// Close and free resources:
+mysqli_free_result ($r);
+// Close database connection:
+mysqli_close($dbc);
+
+// Links to other pages if needed.
+if ($pages > 1)
+{
+  // Add some spacing and start a paragraph:
+  echo '<br /><p>';
+  // Determine what page script is on:
+  $current_page = ($start/$display) + 1;
+
+  // Create previous button if not on first page:
+  if ($current_page != 1)
+  {
+    echo '<a href="data.php?s=' . ($start - $display) . '&p=' . $pages . '&sort=' . $sort . '">Previous</a> ';
+  }
+
+  // Create all numbered pages:
+  for ($i = 1; $i <= $pages; $i++)
+  {
+    if ($i != $current_page)
+    {
+      echo '<a href="data.php?s=' . (($display * ($i - 1))) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';
+    }
+      else
+      {
+        echo $i . ' ';
+      }
+    }// END for loop.
+
+    // Create next button if not on last page:
+    if ($current_page != $pages)
+    {
+      echo '<a href="data.php?s=' . ($start + $display) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
+    }
+
+    echo '</p>';
+  }// END links section.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
