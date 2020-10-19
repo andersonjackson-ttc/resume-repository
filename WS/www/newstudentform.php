@@ -403,21 +403,7 @@
 						<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" required name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
 					</div>
 				</div>
-				<div id="inputField" class="eduList">
-					<label><h3>Education</h3></label><br>
-					<label>Select One:<br>
-      			<label for="securityAttributes">Associates<input name="securityAttributes" type="radio" value="associates"></label>
-      			<label for="securityAttributes">Bachelors<input name="securityAttributes" type="radio" value="bachelors"></label>
-      			<label for="securityAttributes">Masters<input name="securityAttributes" type="radio" value="masters"></label>
-						<label for="securityAttributes">Doctorate<input name="securityAttributes" type="radio" value="doctorate"></label>
-						<label for="securityAttributes">PHD<input name="securityAttributes" type="radio" value="phd"></label>
-	    			<br>
-	   				<label for="collegeName">College: <br><input name="collegeName" type="text" value="<?php if (isset($_POST['collegeName'])) echo $_POST['collegeName']; ?>" style="margin-top: 5px;"></label>
-	    			<br>
-	    			<label for="degreeName">Degree: <br><input name="degreeName" type="text" value="<?php if (isset($_POST['degreeName'])) echo $_POST['degreeName']; ?>" style="margin-left: 4px; margin-top: 5px;"></label>
-	    			</label>
-					
-				</div><br>
+				<br>
                 <div id="inputField" class="majors">
                     <h4>Prior Education</h4>
 		<input type="checkbox" id="majors" name="majors" value="majors">
@@ -448,13 +434,7 @@
 				<!--End fifth row-->
 			
 				<!--Begin sixth row-->
-		<div id="inputField" class="certification">
-                <input type="checkbox" id="certification" name="certification" value="certification">
-                <label for="certification">Prior Certifications</label>
-                <br>
-                <div id="dvCertification" style="display: none"><label>Certifacation name/type:<br><input required name="certification" type="text" id="txtCertification" size="30" maxlength="100" value="<?php if (isset($_POST['certificate_name'])) echo $_POST['certificate_name']; ?>"></label>
-		</div>
-                </div><br>
+		<br>
 				
 		<div id="inputField">
 		<label>Upload Resume <span class="requiredField">*</span><br><input required name="attachments" type="file"></label>
