@@ -385,9 +385,6 @@
 					</div><!-- End of Job Interest Checkboxes -->
 				</div>
 				<hr>
-				<div id="inputField"> <!--Do we still want this field? leaving it as a text box for now-->
-					<label>Experience<br><textarea class="longBar" name="experience" type="text"><?php if (isset($_POST['experience'])) echo $_POST['experience']; ?></textarea></label>
-				</div>
 				<br>
 				<div id="inputField" class="eduList">
 					<div>
