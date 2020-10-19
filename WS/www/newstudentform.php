@@ -6,6 +6,46 @@
 		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
 		<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 		<script src="newstudentform.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        	<script type="text/javascript">
+            $(function () {
+       		$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajorsType").show();
+            	} else {
+                $("#dvMajorsType").hide();
+            	}
+             	});
+            	});
+            	$(function () {
+       		$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajors").show();
+            	} else {
+                $("#dvMajors").hide();
+            	}
+             	});
+            	});
+                  $(function () {
+       	 	$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajorsSchool").show();
+            	} else {
+                $("#dvMajorsSchool").hide();
+            	}
+            	 });
+            	});
+        
+             $(function () {
+        	$("#certification").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvCertification").show();
+           	 } else {
+                $("#dvCertification").hide();
+          	  }
+          	   });
+          	  });
+        </script>
 	</head>
 	<!-- <body> -->
 		<?php
@@ -364,7 +404,7 @@
 					</div>
 				</div>
 				<div id="inputField" class="eduList">
-					<label><h3>Education</h3></label>
+					<label><h3>Education</h3></label><br>
 					<label>Select One:<br>
       			<label for="securityAttributes">Associates<input name="securityAttributes" type="radio" value="associates"></label>
       			<label for="securityAttributes">Bachelors<input name="securityAttributes" type="radio" value="bachelors"></label>
@@ -375,21 +415,52 @@
 	   				<label for="collegeName">College: <br><input name="collegeName" type="text" value="<?php if (isset($_POST['collegeName'])) echo $_POST['collegeName']; ?>" style="margin-top: 5px;"></label>
 	    			<br>
 	    			<label for="degreeName">Degree: <br><input name="degreeName" type="text" value="<?php if (isset($_POST['degreeName'])) echo $_POST['degreeName']; ?>" style="margin-left: 4px; margin-top: 5px;"></label>
-	    		</label>
-					<br>
-				</div>
-				<div id="inputField" class="eduList">
-					<label><h3>Majors <span class="requiredField">*</span></h3><br></label>
-					<div>
-						<p>lorem ipsum</p>
-					</div>
-				</div>
-				<div id="inputField" class="eduList">
-					<label><h3>Certifications</h3><br></label>
-					<div>
-						<p>lorem ipsum</p>
-					</div>
-				</div>
+	    			</label>
+					
+				</div><br>
+                <div id="inputField" class="majors">
+                    <h4>Prior Education</h4>
+                   	<input type="checkbox" id="majors" name="majors" value="majors">
+                    <label for="majors">Prior Degrees</label>
+                   	<br>
+                <div id="dvMajorsType" style="display: none">
+                <label for="securityAttributes">Associates
+                    <input required name="associates" type="checkbox" id="associates" size="30" maxlength="100" value="<?php if (isset($_POST['associates'])) echo $_POST['associates']; ?>">
+                    </label>
+      		    <label for="securityAttributes">Bachelors
+                    <input required name="bacholers" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['bacholers'])) echo $_POST['bacholers']; ?>">
+                    </label>
+      		    <label for="securityAttributes">Masters
+                    <input required name="master" type="checkbox" id="master" size="30" maxlength="100" value="<?php if (isset($_POST['master'])) echo $_POST['master']; ?>">
+                    </label>
+				<label for="securityAttributes">Doctorate
+                    <input required name="doctorate" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['doctorate'])) echo $_POST['doctorate']; ?>">
+                    </label>
+				<label for="securityAttributes">PHD
+                    <input required name="phd" type="checkbox" id="phd" size="30" maxlength="100" value="<?php if (isset($_POST['phd'])) echo $_POST['phd']; ?>"></label>
+	    			<br>
+                </div>
+                <div id="dvMajors" style="display: none">
+                    <label>Type of degree:<br><input required name="majors" type="text" id="txtMajors" size="30" maxlength="100" value="<?php if (isset($_POST['degree_type'])) echo $_POST['degree_type']; ?>">
+                    </label>
+			     </div>
+					
+                <div id="dvMajorsSchool" style="display: none"><label>Name of Institution:<br><input required name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="
+			    <?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
+                    </div>
+			     <br>
+				<!--End fifth row-->
+			
+				<!--Begin sixth row-->
+			     <div id="inputField" class="certification">
+                <input type="checkbox" id="certification" name="certification" value="certification">
+                <label for="certification">Prior Certifications</label>
+                <br>
+                <div id="dvCertification" style="display: none"><label>Certifacation name/type:<br><input required name="certification" type="text" id="txtCertification" size="30" maxlength="100" value="
+				<?php if (isset($_POST['certificate_name'])) echo $_POST['certificate_name']; ?>"></label>
+			     </div>
+                </div><br>
+				
 				<div id="inputField">
 					<label>Upload Resume <span class="requiredField">*</span><br><input required name="attachments" type="file"></label>
 				</div>
