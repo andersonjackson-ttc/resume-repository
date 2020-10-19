@@ -6,14 +6,16 @@ body {
 	max-width: 80%;
 	margin-left: auto;
 	margin-right: auto;
-	display: block;
 }
 /*Errors that appear from PHP validation*/
 .error{
 	font-weight: bold;
 	color: red;
 }
-h1{
+textarea {
+  resize: none;
+}
+h1, h3{
 	text-align: center;
 }
 input{
@@ -24,39 +26,31 @@ input{
 #finalButton{
 	background-color: #8DE8A1;
 }
-#inputField{
+#inputField:not(.choiceList){
 	display: inline-block;
 	padding-bottom: 2px;
 }
+.choiceList{
+	display: inline-block;
+	width: 21%;
+	position: relative;
+	vertical-align: top;
+}
+.eduList{
+	display: inline-block;
+	width: 24%;
+	position: relative;
+	vertical-align: top;
+}
+.longBar{
+	width: 1500px;
+	height: 150px;
+}
+
 .requiredField{
 	color: red;
 }
 
-/*Sets a static size for the open ended text-areas. Does not like percentages.*/
-.skillsBox{
-	resize: none;
-	width: 723px;
-	height: 80px;
-}
-.longBar{
-	resize: none;
-	width: 1456px;
-	height: 80px;
-}
-.education{
-	resize: none;
-	width: 1135px;
-	height: 80px;
-}
-.certifications{
-	resize: none;
-	width: 1456px;
-	height: 160px;
-}
-/*Positioning Graduation Status and Graduation Date*/
-.gradDiv{
-	float: right;
-}
 .gradFields{
 	width: 300px;
 }
