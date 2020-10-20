@@ -35,7 +35,7 @@
             	}
             	 });
             	});
-        
+
              $(function () {
         	$("#certification").click(function () {
             	if ($(this).is(":checked")) {
@@ -53,33 +53,60 @@
 		$page_title = 'Create a New Student Form';
 		extract($_POST);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			#declare and initialize error counter variable
+			$error_counter = 0;
 			#These double check validity if the HTML 'required' attribute happens to fail or are manually removed with dev mode
 			if ((empty($studentID))||(!is_numeric($studentID))){
 				echo '<p class="error">Please enter a valid Student ID.</p>';
+				$error_counter++;
 			}
 			if ((empty($firstName))||(is_numeric($firstName))){
 				echo '<p class="error">Please enter a valid First Name.</p>';
+				$error_counter++;
 			}
 			if ((empty($lastName))||(is_numeric($lastName))){
 				echo '<p class="error">Please enter a valid Last Name.</p>';
+				$error_counter++;
 			}
 			if (empty($studentEmail)){
 				echo '<p class="error">Please enter a valid Email Address.</p>';
+				$error_counter++;
 			}
 			if (empty($studentPhone)){
 				echo '<p class="error">Please enter a valid Phone Number.</p>';
+				$error_counter++;
 			}
 			if (!isset($_POST['gradStatus'])){
 				echo '<p class="error">Please enter a valid Graduation Status.</p>';
+					$error_counter++;
 			}
 			if (empty($_POST['gradDate'])){
 				echo '<p class="error">Please enter a Graduation Date.</p>';
+					$error_counter++;
 			}
 			if (empty($_POST['majors'])){
 				echo '<p class="error">Please enter (a) Major(s).</p>';
+					$error_counter++;
 			}
 			if (empty($_POST['attachments'])){
 				echo '<p class="error">Please attach (a) file(s).</p>';
+					$error_counter++;
+			}
+
+			if ($error_counter == 0) {
+				require('connection.php');
+
+				$q = '';
+				$r = @mysqli_query($dbc, $q);
+
+				if($r) {
+					echo '<script>alert("Submission Successful")</script>';
+				}
+				else {
+					echo '<h1 class="text-danger">Submission Error</h1>
+							  <p class="text-danger">Student could not be submitted due to a system error. We apologize for any inconvenience.</p>';
+				}
+				mysqli_close($dbc);
 			}
 		}
 		?>
@@ -425,14 +452,14 @@
                 <div id="dvMajors" style="display: none">
                 <label>Type of degree:<br><input required name="majors" type="text" id="txtMajors" size="30" maxlength="100" value="<?php if (isset($_POST['degree_type'])) echo $_POST['degree_type']; ?>">
                     </label>
-		</div>			
+		</div>
                 <div id="dvMajorsSchool" style="display: none"><label>Name of Institution:<br><input required name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
                 </div><br>
 				<!--End fifth row-->
-			
+
 				<!--Begin sixth row-->
 		<br>
-				
+
 		<div id="inputField">
 		<label>Upload Resume <span class="requiredField">*</span><br><input required name="attachments" type="file"></label>
 		</div>
