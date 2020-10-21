@@ -7,4 +7,4 @@
 
   mysqli_query($con, $sqlStudentInsert);
 
-header("Location: ../phpsqldemo.php?name_add=success");
+header("Location: ../newstudentform.php?name_add=success");
