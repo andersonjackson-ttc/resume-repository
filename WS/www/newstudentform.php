@@ -61,7 +61,7 @@
 				echo '<p class="error">Please enter a valid Student ID.</p>';
 				$error_counter++;
 			} else {
-					$student_id = mysqli_real_escape_string($dbc, trim($_POST['student_id']));
+					$student_id = mysqli_real_escape_string($con, trim($_POST['student_id']));
 			}
 			if ((empty($firstName))||(is_numeric($firstName))){
 				echo '<p class="error">Please enter a valid First Name.</p>';
