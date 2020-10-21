@@ -57,9 +57,11 @@
 			#declare and initialize error counter variable
 			$error_counter = 0;
 			#These double check validity if the HTML 'required' attribute happens to fail or are manually removed with dev mode
-			if ((empty($studentID))||(!is_numeric($studentID))){
+			if ((empty($_POST['student_id']))||(!is_numeric($_POST['student_id']))){
 				echo '<p class="error">Please enter a valid Student ID.</p>';
 				$error_counter++;
+			} else {
+					$student_id = mysqli_real_escape_string($dbc, trim($_POST['student_id']));
 			}
 			if ((empty($firstName))||(is_numeric($firstName))){
 				echo '<p class="error">Please enter a valid First Name.</p>';
