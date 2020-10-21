@@ -7,6 +7,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+
 /*Errors that appear from PHP validation*/
 .error{
 	font-weight: bold;
@@ -18,10 +19,12 @@ textarea {
 h1, h3{
 	text-align: center;
 }
+
 input{
 	border: 2px solid #67AC76;
 	border-radius: 4px;
 }
+
 /*Submission button color*/
 #finalButton{
 	background-color: #8DE8A1;
@@ -59,4 +62,27 @@ input, select, .input {
 	font-size: 1em;
 	background: #FFFFFF;
 	border: 1px solid #004080;
+}
+
+.checkboxes label 
+{
+
+  display: inline-block;
+  padding-right: 20px;
+  white-space: nowrap;
+
+}
+
+.checkboxes input
+{
+
+  vertical-align: middle;
+
+}
+
+.checkboxes label span
+{
+    vertical-align: middle;
+    padding-left: 0.4em;
+
 }
