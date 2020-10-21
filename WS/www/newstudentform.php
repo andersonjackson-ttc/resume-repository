@@ -55,62 +55,78 @@
 		extract($_POST);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			#declare and initialize error counter variable
-			$error_counter = 0;
+			$errors = [];
 			#These double check validity if the HTML 'required' attribute happens to fail or are manually removed with dev mode
-			if ((empty($_POST['student_id']))||(!is_numeric($_POST['student_id']))){
-				echo '<p class="error">Please enter a valid Student ID.</p>';
-				$error_counter++;
+			if ((empty($_POST['studentID']))||(!is_numeric($_POST['studentID']))){
+				$errors[] = '<p class="error">Please enter a valid Student ID.</p>';
 			} else {
-					$student_id = mysqli_real_escape_string($con, trim($_POST['student_id']));
+				  #trims white space and escapes common characters e.g. apostrophes
+					$student_id = mysqli_real_escape_string($con, trim($_POST['studentID']));
 			}
-			if ((empty($firstName))||(is_numeric($firstName))){
-				echo '<p class="error">Please enter a valid First Name.</p>';
-				$error_counter++;
+			if ((empty($_POST['firstName']))||(is_numeric($_POST['firstName']))){
+				$errors[] = '<p class="error">Please enter a valid First Name.</p>';
+			} else {
+				$firstName = mysqli_real_escape_string($con, trim($_POST['firstName']));
 			}
-			if ((empty($lastName))||(is_numeric($lastName))){
-				echo '<p class="error">Please enter a valid Last Name.</p>';
-				$error_counter++;
+			if ((empty($_POST['lastName']))||(is_numeric($_POST['lastName']))){
+				$errors[] = '<p class="error">Please enter a valid Last Name.</p>';
+			} else {
+						$lastName = mysqli_real_escape_string($con, trim($_POST['lastName']));
 			}
-			if (empty($studentEmail)){
-				echo '<p class="error">Please enter a valid Email Address.</p>';
-				$error_counter++;
+			if (empty($_POST['studentEmail'])){
+				$errors[] = '<p class="error">Please enter a valid Email Address.</p>';
+			} else {
+				$studentEmail = mysqli_real_escape_string($con, trim($_POST['studentEmail']));
 			}
-			if (empty($studentPhone)){
-				echo '<p class="error">Please enter a valid Phone Number.</p>';
-				$error_counter++;
+			if (empty($_POST['studentPhone'])){
+				$errors[] = '<p class="error">Please enter a valid Phone Number.</p>';
+			} else {
+				$studentPhone = mysqli_real_escape_string($con, trim($_POST['studentPhone']));
 			}
 			if (!isset($_POST['gradStatus'])){
-				echo '<p class="error">Please enter a valid Graduation Status.</p>';
-					$error_counter++;
+				$errors[] = '<p class="error">Please enter a valid Graduation Status.</p>';
+			} else {
+				$gradStatus = mysqli_real_escape_string($con, trim($_POST['gradStatus']));
 			}
 			if (empty($_POST['gradDate'])){
-				echo '<p class="error">Please enter a Graduation Date.</p>';
-					$error_counter++;
+				$errors[] = '<p class="error">Please enter a Graduation Date.</p>';
+			} else {
+				$gradDate = mysqli_real_escape_string($con, trim($_POST['gradDate']));
 			}
 			if (empty($_POST['majors'])){
-				echo '<p class="error">Please enter (a) Major(s).</p>';
-					$error_counter++;
+				$errors[] = '<p class="error">Please enter (a) Major(s).</p>';
+			} else {
+				$majors = mysqli_real_escape_string($con, trim($_POST['majors']));
 			}
 			if (empty($_POST['attachments'])){
-				echo '<p class="error">Please attach (a) file(s).</p>';
-					$error_counter++;
+				$errors = '<p class="error">Please attach (a) file(s).</p>';
+			} else {
+				$attachments = $_POST['attachments'];
 			}
 
-			if ($error_counter == 0) {
+			if (empty($errors)) {
 				require('connection.php');
-
+				//TODO need $q
 				$q = '';
-				$r = @mysqli_query($dbc, $q);
+				$r = @mysqli_query($con, $q);
 
 				if($r) {
 					echo '<script>alert("Submission Successful")</script>';
 				}
 				else {
-					echo '<h1 class="text-danger">Submission Error</h1>
-							  <p class="text-danger">Student could not be submitted due to a system error. We apologize for any inconvenience.</p>';
+					echo '<h1 class="error">Submission Error</h1>
+							  <p class="error">Student could not be submitted due to a system error. We apologize for any inconvenience.</p>';
 				}
-				mysqli_close($dbc);
 			}
+			else {
+				echo '<h1 class="error">Error!</h1>;
+					  <p class="error">The following error(s) occurred:<br>';
+				foreach ($errors as $msg) {
+					echo " - $msg<br>\n";
+				}
+				echo '</p><p class="error">Please try again.</p><p><br></p>';
+			}
+			mysqli_close($con);
 		}
 		?>
 		<h1>Create a New Student Form</h1>
