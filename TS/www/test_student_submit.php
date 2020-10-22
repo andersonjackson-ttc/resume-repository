@@ -1,5 +1,5 @@
 <?php
-  require 'connection.php';
+  require '../src/connection.php';
 
   $studentId = $_POST['studentID'];
   $firstName = $_POST['firstName'];
