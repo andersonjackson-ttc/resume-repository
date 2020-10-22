@@ -17,22 +17,4 @@ or die ('Could not connect to the database server' . mysqli_connect_error());
 
 
 
-/*
-
-mysqli_query($con, $sql);
-
-
-
-
-$first = $_POST['first'];
-$last = $_POST['last'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
- 
-
-$sql = "INSERT INTO Students (first_name, last_name, email, phone) VALUES ('$first', '$last', '$email', '$phone');";
-
-
-$testsql = "INSERT INTO test (fname) VALUES (Noah);";
-*/
-
+?>

@@ -15,6 +15,7 @@
   $clearance = 2;
 
   $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone, graduated, graduation_date, resume_path, military_status, security_clearance)
-          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone', '$gradStatus', '$gradDate','$resumePath', '$milStatus', '$clearance');
+          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone', '$gradStatus', '$gradDate','$resumePath', '$milStatus', '$clearance');"
 
   mysqli_query($con, $sql);
+?>

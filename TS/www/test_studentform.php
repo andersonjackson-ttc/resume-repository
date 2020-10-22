@@ -1,7 +1,4 @@
-	<head>
-		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
-		
-	</head>
+
 
 	<!-- <body> -->
 		<?php
