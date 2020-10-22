@@ -12,4 +12,3 @@ $con = new mysqli($host, $user, $password, $dbName, $port, $socket)
 or die ('Could not connect to the database server' . mysqli_connect_error());
 
 
-?>

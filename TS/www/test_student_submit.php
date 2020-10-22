@@ -25,5 +25,4 @@ if ($con->query($sql) === TRUE) {
 
 $conn->close();
 
-?>
 
