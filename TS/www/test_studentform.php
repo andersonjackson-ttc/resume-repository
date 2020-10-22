@@ -1,6 +1,6 @@
 
 
-	<!-- <body> -->
+
 		<?php
 		include ('../includes/header.html');
 		include_once '../src/test_student_submit.php';
