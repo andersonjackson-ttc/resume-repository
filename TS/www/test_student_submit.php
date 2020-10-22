@@ -1,5 +1,5 @@
 <?php
-  require '../src/connection.php';
+  include_once '../src/connection.php';
 
   $studentId = $_POST['studentID'];
   $firstName = $_POST['firstName'];
@@ -13,3 +13,5 @@
           VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone');"
 
   mysqli_query($con, $sql);
+
+	header("Location: ../test_studentform.php?name_add=success");
