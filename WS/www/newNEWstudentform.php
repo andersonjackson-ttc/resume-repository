@@ -55,7 +55,7 @@
 		?>
 
 		<h1>Create a New Student Form</h1>
-		<form name="newstudentform.php"  method="post" action="src/student_submit.php">
+		<form name="newstudentform.php"  method="post" action="src/NEWstudent_submit.php">
 			<fieldset>
 				<div id="inputField">       <!--The ' value ' attributes below in PHP will keep whatever you entered in place if the page gets reloaded or you submit an incomplete form.-->
 					<label>Student ID <span class="requiredField">*</span><br><input name="studentID" type="number" size="30" maxlength="100" value="<?php if (isset($_POST['studentID'])) echo $_POST['studentID']; ?>"></label>
