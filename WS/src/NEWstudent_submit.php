@@ -73,11 +73,17 @@
     }
 
     if (empty($errors)) {
-      require('connection.php');
-      //TODO need $q
+      
+      require('connection.php');      
       $sqlStudentInsert = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone, graduated, graduation_date, resume_path, military_status, security_clearance)
                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      $result = mysqli_query($con, $sqlStudentInsert);
+      $stmt = $conn->prepare($sqlStudentInsert);
+      $stmt->bind_param("isssssissii", $studentId, $firstName, $middleInitial, $lastName, $email, $phone, $gradStatus, $gradDate, $resumePath, $milStatus, $clearance);
+      mysqli_stmt_execute($stmt);
+
+      // Take database return and store in $stmt variable:
+      mysqli_stmt_store_result($stmt);
+      $result = mysqli_stmt_num_rows($stmt);
 
       if($result) {
         echo '<script>alert("Submission Successful")</script>';
