@@ -14,7 +14,7 @@ include ('../includes/header.html');
 echo '<h1>Students</h1>';
 
 // Connect to the db:
-require('src/connection.php');
+include_once 'src/test.php';
 
 // Records per page:
 $display = 25;
