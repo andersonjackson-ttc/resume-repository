@@ -1,5 +1,4 @@
 
-<?php
 
 $host = "192.168.6.3";
 $port =3306;
@@ -13,8 +12,4 @@ $con = new mysqli($host, $user, $password, $dbName, $port, $socket)
 or die ('Could not connect to the database server' . mysqli_connect_error());
 
 
-//$con->close();
 
-
-
-?>

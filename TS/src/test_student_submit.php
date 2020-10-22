@@ -1,4 +1,3 @@
-<?php
 
   require 'connection.php';
 
@@ -14,4 +13,3 @@
           VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone');"
 
   mysqli_query($con, $sql);
-?>
