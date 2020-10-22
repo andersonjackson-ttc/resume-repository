@@ -36,9 +36,6 @@
 
 				<hr><br>
 
-		<div id="inputField">
-		<label>Upload Resume <span class="requiredField">*</span><br><input required name="resume" type="file"></label>
-		</div>
 				<!--Submit button and Exit button-->
 				<br>
 				<br>
