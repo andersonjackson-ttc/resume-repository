@@ -5,7 +5,9 @@
 		$page_title = 'Create a New Student Form';
 
 		include ('../includes/header.html');
+		?>
 		
+		<?php
 		  include_once 'src/connection.php';
 
 		?>

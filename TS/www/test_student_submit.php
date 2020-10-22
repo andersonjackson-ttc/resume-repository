@@ -15,3 +15,5 @@
   mysqli_query($con, $sql);
 
 	header("Location: ../test_studentform.php?name_add=success");
+	
+	?>
