@@ -1,19 +1,17 @@
 	<head>
 		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
-		<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script src="newstudentform.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		
 	</head>
 
 	<!-- <body> -->
 		<?php
 		include ('../includes/header.html');
-		include_once 'NEWsubmit_student.php';
+		include_once '../src/test_submit_student.php';
 		$page_title = 'Create a New Student Form';
 		?>
 
 		<h1>Create a New Student Form</h1>
-		<form action="NEWstudent_submit.php" method="POST">
+		<form action="../src/test_submit_student.php" method="POST">
 			<fieldset>
 				<div id="inputField">       <!--The ' value ' attributes below in PHP will keep whatever you entered in place if the page gets reloaded or you submit an incomplete form.-->
 					<label>Student ID <span class="requiredField">*</span><br><input name="studentID" type="number" size="30" maxlength="100" value="<?php if (isset($_POST['studentID'])) echo $_POST['studentID']; ?>"></label>
