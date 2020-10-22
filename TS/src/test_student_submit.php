@@ -1,4 +1,4 @@
-
+<?php
   require 'connection.php';
 
   $studentId = $_POST['studentID'];
