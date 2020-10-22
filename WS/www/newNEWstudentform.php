@@ -8,7 +8,7 @@
 	<!-- <body> -->
 		<?php
 		include ('../includes/header.html');
-		include ('../src/NEWstudent_submit.php');
+		include_once 'src/NEWsubmit_student.php';
 		$page_title = 'Create a New Student Form';
 		?>
 
