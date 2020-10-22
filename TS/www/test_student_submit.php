@@ -7,17 +7,17 @@
 
  
 
-  $sql = "INSERT INTO students_test (first_name, last_name) VALUES ('$firstName', '$lastName')";
+  $sql = "INSERT INTO students_test (first_name, last_name) VALUES ('$firstName', '$lastName');";
 
 
 
 if ($con->query($sql) === TRUE) {
-  echo "New record created successfully";
+  header("Location: ../test_studentform.php?name_add=success");
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 $conn->close();
 
-header("Location: ../test_studentform.php?name_add=success");
+
 
