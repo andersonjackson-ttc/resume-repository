@@ -2,8 +2,12 @@
 
 
 		<?php
-		include ('../includes/header.html');
 		$page_title = 'Create a New Student Form';
+
+		include ('../includes/header.html');
+		
+		  include_once 'src/connection.php';
+
 		?>
 
 		<h1>Create a New Student Form</h1>
