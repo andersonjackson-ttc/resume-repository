@@ -7,10 +7,10 @@
 
  
 
-  $sql = "INSERT INTO students_test (first_name, last_name)
-          VALUES ('$firstName', '$lastName');";
+  $sql = "INSERT INTO students_test (first_name, last_name) VALUES ('$firstName', '$lastName');";
 
   mysqli_query($con, $sql);
 
 	header("Location: ../test_studentform.php?name_add=success");
 	
+?>
