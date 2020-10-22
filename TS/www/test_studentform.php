@@ -13,7 +13,7 @@
 		?>
 
 		<h1>Create a New Student Form</h1>
-		<form name="test_studentform.php" method="POST" action="test_student_submit.php" >
+		<form name="test_studentform.php" method="POST" action="test_student_submit.php">
 		
 		
 		<label>First Name *<br><input required name="first" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>"></label>
