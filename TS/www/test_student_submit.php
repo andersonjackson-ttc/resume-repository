@@ -9,7 +9,7 @@
   $firstName = "empty"
 }
 if (empty($lastName)) {
-  $firstName = "empty"
+  $lastName = "empty"
 }
 
 
