@@ -5,15 +5,13 @@
   $firstName = $_POST['firstName'];
   $middleInitial = $_POST['middleInitial'];
   $lastName = $_POST['lastName'];
-  $email = $_POST['studentEmail'];
-  $phone = $_POST['studentPhone'];
+
  
 
-  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone)
-          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone');"
+  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name)
+          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName');"
 
   mysqli_query($con, $sql);
 
 	header("Location: ../test_studentform.php?name_add=success");
 	
-	?>
