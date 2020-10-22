@@ -21,5 +21,3 @@ $conn->close();
 
 header("Location: ../test_studentform.php?name_add=success");
 
-
-?>
