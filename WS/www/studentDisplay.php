@@ -84,7 +84,7 @@ switch ($sort)
 }
 
 // Define the query:
-$q = "SELECT * FROM resume_schema ORDER BY $order_by LIMIT $start, $display";
+$q = "SELECT * FROM students ORDER BY $order_by LIMIT $start, $display";
 $r = @mysqli_query ($con, $q); // Run query.
 
 // Check to make sure query returns more than 0 records:
@@ -126,7 +126,7 @@ if (mysqli_num_rows($r) > 0)
   }// END IF mysqli_num_rows($r).
 else
 {
-  echo '<p class="error">There are currently no cities in the database.</p>';
+  echo '<p class="error">There are currently no students in the database.</p>';
 }// END ELSE mysqli_num_rows($r).
 
 // Close and free resources:
