@@ -27,7 +27,7 @@ if (isset($_GET['p']) && is_numeric($_GET['p']))
 else // Record count:
 {
   $q = "SELECT COUNT(students) FROM resume_schema";
-  $r = @mysqli_query($dbc, $q);
+  $r = @mysqli_query($con, $q);
   $row = @mysqli_fetch_array ($r, MYSQLI_NUM);
   $records = $row[0];
   // Calc. number of pages:
@@ -85,7 +85,7 @@ switch ($sort)
 
 // Define the query:
 $q = "SELECT * FROM resume_schema ORDER BY $order_by LIMIT $start, $display";
-$r = @mysqli_query ($dbc, $q); // Run query.
+$r = @mysqli_query ($con, $q); // Run query.
 
 // Check to make sure query returns more than 0 records:
 if (mysqli_num_rows($r) > 0)
@@ -132,7 +132,7 @@ else
 // Close and free resources:
 mysqli_free_result ($r);
 // Close database connection:
-mysqli_close($dbc);
+mysqli_close($con);
 
 // Links to other pages if needed.
 if ($pages > 1)
