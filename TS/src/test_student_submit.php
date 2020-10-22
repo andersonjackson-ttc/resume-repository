@@ -1,6 +1,6 @@
 <?php
 
-  require '../src/connection.php';
+  require 'connection.php';
 
   $studentId = $_POST['studentID'];
   $firstName = $_POST['firstName'];
@@ -14,8 +14,8 @@
   $milStatus = 1;
   $clearance = 2;
 
-  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone, graduated, graduation_date, resume_path, military_status, security_clearance)
-          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone', '$gradStatus', '$gradDate','$resumePath', '$milStatus', '$clearance');"
+  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone)
+          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone');"
 
   mysqli_query($con, $sql);
 ?>
