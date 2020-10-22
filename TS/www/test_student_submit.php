@@ -5,7 +5,13 @@
   $firstName = $_POST['firstName'];
   $lastName = $_POST['lastName'];
 
- 
+ if (empty($firstName)) {
+  $firstName = "empty"
+}
+if (empty($lastName)) {
+  $firstName = "empty"
+}
+
 
   $sql = "INSERT INTO students_test (first_name, last_name) VALUES ('$firstName', '$lastName');";
 
@@ -19,5 +25,5 @@ if ($con->query($sql) === TRUE) {
 
 $conn->close();
 
-
+?>
 
