@@ -1,8 +1,6 @@
 	<head>
 		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
-		<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script src="newstudentform.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		
 	</head>
 
 	<!-- <body> -->
@@ -27,12 +25,7 @@
 				<div id="inputField">
 					<label>Last Name <span class="requiredField">*</span><br><input required name="lastName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['lastName'])) echo $_POST['lastName']; ?>"></label>
 				</div>
-				<div id="inputField">
-					<label>Email <span class="requiredField">*</span><br><input required name="studentEmail" type="email" size="30" maxlength="100" value="<?php if (isset($_POST['studentEmail'])) echo $_POST['studentEmail']; ?>"></label>
-				</div>
-				<div id="inputField">
-					<label>Phone Number <span class="requiredField">*</span><br><input required name="studentPhone" type="phone" size="30" maxlength="100" value="<?php if (isset($_POST['studentPhone'])) echo $_POST['studentPhone']; ?>"></label>
-				</div>
+				
 
 				<hr><br>
 

@@ -1,0 +1,88 @@
+/*Nicholas Justus
+9/29/20*/
+body {
+	background:#ffffff;
+	color:#555;
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*Errors that appear from PHP validation*/
+.error{
+	font-weight: bold;
+	color: red;
+}
+textarea {
+  resize: none;
+}
+h1, h3{
+	text-align: center;
+}
+
+input{
+	border: 2px solid #67AC76;
+	border-radius: 4px;
+}
+
+/*Submission button color*/
+#finalButton{
+	background-color: #8DE8A1;
+}
+#inputField:not(.choiceList){
+	display: inline-block;
+	padding-bottom: 2px;
+}
+.choiceList{
+	display: inline-block;
+	width: 21%;
+	position: relative;
+	vertical-align: top;
+}
+.eduList{
+	display: inline-block;
+	width: 24%;
+	position: relative;
+	vertical-align: top;
+}
+.longBar{
+	width: 1500px;
+	height: 150px;
+}
+
+.requiredField{
+	color: red;
+}
+
+.gradFields{
+	width: 300px;
+}
+input, select, .input {
+	padding: 5px;
+	font-size: 1em;
+	background: #FFFFFF;
+	border: 1px solid #004080;
+}
+
+.checkboxes label 
+{
+
+  display: inline-block;
+  padding-right: 20px;
+  white-space: nowrap;
+
+}
+
+.checkboxes input
+{
+
+  vertical-align: middle;
+
+}
+
+.checkboxes label span
+{
+    vertical-align: middle;
+    padding-left: 0.4em;
+
+}
