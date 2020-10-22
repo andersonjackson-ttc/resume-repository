@@ -8,7 +8,6 @@ $password = "rsdbTtc9!";
 //$dbName = "testdb";
 $dbName = "resume_schema";
 
-console.log("before connection create");
 
 $con = new mysqli($host, $user, $password, $dbName, $port, $socket)
 or die ('Could not connect to the database server' . mysqli_connect_error());

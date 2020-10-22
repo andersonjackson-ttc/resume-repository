@@ -5,8 +5,7 @@
 		$page_title = 'Create a New Student Form';
 
 		include ('../includes/header.html');
-		
-		console.log("includes header");
+
 		?>
 		
 		
