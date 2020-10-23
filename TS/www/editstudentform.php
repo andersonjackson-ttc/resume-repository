@@ -83,7 +83,9 @@
           <?php while($skillsRow = mysql_fetch_array($skillsResult)) {
             ?><tr><td><?php echo(htmlspecialchars($skillsRow['skill_name']))?></td>
 
-            <?php while($studentSkillsRow = mysql_fetch_array($studentSkillsResult)){
+            <?php
+	    $found = 0;
+	    while($studentSkillsRow = mysql_fetch_array($studentSkillsResult) || $found == 1){
               if($studentSkillsRow['skill_id']==$skillsRow['skill_id']){
                 ?><td><input type="radio" id="<?php echo(htmlspecialchars($skillsRow['skill_name']))?>yes"
                 name=<?php echo(htmlspecialchars($skillsRow['skill_name']))?>
@@ -91,19 +93,18 @@
                 <td><input type="radio" id="<?php echo(htmlspecialchars($skillsRow['skill_name']))?>no"
                 name=<?php echo(htmlspecialchars($skillsRow['skill_name']))?>
                 value="no"></td>
-
-              <?php } else {
-
-                ?><td><input type="radio" id="<?php echo(htmlspecialchars($skillsRow['skill_name']))?>yes"
+		$found = 1;
+	      <?php }
+	    } 
+	      if($found == 0){ ?>
+                <td><input type="radio" id="<?php echo(htmlspecialchars($skillsRow['skill_name']))?>yes"
                 name=<?php echo(htmlspecialchars($skillsRow['skill_name']))?>
                 value="yes"></td>
                 <td><input type="radio" id="<?php echo(htmlspecialchars($skillsRow['skill_name']))?>no"
                 name=<?php echo(htmlspecialchars($skillsRow['skill_name']))?>
                 value="no" checked></td>
-                </tr>
-              <?php
-          }
-          ?>
+	      <?php } ?>
+              </tr>
         </table>
 </body>
 </html>
