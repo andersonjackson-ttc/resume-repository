@@ -4,12 +4,14 @@
   #Pull Student information using profile ID
   $profile_id = 1;
   $sqlSelectStudent = "SELECT student_id, first_name, middle_initial, last_name,
-  email, phone, graduated, graduation_date, military_status, security_clearance
-  FROM students WHERE profile_id = ".profile_id;
+   email, phone, graduated, graduation_date, military_status, security_clearance
+   FROM students WHERE profile_id = ".profile_id;
   $studentResult = mysqli_query($con, $sqlSelectStudent);
+  $studentRow = mysql_fetch_array($studentResult);
 
   #Pull Student Skills using profile ID
-  $sqlSelectStudentSkills = "SELECT skill_id FROM student_skills WHERE profile_id = ".profile_id;
+  $sqlSelectStudentSkills = "SELECT skill_id FROM student_skills WHERE
+   profile_id = ".profile_id;
   $studentSkillsResult = mysqli_query($con, $sqlSelectStudentSkills);
 
   #Pull List of Skills from database
