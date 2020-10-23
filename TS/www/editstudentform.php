@@ -95,7 +95,7 @@
                 value="no"></td>
 		$found = 1;
 	      <?php }
-	    } 
+	    }
 	      if($found == 0){ ?>
                 <td><input type="radio" id="<?php echo(htmlspecialchars($skillsRow['skill_name']))?>yes"
                 name=<?php echo(htmlspecialchars($skillsRow['skill_name']))?>
@@ -103,8 +103,8 @@
                 <td><input type="radio" id="<?php echo(htmlspecialchars($skillsRow['skill_name']))?>no"
                 name=<?php echo(htmlspecialchars($skillsRow['skill_name']))?>
                 value="no" checked></td>
+		</tr>
 	      <?php } ?>
-              </tr>
         </table>
 </body>
 </html>
