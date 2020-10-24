@@ -84,7 +84,7 @@ switch ($sort)
 }
 
 // Define the query:
-$q = "SELECT * FROM resume_schema ORDER BY $order_by LIMIT $start, $display;";
+$q = "SELECT * FROM students ORDER BY $order_by LIMIT $start, $display;";
 $r = @mysqli_query ($dbc, $q); // Run query.
 
 // Check to make sure query returns more than 0 records:
