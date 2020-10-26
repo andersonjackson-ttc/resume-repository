@@ -9,6 +9,6 @@
   
 
   $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name)
-          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName');
+          VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName');";
 
   mysqli_query($con, $sql);

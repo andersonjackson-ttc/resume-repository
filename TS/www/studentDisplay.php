@@ -14,7 +14,7 @@ include ('../includes/header.html');
 echo '<h1>Students</h1>';
 
 // Connect to the db:
-include_once 'src/test.php';
+require('src/connection.php');
 
 // Records per page:
 $display = 25;
@@ -26,7 +26,7 @@ if (isset($_GET['p']) && is_numeric($_GET['p']))
 }
 else // Record count:
 {
-  $q = "SELECT COUNT(students) FROM resume_schema";
+  $q = "SELECT COUNT(students) FROM resume_schema;";
   $r = @mysqli_query($con, $q);
   $row = @mysqli_fetch_array ($r, MYSQLI_NUM);
   $records = $row[0];
@@ -84,7 +84,7 @@ switch ($sort)
 }
 
 // Define the query:
-$q = "SELECT * FROM students ORDER BY $order_by LIMIT $start, $display";
+$q = "SELECT * FROM students ORDER BY $order_by LIMIT $start, $display;";
 $r = @mysqli_query ($con, $q); // Run query.
 
 // Check to make sure query returns more than 0 records:
@@ -126,7 +126,7 @@ if (mysqli_num_rows($r) > 0)
   }// END IF mysqli_num_rows($r).
 else
 {
-  echo '<p class="error">There are currently no students in the database.</p>';
+  echo '<p class="error">There are currently no cities in the database.</p>';
 }// END ELSE mysqli_num_rows($r).
 
 // Close and free resources:
