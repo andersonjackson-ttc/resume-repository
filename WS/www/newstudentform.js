@@ -26,3 +26,41 @@ function securityClearanceNo() {
     
     div.style.display = "none";
 }
+
+$(function () {
+       		$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajorsType").show();
+            	} else {
+                $("#dvMajorsType").hide();
+            	}
+             	});
+            	});
+            	$(function () {
+       		$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajors").show();
+            	} else {
+                $("#dvMajors").hide();
+            	}
+             	});
+            	});
+                  $(function () {
+       	 	$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajorsSchool").show();
+            	} else {
+                $("#dvMajorsSchool").hide();
+            	}
+            	 });
+            	});
+
+             $(function () {
+        	$("#certification").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvCertification").show();
+           	 } else {
+                $("#dvCertification").hide();
+          	  }
+          	   });
+          	  });
