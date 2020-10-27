@@ -7,7 +7,6 @@ include_once '../src/student_edit_connection.php';
 
 ?>
 
-<body>
   <h1>Edit Student Form</h1>
   <form method="post" action="editstudentform.php">
     <fieldset>
@@ -113,7 +112,7 @@ include_once '../src/student_edit_connection.php';
 		</tr>
 	      <?php } ?>
         </table>
-</body>
+
 
 	<?php
 		include ('../includes/footer.html');
