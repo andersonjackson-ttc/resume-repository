@@ -1,4 +1,4 @@
-<?php include_once '../src/student_edit_connection.php'; ?>
+<?php include_once 'src/student_edit_connection.php'; ?>
 <html>
 <body>
   <h1>Edit Student Form</h1>
