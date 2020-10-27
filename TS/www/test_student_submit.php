@@ -10,7 +10,7 @@
   $email = 'name@email.com';
   $phone = '1234567890';
   $gradStatus = 1;
-  $gradDate = CURDATE();
+  $gradDate = 'CURDATE()';
   $resumePath = 'path';
   $milStatus = 1;
   $clearance = 2;
