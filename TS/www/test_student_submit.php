@@ -16,7 +16,7 @@
   $clearance = 2;
 
 
-  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone, graduated, resume_path, military_status, security_clearence) VALUES ('$studentId', '$firstName', '$middleInitial', '$lastName', '$email', '$phone', '$gradStatus','$resumePath', '$milStatus', '$clearance');";
+  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone, graduated, resume_path, military_status, security_clearence) VALUES ($studentId , '$firstName', '$middleInitial', '$lastName', '$email', '$phone', $gradStatus,'$resumePath', $milStatus, $clearance);";
 
 
 
