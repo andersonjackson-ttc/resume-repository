@@ -3,7 +3,7 @@ $page_title = 'Edit Student Form';
 
 include ('../includes/header.html');
 
-include_once '../src/student_edit_connection.php'; 
+include_once ('../src/student_edit_connection.php'); 
 
 ?>
 
