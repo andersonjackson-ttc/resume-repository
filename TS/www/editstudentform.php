@@ -1,5 +1,12 @@
-<?php include_once 'src/student_edit_connection.php'; ?>
-<html>
+<?php 
+$page_title = 'Edit Student Form';
+
+include ('../includes/header.html');
+
+include_once '../src/student_edit_connection.php'; 
+
+?>
+
 <body>
   <h1>Edit Student Form</h1>
   <form method="post" action="editstudentform.php">
@@ -107,4 +114,7 @@
 	      <?php } ?>
         </table>
 </body>
-</html>
+
+	<?php
+		include ('../includes/footer.html');
+	?>

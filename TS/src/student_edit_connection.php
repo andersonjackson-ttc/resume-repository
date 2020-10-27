@@ -1,6 +1,6 @@
 <?php
   #Call SQL connection
-  include_once '../src/connection.php';
+  include_once 'connection.php';
   #Pull Student information using profile ID
   $profile_id = 1;
   $sqlSelectStudent = "SELECT student_id, first_name, middle_initial, last_name,
