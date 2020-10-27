@@ -189,47 +189,67 @@
 					</ul>
 				</div>
 
-				<div id="inputField" class="choiceList">
+				  <div id="inputField" class="checkboxes">
 					<!-- Start of Technical Skills Checkboxes -->
 					<div id="techSkills">
-						<ul style="list-style-type: none;">
+						
 							<h3>Technical Skills</h3>
-							<li>
+					
 								<br>
-								<input type="checkbox" id="skillProgram" name="skillProgram" value="skillProgram">
-								<label for="skillProgram">Programming Languages (1 or more)</label>
-							</li>
-							<li>
-								<input type="checkbox" id="skillProject" name="skillProject" value="skillProject">
-								<label for="skillProject">Project Management</label>
-							</li>
-							<li>
-								<input type="checkbox" id="skillData" name="skillData" value="skillData">
-								<label for="skillData">Data Analysis</label>
-							</li>
-							<li>
-								<input type="checkbox" id="skillWriting" name="skillWriting" value="skillWriting">
-								<label for="skillWriting">Technical Writing</label>
-							</li>
-							<li>
-								<input type="checkbox" id="skillLogistics" name="skillLogistics" value="skillLogistics">
-								<label for="skillLogistics">Logistics Management</label>
-							</li>
-							<li>
-								<input type="checkbox" id="skillAdobe" name="skillAdobe" value="skillAdobe">
-								<label for="skillAdobe">Adobe Software</label>
-							</li>
-							<li>
-								<input type="checkbox" id="skillCad" name="skillCad" value="skillCad">
-								<label for="skillCad">CAD Software</label>
-							</li>
-							<li>
-								<input type="checkbox" id="skillBookkeeping" name="skillBookkeeping" value="skillBookkeeping">
-								<label for="skillBookkeeping">Bookkeeping Software</label>
-							</li>
-						</ul>
+				        <label for="skills"><input type="checkbox" id="programmingLanguages" name="skills[]" value="Programming Languages (1 or more)"<?php if(in_array('Programming Languages (1 or more)',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>Programming Languages (1 or more)</span></label>
+							  
+                        
+                        		<label for="skills"><input type="checkbox" id="projectManagement" name="skills[]" value="Project Management"<?php if(in_array('rrrrrr',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>Project Management</span></label>
+							
+								
+					<label for="skills"><input type="checkbox" id="dataAnalysis" name="skills[]" value="Data Analysis"<?php if(in_array('Data Analysis',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>Data Analysis</span></label>
+                        
+						
+				        <label for="skills"><input type="checkbox" id="technicalWriting" name="skills[]" value="Technical Writing"<?php if(in_array('Technical Writing',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>Technical Writing</span></label>
+                        
+						
+				        <label for="skills"><input type="checkbox" id="Logistics Management" name="skills[]" value="Logistics Management"<?php if(in_array('Logistics Management',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>Logistics Management</span></label>
+                        
+						
+				        <label for="skills"><input type="checkbox" id="Adobe Software" name="skills[]" value="Adobe Software"<?php if(in_array('Adobe Software',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>Adobe Software</span></label>
+                        
+							
+				        <label for="skills"><input type="checkbox" id="CAD Software" name="skills[]" value="CAD Software"<?php if(in_array('CAD Software',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>CAD Software</span></label>
+                        
+						
+					<label for="skills"><input type="checkbox" id="programmingLanguages" name="skills[]" value="Bookkeeping Software"<?php if(in_array('Bookkeeping Software',$_POST['skills'])) { echo 'checked="checked"';} ?> />
+								<span>Bookkeeping Software</span></label>
+                        
 					</div> <!-- End of Technical Skills Checkboxes -->
+                   		 <?php 
+    
+
+				$checkbox1=$_POST['skills'];  
+				$chk="";  
+				foreach($checkbox1 as $chk1)  
+				   {  
+				      $chk .= $chk1.",";  
+				   }  
+				$in_ch=mysqli_query($con,"insert into skills(skills) values ('$chk')");  
+				if($in_ch==1)  
+				   {  
+				      echo'<script>alert("Inserted Successfully")</script>';  
+				   }  
+				else  
+				   {  
+				      echo'<script>alert("Failed To Insert")</script>';  
+				   }  
+ 
+      				?>
 				</div>
+				
 				<div id="inputField">
 					<!-- Start of Professional Skills Ratings -->
 					<div id="profSkillsRating">
@@ -393,43 +413,58 @@
 					<div id="jobInterest">
 						<ul style="list-style-type: none;">
 								<h3>Job Interests</h3>
-								<li>
-										<input type="checkbox" id="itDirector" name="itDirector" value="itDirector">
-										<label for="itDirector">IT Director</label>
-								</li>
-								<li>
-										<input type="checkbox" id="dataAnalyst" name="dataAnalyst" value="dataAnalyst">
-										<label for="dataAnalyst">Data Analyst</label>
-								</li>
-								<li>
-										<input type="checkbox" id="cyberSecurity" name="cyberSecurity" value="cyberSecurity">
-										<label for="cyberSecurity">Cyber Security</label>
-								</li>
-								<li>
-										<input type="checkbox" id="applicationsEngineer" name="applicationsEngineer" value="applicationsEngineer">
-										<label for="applicationsEngineer">Applications Engineer</label>
-								</li>
-						</ul>
-						<ul style="list-style-type: none;">
-									<li>
-											<input type="checkbox" id="supportSpecialist" name="supportSpecialist" value="supportSpecialist">
-											<label for="supportSpecialist">Support Specialist</label>
-									</li>
-									<li>
-											<input type="checkbox" id="networkEngineer" name="networkEngineer" value="networkEngineer">
-											<label for="networkEngineer">Network Engineer</label>
-									</li>
-									<li>
-											<input type="checkbox" id="webDeveloper" name="webDeveloper" value="webDeveloper">
-											<label for="webDeveloper">Web Developer</label>
-									</li>
-									<li>
-											<input type="checkbox" id="dataAdministrator" name="dataAdministrator" value="dataAdministrator">
-											<label for="dataAdministrator">Database Administrator</label>
-									</li>
-						</ul>
+				<input type="checkbox" id="itDirector" name="job_interest[]" value="IT Director"<?php if(in_array('IT Director',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+				<label for="job_interest"><span>IT Director</span></label>
+
+
+				<input type="checkbox" id="dataAnalyst" name="job_interest[]" value="Data Analyst"<?php if(in_array('Data Analyst',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+				<label for="job_interest"><span>Data Analyst</span></label>
+
+
+				<input type="checkbox" id="cyberSecurity" name="job_interest[]" value="Cyber Security"<?php if(in_array('Cyber Security',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+				<label for="job_interest"><span>Cyber Security</span></label>
+
+
+				<input type="checkbox" id="applicationEngineer" name="job_interest[]" value="Applications Engineer"<?php if(in_array('Applications Engineer',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+				<label for="job_interest"><span>Applications Engineer</span></label>		
+
+
+				 <input type="checkbox" id="supportSpecialist" name="job_interest[]" value="Support Specialist"<?php if(in_array('Support Specialist',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+				<label for="job_interest"><span>Support Specialist</span></label>
+
+
+						<input type="checkbox" id="networkEngineer" name="job_interest[]" value="Network Engineer"<?php if(in_array('Network Engineer',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+				<label for="job_interest"><span>Network Engineer</span></label>
+
+				
+				<input type="checkbox" id="webDeveloper" name="job_interest[]" value="Web Developer"<?php if(in_array('Web Developer',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+              			<label for="job_interest"><span>Web Developer</span></label>
+                        
+
+				 <input type="checkbox" id="databaseAdministrator" name="job_interest[]" value="Database Administrator"<?php if(in_array('Database Administrator',$_POST['job_interest'])) { echo 'checked="checked"';} ?> />
+                		<label for="job_interest"><span>Database Administrator</span></label>
 					</div><!-- End of Job Interest Checkboxes -->
-				</div>
+				     <?php 
+
+
+			$checkbox1=$_POST['job_interest'];  
+			$chk="";  
+			foreach($checkbox1 as $chk1)  
+			   {  
+			      $chk .= $chk1.",";  
+			   }  
+			$in_ch=mysqli_query($con,"insert into job_interest(job_interest) values ('$chk')");  
+			if($in_ch==1)  
+			   {  
+			      echo'<script>alert("Inserted Successfully")</script>';  
+			   }  
+			else  
+			   {  
+			      echo'<script>alert("Failed To Insert")</script>';  
+			   }  
+
+			      ?>
+			</div>
 				<hr>
 				<br>
 				<div id="inputField" class="eduList">
@@ -482,23 +517,38 @@
 				<!--Begin sixth row-->
 
 
-                <div class="checkboxes">
-                    <h4>Certifications</h4>
+                	<div class="checkboxes">
+                   		 <h4>Certifications</h4>
+			<input type="checkbox" id="certification" name="certification[]" value="CompTIA A+" <?php if(in_array('CompTIA A+',$_POST['certification'])) { echo 'checked="checked"';} ?> />
+			<label for="certification">CompTIA A+</label><br>
+			   <input type="checkbox" id="certification" name="certification[]" value="Certified data professional (CDP)" <?php if(in_array('Certified data professional (CDP)',$_POST['certification'])) { echo 'checked="checked"';} ?> />
+			<label for="certification">Certified data professional (CDP)</label><br>
+			   <input type="checkbox" id="certification" name="certification[]" value="Certified Scrum master (CSM)" <?php if(in_array('Certified Scrum master (CSM)',$_POST['certification'])) { echo 'checked="checked"';} ?> />
+			<label for="certification">Certified Scrum master (CSM)</label><br>
+			   <input type="checkbox" id="certification" name="certification[]" value="Certified ethical hacker (CEH)" <?php if(in_array('Certified ethical hacker (CEH)',$_POST['certification'])) { echo 'checked="checked"';} ?> />
+			<label for="certification">Certified ethical hacker (CEH)</label><br>
+			   <input type="checkbox" id="certification" name="certification[]" value="Project management professional (PMP)" <?php if(in_array('Project management professional (PMP)',$_POST['certification'])) { echo 'checked="checked"';} ?> />
+			<label for="certification">Project management professional (PMP)</label><br>
+			     <?php 
 
-                <label for="cdp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified data professional (CDP)</span></label>
 
-                <label for="a"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>CompTIA A+</span></label>
+		$checkbox1=$_POST['certification'];  
+		$chk="";  
+		foreach($checkbox1 as $chk1)  
+		   {  
+		      $chk .= $chk1.",";  
+		   }  
+		$in_ch=mysqli_query($con,"insert into certification(certification) values ('$chk')");  
+		if($in_ch==1)  
+		   {  
+		      echo'<script>alert("Inserted Successfully")</script>';  
+		   }  
+		else  
+		   {  
+		      echo'<script>alert("Failed To Insert")</script>';  
+		   }  
 
-                <label for="csm"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified Scrum master (CSM)</span></label>
-
-                <label for="ccnp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Cisco certified network professional (CCNP)</span></label>
-
-                <label for="ceh"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified ethical hacker (CEH)</span></label>
-
-                <label for="aws"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>AWS certified solutions architect</span></label>
-
-                <label for="pmp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Project management professional (PMP)</span></label>
-
+		      ?>
               </div>
                 <br>
 
