@@ -73,6 +73,52 @@
 				
 				
 				
+				 <div class="checkboxes">
+                    <h4>Certifications</h4>
+					
+				<?php 
+				/*
+				include_once '../src/connection.php';
+				
+				$sql = "SELECT * FROM certificates;";
+
+
+				if ($con->query($sql) === TRUE) {
+				  header("Location: ../test_studentform.php?name_add=success");
+				} else {
+				  echo "Error: " . $sql . "<br>" . $con->error;
+				}
+
+
+				$con->close();
+				*/
+				?>
+
+                <label for="cdp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified data professional (CDP)</span></label>
+
+                <label for="a"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>CompTIA A+</span></label>
+
+                <label for="csm"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified Scrum master (CSM)</span></label>
+
+                <label for="ccnp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Cisco certified network professional (CCNP)</span></label>
+
+                <label for="ceh"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified ethical hacker (CEH)</span></label>
+
+                <label for="aws"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>AWS certified solutions architect</span></label>
+
+                <label for="pmp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Project management professional (PMP)</span></label>
+
+              </div>
+                <br>
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				 <div id="inputField" class="majors">
                     <h4>Prior Education</h4>
                     <input type="checkbox" id="majors" name="majors" value="majors">
