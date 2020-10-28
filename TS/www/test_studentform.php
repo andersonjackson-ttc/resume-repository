@@ -378,10 +378,8 @@
 			<a href="index.php"><input type="button" value="Cancel and Exit"></a>			
                 </div>
 		</fieldset>
-
-				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
-		
 		</form>
+				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>		
 
 		<?php
 		include ('../includes/footer.html');
