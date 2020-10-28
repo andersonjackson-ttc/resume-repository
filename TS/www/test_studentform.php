@@ -71,21 +71,29 @@
 				
 				
 				
-				
-				
-				 <div class="checkboxes">
-                    <h4>Certifications</h4>
+				<div class="checkboxes">
+                    		<h4>Skills</h4>
 					
-				<?php 				
-// 				include_once '../src/connection.php';				
-// 				echo "<h4>Test Certs</h4>";				
-// 				$sql = "SELECT * FROM certificates;";
-// 				if ($con->query($sql) === TRUE) {
-// 				  header("Location: ../test_studentform.php?name_add=success");
-// 				} else {
-// 				  echo "Error: " . $sql . "<br>" . $con->error;
-// 				}
-// 				$con->close();	
+				<?php 		
+				
+				include '../src/connection.php';
+				
+				$q = "SELECT * FROM skills;";
+				$r = @mysqli_query($con, $q);
+					 
+				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+					echo "<input name='skill' type='checkbox' id='skill' value='{$row['skill_name']}'>" . $row['skill_name'] . '</br>'; 	
+				}
+ 				$con->close();
+				?>
+				<br>
+              			</div>
+                		
+				
+				<div class="checkboxes">
+                    		<h4>Certifications</h4>
+					
+				<?php 		
 				
 				include '../src/connection.php';
 				
@@ -95,31 +103,11 @@
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 					echo "<input name='certification' type='checkbox' id='certification' value='{$row['certificate_name']}'>" . $row['certificate_name'] . '</br>'; 	
 				}
+ 				$con->close();
 				?>
 
-<!--                 <label for="cdp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified data professional (CDP)</span></label>
-
-                <label for="a"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>CompTIA A+</span></label>
-
-                <label for="csm"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified Scrum master (CSM)</span></label>
-
-                <label for="ccnp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Cisco certified network professional (CCNP)</span></label>
-
-                <label for="ceh"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified ethical hacker (CEH)</span></label>
-
-                <label for="aws"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>AWS certified solutions architect</span></label>
-
-                <label for="pmp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Project management professional (PMP)</span></label> -->
-
-              </div>
-                <br>
-				
-				
-				
-				
-				
-				
-				
+              			</div>
+                		<br>				
 				
 				
 				 <div id="inputField" class="majors">
