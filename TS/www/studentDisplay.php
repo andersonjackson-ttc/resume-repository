@@ -26,7 +26,7 @@ if (isset($_GET['p']) && is_numeric($_GET['p']))
 }
 else // Record count:
 {
-  $q = "SELECT COUNT(students) FROM resume_schema;";
+  $q = "SELECT COUNT(profile_id) FROM students;";
   $r = @mysqli_query($con, $q);
   $row = @mysqli_fetch_array ($r, MYSQLI_NUM);
   $records = $row[0];
