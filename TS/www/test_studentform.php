@@ -87,6 +87,166 @@
 				?>
 				<br>
               			</div>
+						
+						
+						
+						<!-- Start of Professional Skills Ratings -->
+					<div id="profSkillsRating">
+						<ul style="list-style-type: none;">
+							<h3>Professional Skills</h3>
+							<li style="column-count: 2;">
+								<div>
+									<label><br>Critical Thinking</label>
+								</div>
+								<div>
+									<label for="skillCritThinkingRating"><text>Fair</text><text style="margin-left: 15px;">Good</text><text style="margin-left: 15px;">Excellent</text><br>
+										<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="fair">
+										<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="good" style="margin-left: 30px;">
+										<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="excellent" style="margin-left: 40px;">
+									</label>
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Interpersonal Skills</label>
+								</div>
+								<div>
+									<input type="radio" id="skillInterpersonalRating" name="skillInterpersonalRating" value="fair">
+									<input type="radio" id="skillInterpersonalRating" name="skillInterpersonalRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillInterpersonalRating" name="skillInterpersonalRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Communication Ability</label>
+								</div>
+								<div>
+									<input type="radio" id="skillCommunicationRating" name="skillCommunicationRating" value="fair">
+									<input type="radio" id="skillCommunicationRating" name="skillCommunicationRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillCommunicationRating" name="skillCommunicationRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Professional Attitude and Demeanor</label>
+								</div>
+								<div>
+									<input type="radio" id="skillAttitudeRating" name="skillAttitudeRating" value="fair">
+									<input type="radio" id="skillAttitudeRating" name="skillAttitudeRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillAttitudeRating" name="skillAttitudeRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Alertness, Ability to Focus</label>
+								</div>
+								<div>
+									<input type="radio" id="skillAlertnessRating" name="skillAlertnessRating" value="fair">
+									<input type="radio" id="skillAlertnessRating" name="skillAlertnessRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillAlertnessRating" name="skillAlertnessRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Agility and Adaptability</label>
+								</div>
+								<div>
+									<input type="radio" id="skillAdaptabilityRating" name="skillAdaptabilityRating" value="fair">
+									<input type="radio" id="skillAdaptabilityRating" name="skillAdaptabilityRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillAdaptabilityRating" name="skillAdaptabilityRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Researching Information</label>
+								</div>
+								<div>
+									<input type="radio" id="skillResearchingRating" name="skillResearchingRating" value="fair">
+									<input type="radio" id="skillResearchingRating" name="skillResearchingRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillResearchingRating" name="skillResearchingRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Personal Management</label>
+								</div>
+								<div>
+									<input type="radio" id="skillPersManRating" name="skillPersManRating" value="fair">
+									<input type="radio" id="skillPersManRating" name="skillPersManRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillPersManRating" name="skillPersManRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Creativity and Innovation</label>
+								</div>
+								<div>
+									<input type="radio" id="skillCreativityRating" name="skillCreativityRating" value="fair">
+									<input type="radio" id="skillCreativityRating" name="skillCreativityRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillCreativityRating" name="skillCreativityRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Literacy</label>
+								</div>
+								<div>
+									<input type="radio" id="skillLiteracyRating" name="skillLiteracyRating" value="fair">
+									<input type="radio" id="skillLiteracyRating" name="skillLiteracyRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillLiteracyRating" name="skillLiteracyRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Leadership</label>
+								</div>
+								<div>
+									<input type="radio" id="skillLeadershipRating" name="skillLeadershipRating" value="fair">
+									<input type="radio" id="skillLeadershipRating" name="skillLeadershipRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillLeadershipRating" name="skillLeadershipRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Stress Management</label>
+								</div>
+								<div>
+									<input type="radio" id="skillStressMgmtRating" name="skillStressMgmtRating" value="fair">
+									<input type="radio" id="skillStressMgmtRating" name="skillStressMgmtRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillStressMgmtRating" name="skillStressMgmtRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Study Skills</label>
+								</div>
+								<div>
+									<input type="radio" id="skillStudyRating" name="skillStudyRating" value="fair">
+									<input type="radio" id="skillStudyRating" name="skillStudyRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillStudyRating" name="skillStudyRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Honesty and Integrity</label>
+								</div>
+								<div>
+									<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="fair">
+									<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillHonestyRating" name="skillHonestyRating" value="excellent" style="margin-left: 40px;">
+								</div>
+							</li>
+							<li style="column-count: 2;">
+								<div>
+									<label>Troubleshooting</label>
+								</div>
+									<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="fair">
+									<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="good" style="margin-left: 30px;">
+									<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="excellent" style="margin-left: 40px;">
+							</li>
+						</ul>
+					</div> <!-- End of Professional Skills Ratings -->
+				</div>
                 		
 				
 				<div class="checkboxes">
