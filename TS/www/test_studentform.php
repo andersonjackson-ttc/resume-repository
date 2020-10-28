@@ -247,6 +247,51 @@
 						</ul>
 					</div> <!-- End of Professional Skills Ratings -->
 				</div>
+				
+				<div id="inputField" class="choiceList">
+					<!-- Job Interest Checkboxes -->
+					<div id="jobInterest">
+						<ul style="list-style-type: none;">
+								<h3>Job Interests</h3>
+								<li>
+										<input type="checkbox" id="itDirector" name="itDirector" value="itDirector">
+										<label for="itDirector">IT Director</label>
+								</li>
+								<li>
+										<input type="checkbox" id="dataAnalyst" name="dataAnalyst" value="dataAnalyst">
+										<label for="dataAnalyst">Data Analyst</label>
+								</li>
+								<li>
+										<input type="checkbox" id="cyberSecurity" name="cyberSecurity" value="cyberSecurity">
+										<label for="cyberSecurity">Cyber Security</label>
+								</li>
+								<li>
+										<input type="checkbox" id="applicationsEngineer" name="applicationsEngineer" value="applicationsEngineer">
+										<label for="applicationsEngineer">Applications Engineer</label>
+								</li>
+						</ul>
+						<ul style="list-style-type: none;">
+									<li>
+											<input type="checkbox" id="supportSpecialist" name="supportSpecialist" value="supportSpecialist">
+											<label for="supportSpecialist">Support Specialist</label>
+									</li>
+									<li>
+											<input type="checkbox" id="networkEngineer" name="networkEngineer" value="networkEngineer">
+											<label for="networkEngineer">Network Engineer</label>
+									</li>
+									<li>
+											<input type="checkbox" id="webDeveloper" name="webDeveloper" value="webDeveloper">
+											<label for="webDeveloper">Web Developer</label>
+									</li>
+									<li>
+											<input type="checkbox" id="dataAdministrator" name="dataAdministrator" value="dataAdministrator">
+											<label for="dataAdministrator">Database Administrator</label>
+									</li>
+						</ul>
+					</div><!-- End of Job Interest Checkboxes -->
+				</div>
+				
+				
                 		
 				
 				<div class="checkboxes">
@@ -265,6 +310,25 @@
 				?>
 				<br>
               			</div>
+						
+						
+				<br>
+				<div id="inputField" class="eduList">
+					<div>
+						<label><h3>Graduation</h3></label>
+						<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label>
+						<select required name="gradStatus" id="gradStatus" class="gradFields">
+							<option disabled selected value="">-- select an option --</option>
+							<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="graduated">Graduated</option>
+							<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="notGraduated">Not Graduated</option>
+						</select>
+					</div>
+					<div>
+						<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" required name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
+					</div>
+				</div>
+				<br>
+				<!--End fifth row-->
                 					
 				
 				
@@ -294,7 +358,19 @@
                     <div id="dvMajorsSchool" style="display: none">
                         <label>Name of Institution:<br><input name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
                     </div>
+					
 			<br>
+			
+			
+			<br>
+
+		<div id="inputField">
+		<label>Upload Resume <span class="requiredField">*</span><br><input name="attachments" type="file"></label>
+		</div>
+				<!--Submit button and Exit button-->
+				<br>
+				<br>
+
 					 
 			<!--Submit button and Exit button-->
 			<button type="submit" name="submit">Submit</button>
