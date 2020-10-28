@@ -51,11 +51,14 @@ else
 }
 
 // Default sort by city name:
-$sort = (isset($_GET['sort'])) ? $_GET['sort'] : 'last_name';
+$sort = (isset($_GET['sort'])) ? $_GET['sort'] : 'profile_id';
 
 // Determine the sorting order:
 switch ($sort)
 {
+  case 'profileId':
+    $order_by = 'profile_id ASC';
+    break;
   case 'fName':
     $order_by = 'first_name ASC';
     break;
@@ -78,7 +81,7 @@ switch ($sort)
     $order_by = 'security_clearance ASC';
     break;
   default:
-    $order_by = 'last_name ASC';
+    $order_by = 'profile_id ASC';
     $sort = 'rd';
     break;
 }
@@ -93,9 +96,10 @@ if (mysqli_num_rows($r) > 0)
   // Table header:
   echo '<table align="center" cellspacing="0" cellpadding="5" width="100%">
   <tr>
+    <td style="text-align:right"><b><a href="studentDisplay.php?sort=profileId">Profile ID</a></b></td>
     <td style="text-align:left"><b><a href="studentDisplay.php?sort=fName">First Name</a></b></td>
     <td style="text-align:left"><b><a href="studentDisplay.php?sort=mi">Middle Initial</a></b></td>
-    <td style="text-align:right"><b><a href="studentDisplay.php?sort=lName">Last Name</a></b></td>
+    <td style="text-align:left"><b><a href="studentDisplay.php?sort=lName">Last Name</a></b></td>
     <td style="text-align:right"><b><a href="studentDisplay.php?sort=grad">Graduated Y/N</a></b></td>
     <td style="text-align:right"><b><a href="studentDisplay.php?sort=graduationDate">Graduation Date</a></b></td>
     <td style="text-align:right"><b><a href="studentDisplay.php?sort=milStatus">Military Status</a></b></td>
@@ -110,9 +114,10 @@ if (mysqli_num_rows($r) > 0)
       $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
       echo
       '<tr bgcolor="' . $bg . '">
+      <td style="text-align:right"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
       <td style="text-align:left">' . $row['first_name'] . '</td>
       <td style="text-align:left">' . $row['middle_initial'] . '</td>
-      <td style="text-align:right">' . $row['last_name'] . '</td>
+      <td style="text-align:left">' . $row['last_name'] . '</td>
       <td style="text-align:right">' . $row['graduated'] . '</td>
       <td style="text-align:right">' . $row['graduation_date'] . '</td>
       <td style="text-align:right">' . $row['military_status'] . '</td>
@@ -126,7 +131,7 @@ if (mysqli_num_rows($r) > 0)
   }// END IF mysqli_num_rows($r).
 else
 {
-  echo '<p class="error">There are currently no cities in the database.</p>';
+  echo '<p class="error">There are currently no students in the database.</p>';
 }// END ELSE mysqli_num_rows($r).
 
 // Close and free resources:
