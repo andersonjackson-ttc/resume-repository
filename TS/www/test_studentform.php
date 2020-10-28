@@ -76,27 +76,28 @@
 				 <div class="checkboxes">
                     <h4>Certifications</h4>
 					
-				<?php 
-				/*
-				include_once '../src/connection.php';
+				<?php 				
+// 				include_once '../src/connection.php';				
+// 				echo "<h4>Test Certs</h4>";				
+// 				$sql = "SELECT * FROM certificates;";
+// 				if ($con->query($sql) === TRUE) {
+// 				  header("Location: ../test_studentform.php?name_add=success");
+// 				} else {
+// 				  echo "Error: " . $sql . "<br>" . $con->error;
+// 				}
+// 				$con->close();	
 				
-				echo "<h4>Test Certs</h4>";
+				include '../src/connection.php';
 				
-				$sql = "SELECT * FROM certificates;";
-
-
-				if ($con->query($sql) === TRUE) {
-				  header("Location: ../test_studentform.php?name_add=success");
-				} else {
-				  echo "Error: " . $sql . "<br>" . $con->error;
+				$q = "SELECT * FROM certificates;";
+				$r = @mysqli_query($con, $q);
+					 
+				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+					echo "<input type='checkbox' value='{$row['certificate_name']}'>" . $row['certificate_name'] . '</br>'; 	
 				}
-
-
-				$con->close();
-				*/
 				?>
 
-                <label for="cdp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified data professional (CDP)</span></label>
+<!--                 <label for="cdp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified data professional (CDP)</span></label>
 
                 <label for="a"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>CompTIA A+</span></label>
 
@@ -108,7 +109,7 @@
 
                 <label for="aws"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>AWS certified solutions architect</span></label>
 
-                <label for="pmp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Project management professional (PMP)</span></label>
+                <label for="pmp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Project management professional (PMP)</span></label> -->
 
               </div>
                 <br>
