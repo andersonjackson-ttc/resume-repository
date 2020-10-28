@@ -72,8 +72,7 @@
 				
 				
 				<div class="checkboxes">
-                    		<h4>Skills</h4>
-					
+                    		<h4>Skills</h4>					
 				<?php 		
 				
 				include '../src/connection.php';
@@ -82,7 +81,7 @@
 				$r = @mysqli_query($con, $q);
 					 
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-					echo "<input name='skill' type='checkbox' id='skill' value='{$row['skill_name']}'>" . $row['skill_name'] . '</br>'; 	
+					echo "<input name='skill' type='checkbox' id='skill' value='{$row['skill_id']}'>" . $row['skill_name'] . '</br>'; 	
 				}
  				$con->close();
 				?>
@@ -91,8 +90,7 @@
                 		
 				
 				<div class="checkboxes">
-                    		<h4>Certifications</h4>
-					
+                    		<h4>Certifications</h4>					
 				<?php 		
 				
 				include '../src/connection.php';
@@ -101,16 +99,16 @@
 				$r = @mysqli_query($con, $q);
 					 
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-					echo "<input name='certification' type='checkbox' id='certification' value='{$row['certificate_name']}'>" . $row['certificate_name'] . '</br>'; 	
+					echo "<input name='certification' type='checkbox' id='certification' value='{$row['certificate_id']}'>" . $row['certificate_name'] . '</br>'; 	
 				}
  				$con->close();
 				?>
-
+				<br>
               			</div>
-                		<br>				
+                					
 				
 				
-				 <div id="inputField" class="majors">
+				<div id="inputField" class="majors">
                     <h4>Prior Education</h4>
                     <input type="checkbox" id="majors" name="majors" value="majors">
                     <label for="majors">Prior Degrees</label><br>
@@ -138,14 +136,10 @@
                     </div><br><br>
 					 
 			<!--Submit button and Exit button-->
-			<br>
-			<br>
-
 			<button type="submit" name="submit">Submit</button>
 			<a href="index.php"><input type="button" value="Cancel and Exit"></a>
-
-                </div>		
-			
+			<br>
+                </div>				
 
 				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
 			
