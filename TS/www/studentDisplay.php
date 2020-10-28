@@ -96,7 +96,7 @@ if (mysqli_num_rows($r) > 0)
   // Table header:
   echo '<table align="center" cellspacing="0" cellpadding="5" width="100%">
   <tr>
-    <td style="text-align:right"><b><a href="studentDisplay.php?sort=profileId">Profile ID</a></b></td>
+    <td style="text-align:left"><b><a href="studentDisplay.php?sort=profileId">Profile ID</a></b></td>
     <td style="text-align:left"><b><a href="studentDisplay.php?sort=fName">First Name</a></b></td>
     <td style="text-align:left"><b><a href="studentDisplay.php?sort=mi">Middle Initial</a></b></td>
     <td style="text-align:left"><b><a href="studentDisplay.php?sort=lName">Last Name</a></b></td>
@@ -114,7 +114,7 @@ if (mysqli_num_rows($r) > 0)
       $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
       echo
       '<tr bgcolor="' . $bg . '">
-      <td style="text-align:right"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
+      <td style="text-align:left"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
       <td style="text-align:left">' . $row['first_name'] . '</td>
       <td style="text-align:left">' . $row['middle_initial'] . '</td>
       <td style="text-align:left">' . $row['last_name'] . '</td>
