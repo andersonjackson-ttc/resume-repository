@@ -147,17 +147,17 @@
                     <div id="dvMajorsSchool" style="display: none">
                         <label>Name of Institution:<br><input name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
                     </div><br><br>
+					 
+			<!--Submit button and Exit button-->
+			<br>
+			<br>
 
-                </div>
-		
-		
+			<button type="submit" name="submit" style="float: left;">Submit</button>
+			<a href="index.php"><input type="button" value="Cancel and Exit" style="float: left;"></a>
+
+                </div>		
 			
-				<!--Submit button and Exit button-->
-				<br>
-				<br>
 
-				<button type="submit" name="submit" style="float: left;">Submit</button>
-				<a href="index.php"><input type="button" value="Cancel and Exit" style="float: left;"></a>
 				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
 			
 		</form>
