@@ -99,7 +99,7 @@
 									<label><br>Critical Thinking</label>
 								</div>
 								<div>
-									<label for="skillCritThinkingRating"><text>Fair</text><text style="margin-left: 15px;">Good</text><text style="margin-left: 15px;">Excellent</text><br>
+									<label for="skillCritThinkingRating"><text>Fair</text><text>Good</text><text>Excellent</text><br>
 										<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="fair">
 										<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="good" style="margin-left: 30px;">
 										<input type="radio" id="skillCritThinkingRating" name="skillCritThinkingRating" value="excellent" style="margin-left: 40px;">
