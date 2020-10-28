@@ -10,8 +10,9 @@
 		
 		
 
-		<h1>Create a New Student Form</h1>
 		<form name="test_studentform.php" method="POST" action="test_student_submit.php">
+		<fieldset>
+		<legend>Create a New Student Form</legend>
 		
 		<label>Student ID <br><input name="studentID" type="number" size="30" maxlength="100" value="<?php if (isset($_POST['studentID'])) echo $_POST['studentID']; ?>"></label>
 		
@@ -375,11 +376,10 @@
 			<!--Submit button and Exit button-->
 			<button type="submit" name="submit">Submit</button>
 			<a href="index.php"><input type="button" value="Cancel and Exit"></a>			
-                </div>				
-
-				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
-			
+                </div>
+		</fieldset>
 		</form>
+				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>		
 
 		<?php
 		include ('../includes/footer.html');
