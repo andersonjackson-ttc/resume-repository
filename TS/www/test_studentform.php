@@ -317,14 +317,14 @@
 					<div>
 						<label><h3>Graduation</h3></label>
 						<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label>
-						<select required name="gradStatus" id="gradStatus" class="gradFields">
+						<select name="gradStatus" id="gradStatus" class="gradFields">
 							<option disabled selected value="">-- select an option --</option>
 							<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="graduated">Graduated</option>
 							<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="notGraduated">Not Graduated</option>
 						</select>
 					</div>
 					<div>
-						<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" required name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
+						<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
 					</div>
 				</div>
 				<br>
