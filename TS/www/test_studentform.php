@@ -152,8 +152,8 @@
 			<br>
 			<br>
 
-			<button type="submit" name="submit" style="float: left;">Submit</button>
-			<a href="index.php"><input type="button" value="Cancel and Exit" style="float: left;"></a>
+			<button type="submit" name="submit">Submit</button>
+			<a href="index.php"><input type="button" value="Cancel and Exit"></a>
 
                 </div>		
 			
