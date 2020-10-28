@@ -72,7 +72,7 @@
 				
 				
 				<div class="checkboxes">
-                    		<h4>Skills</h4>					
+                    		<h4>Technical Skills</h4>					
 				<?php 		
 				
 				include '../src/connection.php';
