@@ -94,19 +94,19 @@
 				*/
 				?>
 
-                <label for="cdp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified data professional (CDP)</span></label>
+                <label for="cdp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified data professional (CDP)</span></label>
 
-                <label for="a"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>CompTIA A+</span></label>
+                <label for="a"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>CompTIA A+</span></label>
 
-                <label for="csm"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified Scrum master (CSM)</span></label>
+                <label for="csm"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified Scrum master (CSM)</span></label>
 
-                <label for="ccnp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Cisco certified network professional (CCNP)</span></label>
+                <label for="ccnp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Cisco certified network professional (CCNP)</span></label>
 
-                <label for="ceh"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified ethical hacker (CEH)</span></label>
+                <label for="ceh"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Certified ethical hacker (CEH)</span></label>
 
-                <label for="aws"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>AWS certified solutions architect</span></label>
+                <label for="aws"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>AWS certified solutions architect</span></label>
 
-                <label for="pmp"><input required name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Project management professional (PMP)</span></label>
+                <label for="pmp"><input name="certification" type="checkbox" id="certification" value="<?php if (isset($_POST['certification'])) echo $_POST['certification']; ?>"><span>Project management professional (PMP)</span></label>
 
               </div>
                 <br>
@@ -126,24 +126,24 @@
 
                     <div id="dvMajorsType" class="checkboxes" style="display: none">
 
-                    <label for="securityAttributes"><input required name="associates" type="checkbox" id="associates" size="30" maxlength="100" value="<?php if (isset($_POST['associates'])) echo $_POST['associates']; ?>"><span>Associates</span></label>
+                    <label for="securityAttributes"><input  name="associates" type="checkbox" id="associates" size="30" maxlength="100" value="<?php if (isset($_POST['associates'])) echo $_POST['associates']; ?>"><span>Associates</span></label>
 
-                    <label for="securityAttributes"><input required name="bacholers" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['bacholers'])) echo $_POST['bacholers']; ?>"><span>Bachelors</span></label>
+                    <label for="securityAttributes"><input  name="bacholers" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['bacholers'])) echo $_POST['bacholers']; ?>"><span>Bachelors</span></label>
 
-                    <label for="securityAttributes"><input required name="master" type="checkbox" id="master" size="30" maxlength="100" value="<?php if (isset($_POST['master'])) echo $_POST['master']; ?>"><span>Masters</span></label>
+                    <label for="securityAttributes"><input  name="master" type="checkbox" id="master" size="30" maxlength="100" value="<?php if (isset($_POST['master'])) echo $_POST['master']; ?>"><span>Masters</span></label>
 
-                    <label for="securityAttributes"><input required name="doctorate" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['doctorate'])) echo $_POST['doctorate']; ?>"><span>Doctorate</span></label>
+                    <label for="securityAttributes"><input name="doctorate" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['doctorate'])) echo $_POST['doctorate']; ?>"><span>Doctorate</span></label>
 
-                    <label for="securityAttributes"><input required name="phd" type="checkbox" id="phd" size="30" maxlength="100" value="<?php if (isset($_POST['phd'])) echo $_POST['phd']; ?>"><span>PHD</span></label><br>
+                    <label for="securityAttributes"><input name="phd" type="checkbox" id="phd" size="30" maxlength="100" value="<?php if (isset($_POST['phd'])) echo $_POST['phd']; ?>"><span>PHD</span></label><br>
 
                     </div>
 
                     <div id="dvMajors" style="display: none">
-                        <label>Type of degree:<br><input required name="majors" type="text" id="txtMajors" size="30" maxlength="100" value="<?php if (isset($_POST['degree_type'])) echo $_POST['degree_type']; ?>"></label>
+                        <label>Type of degree:<br><input name="majors" type="text" id="txtMajors" size="30" maxlength="100" value="<?php if (isset($_POST['degree_type'])) echo $_POST['degree_type']; ?>"></label>
                     </div>
 
                     <div id="dvMajorsSchool" style="display: none">
-                        <label>Name of Institution:<br><input required name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
+                        <label>Name of Institution:<br><input name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
                     </div><br><br>
 
                 </div>
