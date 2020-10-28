@@ -4,23 +4,23 @@ include ('../includes/header.html');
 include_once '../src/student_edit_connection.php'; ?>
 <script src="editstudentform.js"></script>
 <h1>Edit Student Form</h1>
-  <form method="post" action="editstudentform.php">
+  <form method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>">
     <fieldset>
       <!--Student Information Fields-->
       <div id="inputField">
       <?php while($studentRow = mysqli_fetch_array($studentResult)) {
         ?>
         <label>Student ID <span class="requiredField">*</span><br>
-          <input required id="studentID" type="number" size="30" maxlength="100"
+          <input required id="studentID" name="studentID" type="number" size="30" maxlength="100"
           value="<?php echo(htmlspecialchars($studentRow['student_id'])); ?>"></label>
         </div>
         <div id="inputField">
           <label>First Name <span class="requiredField">*</span><br>
-            <input required id="firstName" type="text" size="30" maxlength="100"
+            <input required id="firstName" name="firstName" type="text" size="30" maxlength="100"
             value="<?php echo(htmlspecialchars($studentRow['first_name'])); ?>"></label>
         </div>
         <div id="inputField">
-          <label>MI<br><input id="middleInitial" type="text" size="1" maxlength="1"
+          <label>MI<br><input id="middleInitial" name="middleInitial" type="text" size="1" maxlength="1"
             value="<?php if($studentRow['middle_initial'] != null){
             echo(htmlspecialchars($studentRow['middle_initial']));
           } else {
@@ -30,17 +30,17 @@ include_once '../src/student_edit_connection.php'; ?>
         </div>
         <div id="inputField">
           <label>Last Name <span class="requiredField">*</span><br>
-            <input required id="lastName" type="text" size="30" maxlength="100"
+            <input required id="lastName" name="lastName" type="text" size="30" maxlength="100"
             value="<?php echo(htmlspecialchars($studentRow['last_name'])); ?>"></label>
         </div>
         <div id="inputField">
           <label>Email <span class="requiredField">*</span><br>
-            <input required id="studentEmail" type="email" size="30" maxlength="100"
+            <input required id="studentEmail" name="studentEmail" type="email" size="30" maxlength="100"
             value="<?php echo(htmlspecialchars($studentRow['email'])); ?>"></label>
         </div>
         <div id="inputField">
           <label>Phone Number <span class="requiredField">*</span><br>
-            <input required id="studentPhone" type="phone" size="30" maxlength="100"
+            <input required id="studentPhone" name="studentPhone" type="phone" size="30" maxlength="100"
             value="<?php echo(htmlspecialchars($studentRow['phone'])); ?>"></label>
         </div>
         <div id="checkbox" style="margin-top: 15px;">
@@ -86,7 +86,9 @@ include_once '../src/student_edit_connection.php'; ?>
           </div>
         </div>
       <?php } ?> <!-- End of PHP While Loop for Student Information -->
-      
+      <a href='editstudentform.php'><input type="submit" name="update" value="Update Student"></a>
+      <a href='studentDisplay.php'><input type="button" name="cancel" value="Cancel"></a>
+    </form>
       <?php
         include ('../includes/footer.html');
         ?>
