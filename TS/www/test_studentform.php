@@ -93,7 +93,7 @@
 				$r = @mysqli_query($con, $q);
 					 
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-					echo "<input type='checkbox' value='{$row['certificate_name']}'>" . $row['certificate_name'] . '</br>'; 	
+					echo "<input name='certification' type='checkbox' id='certification' value='{$row['certificate_name']}'>" . $row['certificate_name'] . '</br>'; 	
 				}
 				?>
 
