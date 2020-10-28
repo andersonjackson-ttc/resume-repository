@@ -145,7 +145,7 @@ if ($pages > 1)
   // Create previous button if not on first page:
   if ($current_page != 1)
   {
-    echo '<a href="data.php?s=' . ($start - $display) . '&p=' . $pages . '&sort=' . $sort . '">Previous</a> ';
+    echo '<a href="studentDisplay.php?s=' . ($start - $display) . '&p=' . $pages . '&sort=' . $sort . '">Previous</a> ';
   }
 
   // Create all numbered pages:
@@ -153,7 +153,7 @@ if ($pages > 1)
   {
     if ($i != $current_page)
     {
-      echo '<a href="data.php?s=' . (($display * ($i - 1))) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';
+      echo '<a href="studentDisplay.php?s=' . (($display * ($i - 1))) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';
     }
       else
       {
@@ -164,7 +164,7 @@ if ($pages > 1)
     // Create next button if not on last page:
     if ($current_page != $pages)
     {
-      echo '<a href="data.php?s=' . ($start + $display) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
+      echo '<a href="studentDisplay.php?s=' . ($start + $display) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
     }
 
     echo '</p>';
