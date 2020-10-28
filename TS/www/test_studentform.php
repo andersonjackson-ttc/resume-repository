@@ -91,7 +91,7 @@
 						
 						
 						<!-- Start of Professional Skills Ratings -->
-					<div id="profSkillsRating">
+					<div>
 						<ul style="list-style-type: none;">
 							<h3>Professional Skills</h3>
 							<li style="column-count: 2;">
