@@ -62,3 +62,17 @@ CREATE TABLE student_majors (
 	FOREIGN KEY (major_id) REFERENCES majors (major_id),
 	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
 );
+
+CREATE TABLE job_interest(
+	job_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	job_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (job_id)
+);
+
+CREATE TABLE student_jobs(
+	job_id INT UNSIGNED NOT NULL,
+	profile_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, job_id),
+	FOREIGN KEY (job_id) REFERENCES job_interest (job_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
+);
