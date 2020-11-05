@@ -2,24 +2,22 @@
 
 
 		<?php
-		$page_title = 'Create a New Student Form';
-
-		include ('../includes/header.html');
-
+			$page_title = 'Create a New Student Form';
+			include ('../includes/header.html');
 		?>
-		
-		
 
-		<form name="test_studentform.php" method="POST" action="test_student_submit.php">
+		<div id="confirmation_msg"></div>
+
+		<form name="test_studentform.php" id="new_student_form" method="POST" action="test_student_submit.php">
 		<fieldset>
 		<legend>Create a New Student Form</legend>
-		
+
 		<label>Student ID <br><input name="studentID" type="number" size="30" maxlength="100" value="<?php if (isset($_POST['studentID'])) echo $_POST['studentID']; ?>"></label>
-		
+
 		<!--Submits-->
 		<label>First Name *<br><input required name="firstName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>"></label>
-		
-		
+
+
 		<label>MI<br><input name="middleInitial" type="text" size="5" maxlength="100" value="<?php if (isset($_POST['middleInitial'])) echo $_POST['middleInitial']; ?>"></label>
 
 		<!--Submits-->
@@ -30,8 +28,8 @@
 
 		<label>Phone Number <span class="requiredField">*</span><br><input required name="studentPhone" type="phone" size="30" maxlength="100" value="<?php if (isset($_POST['studentPhone'])) echo $_POST['studentPhone']; ?>"></label>
 
-		
-		
+
+
 		<div id="inputField" class="choiceList">
 					<ul style="list-style-type: none;">
 						<h3>General</h3>
@@ -69,28 +67,28 @@
 						</div>
 					</ul>
 				</div>
-				
-				
-				
+
+
+
 				<div class="checkboxes">
-                    		<h4>Technical Skills</h4>					
-				<?php 		
-				
+                    		<h4>Technical Skills</h4>
+				<?php
+
 				include '../src/connection.php';
-				
+
 				$q = "SELECT * FROM skills;";
 				$r = @mysqli_query($con, $q);
-					 
+
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-					echo "<input name='skill' type='checkbox' id='skill' value='{$row['skill_id']}'>" . $row['skill_name'] . '</br>'; 	
+					echo "<input name='skill' type='checkbox' id='skill' value='{$row['skill_id']}'>" . $row['skill_name'] . '</br>';
 				}
  				$con->close();
 				?>
 				<br>
               			</div>
-						
-						
-						
+
+
+
 						<!-- Start of Professional Skills Ratings -->
 					<div>
 						<ul style="list-style-type: none;">
@@ -248,7 +246,7 @@
 						</ul>
 					</div> <!-- End of Professional Skills Ratings -->
 				</div>
-				
+
 				<div id="inputField" class="choiceList">
 					<!-- Job Interest Checkboxes -->
 					<div id="jobInterest">
@@ -291,28 +289,28 @@
 						</ul>
 					</div><!-- End of Job Interest Checkboxes -->
 				</div>
-				
-				
-                		
-				
+
+
+
+
 				<div class="checkboxes">
-                    		<h4>Certifications</h4>					
-				<?php 		
-				
+                    		<h4>Certifications</h4>
+				<?php
+
 				include '../src/connection.php';
-				
+
 				$q = "SELECT * FROM certificates;";
 				$r = @mysqli_query($con, $q);
-					 
+
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-					echo "<input name='certification' type='checkbox' id='certification' value='{$row['certificate_id']}'>" . $row['certificate_name'] . '</br>'; 	
+					echo "<input name='certification' type='checkbox' id='certification' value='{$row['certificate_id']}'>" . $row['certificate_name'] . '</br>';
 				}
  				$con->close();
 				?>
 				<br>
               			</div>
-						
-						
+
+
 				<br>
 				<div id="inputField" class="eduList">
 					<div>
@@ -330,9 +328,9 @@
 				</div>
 				<br>
 				<!--End fifth row-->
-                					
-				
-				
+
+
+
 				<div id="inputField" class="majors">
                     <h4>Prior Education</h4>
                     <input type="checkbox" id="majors" name="majors" value="majors">
@@ -359,10 +357,10 @@
                     <div id="dvMajorsSchool" style="display: none">
                         <label>Name of Institution:<br><input name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
                     </div>
-					
+
 			<br>
-			
-			
+
+
 			<br>
 
 		<div id="inputField">
@@ -372,15 +370,20 @@
 				<br>
 				<br>
 
-					 
+
 			<!--Submit button and Exit button-->
 			<button type="submit" name="submit">Submit</button>
-			<a href="index.php"><input type="button" value="Cancel and Exit"></a>			
+			<a href="index.php"><input type="button" value="Cancel and Exit"></a>
                 </div>
 		</fieldset>
 		</form>
-				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>		
+		
+		<div class="row px-3 justify-content-end">
+			<p><span class="requiredField">*</span> = Required Field</p>
+		</div>
 
 		<?php
 		include ('../includes/footer.html');
 		?>
+
+		<script src="newstudentform.js" type="text/javascript"></script>

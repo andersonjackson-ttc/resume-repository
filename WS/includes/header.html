@@ -3,31 +3,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../includes/landing_page.css">
-	
-	
-	    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script src="newstudentform.js"></script>
-		
-	
-    <title><?php echo $page_title; ?></title>
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../includes/styles.css">
+	  <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	  <title><?php echo $page_title; ?></title>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-sm p-3 bg-info navbar-dark justify-content-between">
+  <nav class="navbar navbar-expand-lg p-3 bg-info navbar-dark">
       <span class="navbar-brand display-1">TTC Resume Repository</span>
-      <div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links" aria-controls="nav-links" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="nav-links">
           <div class="navbar-nav">
-              <a class="nav-link" href="index.php"><button type="button" class="btn btn-secondary btn-lg btn-outline-info">Home</button></a>
-              <a class="nav-link" href="test_studentform.php"><button type="button" class="btn btn-secondary btn-lg btn-outline-info">New Student</button></a>
-              <a class="nav-link" href="studentDisplay.php"><button type="button" class="btn btn-secondary btn-lg btn-outline-info">View Students</button></a>
-<!--               <a class="nav-link disabled" href="#" aria-disabled="true"><button type="button" class="btn btn-secondary btn-lg btn-outline-info">Search</button></a> -->
-<!--               <a class="nav-link" href="#"><button type="button" class="btn btn-secondary btn-lg btn-outline-info">Edit Student</button></a> -->
+              <a class="nav-link" href="index.php"><button type="button" class="btn btn-secondary btn-autosize btn-block btn-outline-light">Home</button></a>
+              <a class="nav-link" href="test_studentform.php"><button type="button" class="btn btn-secondary btn-autosize btn-block btn-outline-light">New Student</button></a>
+              <a class="nav-link" href="studentDisplay.php"><button type="button" class="btn btn-secondary btn-autosize btn-block btn-outline-light">View Students</button></a>
           </div>
       </div>
   </nav>
+
+  <div class="p-3 bg-light fill_viewport">
 
 
       <!-- page content -->
