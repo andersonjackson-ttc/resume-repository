@@ -3,9 +3,10 @@ $page_title = 'Create a New Student Form';
 include ('../includes/header.html');
 include '../src/connection.php';
 ?>
+		<div id="confirmation_msg"></div>
 
 		<div class="container-fluid">
-			<form name="student_form.php" method="POST" action="test_student_submit.php">
+			<form name="student_form.php" id="new_student_form" method="POST" action="test_student_submit.php">
 				<br>
 				<div class="border border-info" style="background-color: #5bc0de;">
 					<div class="form-check" style="padding: 20px;">
@@ -227,10 +228,14 @@ include '../src/connection.php';
 	    	</div>
 				<br>
 			</form>
-			<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
+			<div class="row px-3 justify-content-end">
+				<p><span class="requiredField">*</span> = Required Field</p>
+			</div>
 		</div> <!--Close flex-container-->
 
 <?php
 include ('../includes/footer.html');
 $con->close();
 ?>
+
+<script src="newstudentform.js" type="text/javascript"></script>
