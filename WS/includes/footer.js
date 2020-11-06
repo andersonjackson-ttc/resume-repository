@@ -5,7 +5,7 @@ $(document) .ready(function() {
       page = url_split[url_split.length -1];
 
   $footer_btns .hide();
-  if (page == 'test_studentform.php') {
+  if (page == 'student_form.php') {
     $footer_btns.fadeIn('slow');
   } else {
     $footer_btns.hide();
