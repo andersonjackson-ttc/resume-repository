@@ -3,6 +3,8 @@ $page_title = 'Create a New Student Form';
 include ('../includes/header.html');
 include '../src/connection.php';
 ?>
+<body style="background-color:#fffdf9
+">
 		<div id="confirmation_msg"></div>
 
 		<div class="container-fluid">
@@ -83,6 +85,23 @@ include '../src/connection.php';
 						<label>Work Time <span class="requiredField">*</span><br></label>
 						<label>Days <input name="workTime" type="radio" value="days"></label>
 						<label>Nights <input name="workTime" type="radio" value="nights"></label>
+					</div>
+
+					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
+						<h4 class="text-muted">Graduation</h4>
+						<div class="row align-items-start no-gutters">
+							<div class="col col-lg-3">
+								<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label>
+								<select name="gradStatus" id="gradStatus" class="gradFields">
+									<option disabled selected value="">-- select an option --</option>
+									<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="graduated">Graduated</option>
+									<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="notGraduated">Not Graduated</option>
+								</select>
+							</div>
+							<div class="col col-lg-3" style="transform: translate(-7%, 0%);">
+								<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>" style="transform: translate(131px, -25px)"></label>
+							</div>
+						</div>
 					</div>
 				</div>
 				<br>
@@ -171,26 +190,6 @@ include '../src/connection.php';
 				</div>
 				<br>
 
-				<div class="border border-info" style="background-color: #5bc0de;">
-					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
-						<h4 class="text-muted">Graduation</h4>
-						<div class="row align-items-start no-gutters">
-							<div class="col col-lg-3">
-								<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label>
-								<select name="gradStatus" id="gradStatus" class="gradFields">
-									<option disabled selected value="">-- select an option --</option>
-									<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="graduated">Graduated</option>
-									<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="notGraduated">Not Graduated</option>
-								</select>
-							</div>
-							<div class="col col-lg-3">
-								<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<br>
-
 				<div class="border border-info">
 					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
 			      <h4 class="text-muted">Prior Education</h4>
@@ -232,7 +231,7 @@ include '../src/connection.php';
 				<p><span class="requiredField">*</span> = Required Field</p>
 			</div>
 		</div> <!--Close flex-container-->
-
+</body>
 <?php
 include ('../includes/footer.html');
 $con->close();
