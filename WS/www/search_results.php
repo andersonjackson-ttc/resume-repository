@@ -10,10 +10,18 @@
   if (isset($_POST['submit-search'])) {
       //mysqli_real_escape_string to take all inputs as literal strings and prevent manipulation
       //Finds all first names, last names, profile ids, and student ids that contain keywords in the user input, as per Mr. Anderson
+      //Starting a search with ! will only return exact matches instead of anything containing the search, similar to typing "" in google
       $search = mysqli_real_escape_string($conn, $_POST['search']);
       echo "<a href='search_home.php' style='text-decoration:none;'><button>Return Home</button></a><br>";
       if (($search != null)&&($search != " ")){
-        $sql = "SELECT * FROM students WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR CONCAT(first_name, ' ', last_name) LIKE '%$search%' OR CONCAT(first_name, ' ', middle_initial, ' ', last_name) LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%'";
+        if (strpos($search, '!')===0){
+          $search = trim($search, '!');
+          $sql = "SELECT * FROM students WHERE first_name='$search' OR last_name='$search' OR CONCAT(first_name, ' ', last_name)='$search' OR
+          CONCAT(first_name, ' ', middle_initial, ' ', last_name)='$search' OR profile_id='$search'";
+        }else{
+          $sql = "SELECT * FROM students WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR CONCAT(first_name, ' ', last_name) LIKE '%$search%' OR
+          CONCAT(first_name, ' ', middle_initial, ' ', last_name) LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%'";
+        }
         $result = mysqli_query($conn, $sql);
         $queryResult = mysqli_num_rows($result);
         //Prints result count
@@ -43,7 +51,7 @@
             echo "</div>";
           }
         }else{
-          echo "There are no results matching your search!";
+          echo "There are no results matching '".$search."'.";
         }
       }else{
         echo "<br><p>Error: Search cannot be blank</p><br>";
