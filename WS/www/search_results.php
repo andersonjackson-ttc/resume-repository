@@ -13,7 +13,7 @@
       $search = mysqli_real_escape_string($conn, $_POST['search']);
       echo "<button><a href='search_home.php' style='text-decoration:none;'>Return Home</a></button><br>";
       if (($search != null)&&($search != " ")){
-        $sql = "SELECT * FROM students WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%'";
+        $sql = "SELECT * FROM students WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR CONCAT(first_name, ' ', last_name) LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%'";
         $result = mysqli_query($conn, $sql);
         $queryResult = mysqli_num_rows($result);
         //Prints result count
