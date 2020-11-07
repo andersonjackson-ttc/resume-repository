@@ -5,7 +5,7 @@
   include ('../includes/header.html');
 ?>
 
-<button><a href='search_home.php' style='text-decoration:none;'>Return Home</a></button><br>
+<a href='search_home.php' style='text-decoration:none;'><button>Return Home</button></a><br>
 <h1>Student Preview</h1>
 <h2>PLACEHOLDER PAGE</h2>
 <div>

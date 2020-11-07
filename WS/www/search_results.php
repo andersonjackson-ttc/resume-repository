@@ -11,9 +11,9 @@
       //mysqli_real_escape_string to take all inputs as literal strings and prevent manipulation
       //Finds all first names, last names, profile ids, and student ids that contain keywords in the user input, as per Mr. Anderson
       $search = mysqli_real_escape_string($conn, $_POST['search']);
-      echo "<button><a href='search_home.php' style='text-decoration:none;'>Return Home</a></button><br>";
+      echo "<a href='search_home.php' style='text-decoration:none;'><button>Return Home</button></a><br>";
       if (($search != null)&&($search != " ")){
-        $sql = "SELECT * FROM students WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR CONCAT(first_name, ' ', last_name) LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%'";
+        $sql = "SELECT * FROM students WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR CONCAT(first_name, ' ', last_name) LIKE '%$search%' OR CONCAT(first_name, ' ', middle_initial, ' ', last_name) LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%'";
         $result = mysqli_query($conn, $sql);
         $queryResult = mysqli_num_rows($result);
         //Prints result count
