@@ -49,7 +49,7 @@
           }
         }
 
-        echo $sql;
+        //echo $sql;
         $result = mysqli_query($conn, $sql);
         $queryResult = mysqli_num_rows($result);
         //Prints result count
