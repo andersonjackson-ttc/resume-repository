@@ -19,18 +19,31 @@ CREATE TABLE students (
 	PRIMARY KEY (profile_id)
 );
 
-CREATE TABLE skills (
+CREATE TABLE tech_skills (
 	skill_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	skill_name VARCHAR(40) NOT NULL,
 	PRIMARY KEY (skill_id)
 );
 
-CREATE TABLE student_skills (
+CREATE TABLE student_tech_skills (
 	profile_id INT UNSIGNED NOT NULL,
 	skill_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (profile_id, skill_id),
 	FOREIGN KEY (profile_id) REFERENCES students (profile_id),
-	FOREIGN KEY (skill_id) REFERENCES skills (skill_id)
+	FOREIGN KEY (skill_id) REFERENCES tech_skills (skill_id)
+);
+
+CREATE TABLE prof_skills(
+        professional_skill_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+        skill_name VARCHAR
+        skill_rating TINYINT(1) UNSIGNED
+);
+CREATE TABLE student_prof_skills (
+	profile_id INT UNSIGNED NOT NULL,
+	skill_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, skill_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id),
+	FOREIGN KEY (skill_id) REFERENCES prof_skills (skill_id)
 );
 
 CREATE TABLE certificates (
