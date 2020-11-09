@@ -18,6 +18,6 @@
 
   </select>
 </form>
-
+<p style="display:flex;justify-content:center;font-style:italic;opacity:0.4;">Hint: Place ! before a search for exact results.</p>
 </body>
 </html>
