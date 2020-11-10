@@ -17,6 +17,8 @@ CREATE TABLE students (
 	resume_path VARCHAR(60) NOT NULL,
 	military_status TINYINT(1) UNSIGNED NOT NULL,
 	security_clearance TINYINT(1) UNSIGNED NOT NULL,
+	work_hours TINYINT(1) UNSIGNED NOT NULL,
+	work_time TINYINT(1) UNSIGNED NOT NULL,
 	PRIMARY KEY (profile_id)
 );
 
