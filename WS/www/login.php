@@ -5,7 +5,7 @@
 
     $errors = [];
 
-    #validate form input
+    #validate login form input
     if (empty($_POST['email']) {
       $errors[] = 'Email field is empty';
     }) else {
@@ -21,9 +21,13 @@
     list($check, $data) = check_login($con, $email, $password);
 
     if ($check) { #login successful
-      setcookie('first_name', $data['first_name']);
+      session_start();
+      $_SESSION['profile_id'] = $data['profile_id'];
+      $_SESSION['first_name'] = $data['first_name'];
+      $_SESSION['last_name'] = $data['last_name'];
       redirect_user('loggedin.php');
-    } else { #login unsuccessful 
+
+    } else { #login unsuccessful
       $errors[] = $data;
     }
 

@@ -21,11 +21,11 @@
               <a class="nav-link" href="index.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">Home</button></a>
               <a class="nav-link" href="student_form.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">New Student</button></a>
               <a class="nav-link" href="studentDisplay.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">View Students</button></a>
-              <?php if( (isset($_COOKIE['first_name'])) && (basename($_SERVER['PHP_SELF']) != 'logout.php')) {
+              <!-- <?php if( (isset($_SESSION['profile_id'])) && (basename($_SERVER['PHP_SELF']) != 'logout.php')) {
                 echo '<a class="nav-link" href="logout.php"><button type="button" class="btn btn-secondary btn-autosize btn-block btn-outline-light">Logout</button></a>';
               } else {
-                echo '<a class="nav-link" href="login.php"><button type="button" class="btn btn-secondary btn-autosize btn-block btn-outline-light">Login</button></a>'; 
-              } ?>
+                echo '<a class="nav-link" href="login.php"><button type="button" class="btn btn-secondary btn-autosize btn-block btn-outline-light">Login</button></a>';
+              } ?> -->
           </div>
       </div>
   </nav>
