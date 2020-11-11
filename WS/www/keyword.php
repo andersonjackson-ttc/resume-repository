@@ -12,7 +12,7 @@ function deleteTechSkill($con, $skill_id) {
 ?>
 
 
-<form name="student_form.php" method="POST" action="keyword_submit.php" enctype="multipart/form-data">
+<form name="keyword.php" method="POST" action="keyword_submit.php" enctype="multipart/form-data">
 				<br>
 
 <h4 class="text-muted">Technical Skills</h4>
