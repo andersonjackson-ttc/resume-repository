@@ -11,13 +11,13 @@
     
     $stmt = $con->prepare("DELETE FROM tech_skills (skill_id)
   WHERE  skill_id = (?)");
-  }
+  
   $stmt->close();
 }
   
   if(isset($_POST['submit'])) {    
     $newTechSkill = test_input($_POST['newTechSkill']);
-   
+  }
   
   
   $sql = "INSERT INTO tech_skills (skill_name)
