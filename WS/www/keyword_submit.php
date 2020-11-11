@@ -17,9 +17,10 @@ $newTechSkill = "";
 }
 */
   
-  if(isset($_POST['submit'])) {    
-    $newTechSkill = test_input($_POST['newTechSkill']);
-  }
+ 
+  if(!empty($_POST['newTechSkill'])) {
+      $newTechSkill = test_input($_POST['newTechSkill']);
+    }
   
   
   $sql = "INSERT INTO tech_skills (skill_name)
