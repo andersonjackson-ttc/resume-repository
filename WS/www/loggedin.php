@@ -4,7 +4,7 @@
 
   session_start();
 
-  if(!isset($_SESSION['profile_id'])) {
+  if(!isset($_SESSION['agent']) OR ($_SESSION['agent'] != sha1($_SERVER['HTTP_USER_AGENT']) )) {
     require('../includes/'); #TODO login functions
     redirect_user();
   }

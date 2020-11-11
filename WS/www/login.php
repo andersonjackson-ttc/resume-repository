@@ -22,9 +22,15 @@
 
     if ($check) { #login successful
       session_start();
+
+      #store session data
       $_SESSION['profile_id'] = $data['profile_id'];
       $_SESSION['first_name'] = $data['first_name'];
       $_SESSION['last_name'] = $data['last_name'];
+
+      #store HTTP_USER_AGENT
+      $_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
+
       redirect_user('loggedin.php');
 
     } else { #login unsuccessful
