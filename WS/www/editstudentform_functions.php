@@ -31,7 +31,7 @@ function injectStudentInfo($studentResult){
         echo(htmlspecialchars($studentRow['middle_initial']));
         } else {
         echo("");
-      } ?>">
+      } ?>" maxlength="1">
 
         <label class="sr-only" for="lastName">Last Name
           <span class="requiredField">*</span></label>
@@ -107,14 +107,61 @@ function injectStudentGeneralInfo($studentResult) {
 
     <div class="form-check">
       <label>Work Hours<span class="requiredField">*</span><br></label>
-      <label>Full-Time<input name="workHours" type="radio" value="fullTime"></label>
-      <label>Part-Time<input name="workHours" type="radio" value="partTime"></label>
+      <label>Full-Time<input name="workHours" type="radio" value="2"
+        <?php echo($studentRow['work_hours']==2 ? 'checked' : '');?>></label>
+      <label>Part-Time<input name="workHours" type="radio" value="1"
+        <?php echo($studentRow['work_hours']==1 ? 'checked' : '');?>></label>
     </div>
     <div class="form-check">
       <label>Work Time<span class="requiredField">*</span><br></label>
-      <label>Days<input name="workTime" type="radio" value="days"></label>
-      <label>Nights<input name="workTime" type="radio" value="nights"></label>
+      <label>Days<input name="workTime" type="radio" value="1"
+        <?php echo($studentRow['work_time']==1 ? 'checked' : '');?>></label>
+      <label>Nights<input name="workTime" type="radio" value="2"
+        <?php echo($studentRow['work_time']==2 ? 'checked' : '');?>></label>
+    </div>
+    <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
+      <h4 class="text-muted">Graduation</h4>
+      <div class="row align-items-start no-gutters">
+        <?php injectGraduation($studentResult) ?>
+      </div>
+    </div>
+    <br>
+    <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
+      <h4 class="text-muted">Prior Education</h4>
+      <input type="checkbox" id="majors" name="majors" value="majors">
+      <label for="majors">Prior Degrees</label><br>
+      <div id="dvMajorsType" class="form-check form-check-inline" style="display: none; padding-bottom: 10px;">
+        <select class="form-control" name="dvMajorsType" id="dvMajorsType" style="width: 30vw;">
+          <option value="associates">Associates</option>
+          <option value="bachelors">Bachelors</option>
+          <option value="masters">Masters</option>
+          <option value="phd">PHD</option>
+         </select>
+
+        <label class="sr-only" for="txtMajors">Type of degree:</label>
+        <input name="degreeType" type="text" id="txtMajors" class="form-control" style="width: 30vw;"
+        placeholder="Type of Degree" value="<?php if (isset($_POST['degree_type'])) echo $_POST['degree_type']; ?>">
+
+        <label class="sr-only" for="txtMajorsSchool">Name of Institution:</label>
+        <input name="institutionName" type="text" id="txtMajorsSchool" class="form-control" style="width: 30vw;"
+        placeholder="Name of Institution" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>">
+      </div>
+    </div>
     <?php
+  }
+}
+
+function injectMajors($majorsResult, $studentMajorsResult) {
+  while($majorsRow = mysqli_fetch_array($majorsResult)){
+    $str = $majorsRow['major_name'];
+    $majorsNoSpaces = str_replace(' ', '', $str);
+    echo('<div class="col col-lg-3">');
+    echo('<input name="'.$majorsNoSpaces.'" type="checkbox"
+    class="form-check-input" id="major" value="'.$majorsRow['major_name'].'" '.
+    checkMajors($majorsRow['major_id'],$studentMajorsResult).'>
+    <label class="form-check-label" for="'.$majorsRow['major_name'].'">'.
+    $majorsRow['major_name'].'</label></div>'
+      );
   }
 }
 
@@ -130,6 +177,16 @@ function injectTechSkills($skillsResult, $studentSkillsResult) {
     $skillsRow['skill_name'].'</label></div>'
       );
   }
+}
+
+function checkMajors($majorID, $studentMajors) {
+  mysqli_data_seek($studentMajors, 0);
+  while($studentMajorsRow = mysqli_fetch_array($studentMajors)) {
+    if($majorID == $studentMajorsRow['major_id']){
+      return('checked');
+    }
+  }
+  return('');
 }
 
 function checkSkills($skillID, $studentSkills) {
@@ -204,7 +261,7 @@ function injectCertifications($certsResult, $studentCertsResult) {
     $str = $certsResultRow['certificate_name'];
     $certNoSpaces = str_replace(' ', '', $str);
     echo('<div class="col col-lg-3">');
-    echo('<input name="'.$certNoSpaces.'" type="checkbox" id="jobInterest"
+    echo('<input name="'.$certNoSpaces.'" type="checkbox" id="certificates"
     value="'.$certsResultRow['certificate_name'].'" '.
     certCheck($certsResultRow['certificate_id'], $studentCertsResult).'>
     <label class="form-check-label" for="'.$certsResultRow['certificate_name'].'">'.
@@ -220,6 +277,26 @@ function certCheck($certID, $studentCertsResult) {
     }
   }
   return('');
+}
+
+function injectGraduation($studentResult) {
+  mysqli_data_seek($studentResult, 0);
+  while($studentRow = mysqli_fetch_array($studentResult)) {
+    $date = strtotime($studentRow['graduation_date']);
+    echo('<div class="col col-lg-3">');
+    echo('<label for="gradStatus">Graduation Status<span class="requiredField">*</span>
+    <br></label>
+    <select name="gradStatus" id="gradStatus" class="gradFields">');
+    echo('<option '.($studentRow['graduated']==0 ? "selected" : "").'
+    value="1">Graduated</option>');
+    echo('<option '.($studentRow['graduated']==1 ? "selected" : "").'
+    value="0">Not Graduated</option>
+    </select></div>');
+    echo('<div class="col col-lg-3">');
+    echo('<label>Graduation Date <span class="requiredField">* </span>');
+    echo('<input class="gradFields" name="gradDate" type="date"
+    value="'.date('Y-m-d', $date).'"></label></div>');
+  }
 }
 
 ?>
