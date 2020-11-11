@@ -2,12 +2,16 @@
   include_once '../src/connection.php';
 
   $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $gradStatusErr = $resumePathErr = $milStatusErr = $clearanceErr = "";
-  $studentId = 0;
+  
   $firstName = $middleInitial = $lastName = $email = $phone = "";
 
-  if(isset($_POST['submit'])) {
-    $studentId = test_input($_POST['studentId']);
+  if(isset($_POST['submit'])) {    
     $middleInitial = test_input($_POST['middleInitial']);
+    if(!empty($_POST['studentId'])) {
+      $studentId = test_input($_POST['studentId']);
+    }else{
+      $studentId = 0;
+    }
     if(!empty($_POST['firstName'])) {
       $firstName = test_input($_POST['firstName']);
     }else{
