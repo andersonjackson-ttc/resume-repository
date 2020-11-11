@@ -10,11 +10,15 @@
   }
  
     function deleteTechSkill($con) {
-  $stmt = $con->prepare("DELETE FROM student_tech_skills ($skill_id)
+  $stmt = $con->prepare("DELETE FROM student_tech_skills (skill_id)
   WHERE  skill_id = (?)");
   
-     $stmt2 = $con->prepare("DELETE FROM tech_skills ($skill_id)
+   $stmt->bind_param('i', $skill_id);
+  
+     $stmt2 = $con->prepare("DELETE FROM tech_skills (skill_id)
   WHERE  skill_id = (?)");
+  
+   $stmt2->bind_param('i', $skill_id);
   
   $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
   $skillsResult = mysqli_query($con, $sqlSelectSkills);
