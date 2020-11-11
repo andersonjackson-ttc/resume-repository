@@ -10,7 +10,7 @@
   }
  
   function deleteTechSkill($con) {
-  $stmt = $con->prepare("DELETE FROM student_tech_skills (profile_id,, skill_id)
+  $stmt = $con->prepare("DELETE FROM student_tech_skills (profile_id, skill_id)
   WHERE  skill_id = (?)");
   
    $stmt->bind_param('i', $skill_id);
@@ -25,8 +25,7 @@
     if(isset($_POST[$skillNameNoSpaces])) {
       $skill_id = $skillsRow['skill_id'];
 	  
-      $stmt->execute();
-	  $stmt2->execute();
+      $stmt->execute(); 
 
     }
   }
@@ -53,7 +52,6 @@
       $skill_id = $skillsRow['skill_id'];
 	  
       $stmt->execute();
-	  $stmt2->execute();
 
     }
   }
@@ -68,9 +66,10 @@
 
 
 
-
+	deleteTechSkillInstances($con);
 	deleteTechSkill($con);
-    deleteTechSkillInstances($con);
+    
+  
   
 	if(!empty($_POST['newTechSkill'])) {
 		$newTechSkill = test_input($_POST['newTechSkill']);
