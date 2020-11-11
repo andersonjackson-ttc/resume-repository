@@ -2,14 +2,28 @@
   include_once '../src/connection.php';
 
 
+ function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+  
+	if(!empty($_POST['newTechSkill'])) {
+		$newTechSkill = test_input($_POST['newTechSkill']);
+	}
 
-    $newTechSkill = $_POST['newTechSkill'];
+   // $newTechSkill = $_POST['newTechSkill'];
 
     $sql = "INSERT INTO tech_skills(skill_name) VALUES ('$newTechSkill');";
 
     mysqli_query($con, $sql);
 	
-	header("Location: ../phpsqldemo.php?name_add=success");
+	header("Location: ../keyword.php?name_add=success");
+	
+	
+	
+	
 
 $con->close();
   
