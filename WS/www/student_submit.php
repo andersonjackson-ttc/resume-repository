@@ -119,12 +119,11 @@
 if ($con->query($sql) == TRUE) {
 	
 	try {
-  updateStudent($con, $profile_id);
   updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
   updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
   updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
   updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
-  $con->close();
+  
 } catch(exception $e) {
   echo "Error: " . $e->getMessage();
 }
