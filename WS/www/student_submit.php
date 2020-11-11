@@ -130,7 +130,7 @@ if ($con->query($sql) == TRUE) {
 try {
 	
 
-	$q = "SELECT LAST_INSERT_ID();";
+	$q = "SELECT MAX(profile_id) FROM students;";
 	$profile_id = @mysqli_query($con, $q);
 	
   updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
