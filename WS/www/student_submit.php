@@ -1,6 +1,5 @@
 <?php
   include_once '../src/connection.php';
-  include_once '../src/student_edit_connection.php';
   include 'editstudent_submit_functions.php';
 
   $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $gradStatusErr = $resumePathErr = $milStatusErr = $clearanceErr = "";
@@ -104,6 +103,9 @@
       }
     }
   }
+  
+  
+  
 
 
   function test_input($data) {
@@ -126,8 +128,13 @@ if ($con->query($sql) == TRUE) {
   echo "Error: " . $sql . "<br>" . $con->error;
 }
 
-$q = "SELECT MAX(profile_id) FROM students;";
-$profile_id = @mysqli_query($con, $q);
+
+
+
+$selectStudent = "SELECT LAST_INSERT_ID()";
+$studentResult = mysqli_query($con, $selectStudent);
+$studentRow = mysqli_fetch_row($result);
+$profile_id = $row[0];
 	
 try {
 	
