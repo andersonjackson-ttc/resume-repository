@@ -8,7 +8,7 @@
     $data = htmlspecialchars($data);
     return $data;
   }
- 
+ /*
   function deleteTechSkill($con) {
   $stmt = $con->prepare("DELETE FROM student_tech_skills (profile_id, skill_id)
   WHERE  skill_id = ?");
@@ -68,7 +68,7 @@
 
 	deleteTechSkillInstances($con);
 	deleteTechSkill($con);
-    
+    */
   
   
 	if(!empty($_POST['newTechSkill'])) {
