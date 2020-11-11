@@ -57,7 +57,7 @@
   $profSkillsResult = mysqli_query($con, $sqlSelectProfSkills);
 
   #Pull Student Job Interests using profile ID
-  $sqlSelectStudentJobInterests = "SELECT job_id FROM student_job_interest
+  $sqlSelectStudentJobInterests = "SELECT job_id FROM student_jobs
   WHERE profile_id=".$profile_id;
   $studentJobInterestsResult = mysqli_query($con, $sqlSelectStudentJobInterests);
 
