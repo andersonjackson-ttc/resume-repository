@@ -287,9 +287,9 @@ function injectGraduation($studentResult) {
     echo('<label for="gradStatus">Graduation Status<span class="requiredField">*</span>
     <br></label>
     <select name="gradStatus" id="gradStatus" class="gradFields">');
-    echo('<option '.($studentRow['graduated']==0 ? "selected" : "").'
-    value="1">Graduated</option>');
     echo('<option '.($studentRow['graduated']==1 ? "selected" : "").'
+    value="1">Graduated</option>');
+    echo('<option '.($studentRow['graduated']==0 ? "selected" : "").'
     value="0">Not Graduated</option>
     </select></div>');
     echo('<div class="col col-lg-3">');
