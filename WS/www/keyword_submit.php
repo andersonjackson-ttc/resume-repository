@@ -1,7 +1,17 @@
 <?php
   include_once '../src/connection.php';
 
-$newTechSkill = "";
+
+
+    $newTechSkill = $_POST['newTechSkill'];
+
+    $sql = "INSERT INTO tech_skills(skill_name) VALUES ('$newTechSkill');";
+
+    mysqli_query($con, $sql);
+	
+	header("Location: ../phpsqldemo.php?name_add=success");
+
+$con->close();
   
   /*
   function deleteTechSkill($con, $skill_id) {
@@ -15,7 +25,7 @@ $newTechSkill = "";
   
   $stmt->close();
 }
-*/
+
   
  
   if(!empty($_POST['newTechSkill'])) {
@@ -38,7 +48,7 @@ if ($con->query($sql) == TRUE) {
 
 $con->close();
 
-/*
+
 function deleteTechSkills($con, $profile_id) {
   $stmt = $con->prepare("INSERT INTO student_tech_skills (profile_id, skill_id)
   VALUES (?,?)");
