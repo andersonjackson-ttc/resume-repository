@@ -8,12 +8,12 @@
     $data = htmlspecialchars($data);
     return $data;
   }
-  /*
+ 
     function deleteTechSkill($con) {
-  $stmt = $con->prepare("DELETE FROM student_tech_skills (skill_id)
+  $stmt = $con->prepare("DELETE FROM student_tech_skills ($skill_id)
   WHERE  skill_id = (?)");
   
-     $stmt2 = $con->prepare("DELETE FROM tech_skills (skill_id)
+     $stmt2 = $con->prepare("DELETE FROM tech_skills ($skill_id)
   WHERE  skill_id = (?)");
   
   $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
@@ -39,7 +39,7 @@
 
 
 	deleteTechSkill($con);
-  */
+  
   
 	if(!empty($_POST['newTechSkill'])) {
 		$newTechSkill = test_input($_POST['newTechSkill']);
