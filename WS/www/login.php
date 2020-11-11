@@ -24,9 +24,9 @@
       session_start();
 
       #store session data
-      $_SESSION['profile_id'] = $data['profile_id'];
-      $_SESSION['first_name'] = $data['first_name'];
-      $_SESSION['last_name'] = $data['last_name'];
+      $_SESSION['user_id'] = $data['user_id'];
+      $_SESSION['email'] = $data['user_email'];
+      $_SESSION['password'] = $data['user_password'];
 
       #store HTTP_USER_AGENT
       $_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
@@ -34,11 +34,11 @@
       redirect_user('loggedin.php');
 
     } else { #login unsuccessful
-      $errors[] = $data;
+      $errors = $data;
     }
 
     mysqli_close($con);
   }
 
-  include('login_form.php'); #TODO include login html page
+  include('../includes/login_form.php'); 
 ?>

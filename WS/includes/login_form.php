@@ -1,5 +1,6 @@
 <?php
   $page_title = 'Login Page';
+  include('../includes/header.html');
 ?>
 <style>
 body
@@ -50,7 +51,13 @@ form
 }
 </style>
 <?php
-  include('../includes/header.html');
+  if (isset($errors) && !empty($errors)) {
+    echo '<h1>Error!</h1><p class="text-danger">The following error(s) occured:<br>';
+    foreach ($errors as $msg) {
+      echo " - $msg<br>\n";
+    }
+    echo '</p><p>Please try again.</p>';
+  }
  ?>
 
 <body>

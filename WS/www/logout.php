@@ -2,8 +2,8 @@
   session_start();
 
   #if no session variable is set redirect user to index.php
-  if(!isset($_SESSION['profile_id'])) {
-    require('../includes/login_functions.php'); 
+  if(!isset($_SESSION['user_id'])) {
+    require('../includes/login_functions.php');
     redirect_user();
   } else {
     $_SESSION = [];
@@ -16,7 +16,7 @@
   include('../includes/header.html');
  ?>
 
- <div class="row justify-content-center text-success">
+ <div class="col justify-content-center text-success">
    <h1 class="display-3">Logged Out</h1>
    <p>You are now logged out</p>
  </div>
