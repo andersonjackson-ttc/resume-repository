@@ -126,12 +126,13 @@ if ($con->query($sql) == TRUE) {
   echo "Error: " . $sql . "<br>" . $con->error;
 }
 
-
+$q = "SELECT MAX(profile_id) FROM students;";
+$profile_id = @mysqli_query($con, $q);
+	
 try {
 	
 
-	$q = "SELECT MAX(profile_id) FROM students;";
-	$profile_id = @mysqli_query($con, $q);
+	
 	
   updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
   updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
