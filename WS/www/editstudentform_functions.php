@@ -4,12 +4,12 @@ function injectStudentInfo($studentResult){
     ?>
     <div class="form-inline">
       <div class="form-group">
-        <label for="profileID">Profile ID</label>
+        <label class="sr-only" for="profileID">Profile ID</label>
         <input name="profileID" id="profileID" type="text" class="form-control"
         style="width: 45vw;"
         value="<?php echo(htmlspecialchars($studentRow['profile_id']))?>" readonly>
 
-        <label for="studentID">Student ID</label>
+        <label class="sr-only" for="studentID">Student ID</label>
         <input name="studentID" id="studentID" type="text" class="form-control"
         style="width: 45vw;"
         value="<?php echo(htmlspecialchars($studentRow['student_id']))?>">
