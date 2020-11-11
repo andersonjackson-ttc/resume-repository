@@ -128,8 +128,10 @@ if ($con->query($sql) == TRUE) {
 
 
 try {
-	$stmt = $con->prepare("SELECT LAST_INSERT_ID();");
-	$profile_id = $stmt->execute();
+	
+
+	$q = "SELECT LAST_INSERT_ID();";
+	$profile_id = @mysqli_query($con, $q);
 	
   updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
   updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
