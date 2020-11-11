@@ -3,12 +3,9 @@ $page_title = 'Create a New Student Form';
 include ('../includes/header.html');
 include '../src/connection.php';
 ?>
-<body style="background-color:#fffdf9
-">
-		<div id="confirmation_msg"></div>
 
 		<div class="container-fluid">
-			<form name="student_form.php" id="new_student_form" method="POST" action="test_student_submit.php">
+			<form name="student_form.php" method="POST" action="student_submit.php" enctype="multipart/form-data">
 				<br>
 				<div class="border border-info" style="background-color: #5bc0de;">
 					<div class="form-check" style="padding: 20px;">
@@ -52,8 +49,8 @@ include '../src/connection.php';
 					<div class="form-check" style="padding-top: 10px;">
 						<h4 class="text-muted">General</h4>
 				  	<label>Military Veteran <span class="requiredField">*</span><br></label>
-				   	<label for="militaryStatus">Yes<input name="militaryStatus" type="radio" value="yes"></label>
-				  	<label for="militaryStatus">No<input name="militaryStatus" type="radio" value="no"></label>
+				   	<label for="militaryStatus">Yes<input name="militaryStatus" type="radio" value="yes" <?php if (isset($_POST['militaryStatus']) && ($_POST['militaryStatus'] == 'yes')) echo ' checked="checked"'; ?>></label>
+				  	<label for="militaryStatus">No<input name="militaryStatus" type="radio" value="no" <?php if (isset($_POST['militaryStatus']) && ($_POST['militaryStatus'] == 'no')) echo ' checked="checked"'; ?>></label>
 						<br>
 				  </div>
 
@@ -86,23 +83,6 @@ include '../src/connection.php';
 						<label>Days <input name="workTime" type="radio" value="days"></label>
 						<label>Nights <input name="workTime" type="radio" value="nights"></label>
 					</div>
-
-					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
-						<h4 class="text-muted">Graduation</h4>
-						<div class="row align-items-start no-gutters">
-							<div class="col col-lg-3">
-								<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label>
-								<select name="gradStatus" id="gradStatus" class="gradFields">
-									<option disabled selected value="">-- select an option --</option>
-									<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="graduated">Graduated</option>
-									<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="notGraduated">Not Graduated</option>
-								</select>
-							</div>
-							<div class="col col-lg-3" style="transform: translate(-7%, 0%);">
-								<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>" style="transform: translate(131px, -25px)"></label>
-							</div>
-						</div>
-					</div>
 				</div>
 				<br>
 
@@ -111,7 +91,7 @@ include '../src/connection.php';
 			    	<h4 class="text-muted">Technical Skills</h4>
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM skills;";
+							$q = "SELECT * FROM tech_skills;";
 							$r = @mysqli_query($con, $q);
 
 							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -132,13 +112,13 @@ include '../src/connection.php';
 						<ul class="list-unstyled">
 			      <h4 class="text-muted">Professional Skills</h4>
 						<?php
-						$q = "SELECT * FROM professional_skills;";
+						$q = "SELECT * FROM prof_skills;";
 						$r = @mysqli_query($con, $q);
 
 						while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 							echo "<li style='column-count: 2;'>
 											<div>
-												<label>" . $row['professional_skill_name'] . "</label>
+												<label>" . $row['skill_name'] . "</label>
 											</div>
 											<div>
 												<input type='radio' name='fairRating' value='1'> Fair
@@ -190,6 +170,26 @@ include '../src/connection.php';
 				</div>
 				<br>
 
+				<div class="border border-info" style="background-color: #5bc0de;">
+					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
+						<h4 class="text-muted">Graduation</h4>
+						<div class="row align-items-start no-gutters">
+							<div class="col col-lg-3">
+								<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label><br>
+								<select name="gradStatus" id="gradStatus" class="gradFields">
+									<option disabled selected value="">-- select an option --</option>
+									<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="graduated">Graduated</option>
+									<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="notGraduated">Not Graduated</option>
+								</select>
+							</div>
+							<div class="col col-lg-3">
+								<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
 				<div class="border border-info">
 					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
 			      <h4 class="text-muted">Prior Education</h4>
@@ -214,12 +214,14 @@ include '../src/connection.php';
 				<br>
 
 				<div class="form-check">
-					<div class="custom-file">
-						<input type="file" class="custom-file-input" name="attachments" id="customFile">
-						<label class="custom-file-label" for="customFile" style="width: 30vw;">Attach Resume</label>
-					</div>
+					<div class="file-field">
+    				<div class="btn btn-outline-info waves-effect btn-sm float-left">
+      				<span>Choose files</span>
+      				<input type="file" name="attachments">
+    				</div>
+  				</div>
 				</div>
-				<br>
+				<br><br>
 
 				<div class="form-check">
 					<button class="btn btn-primary" type="submit" name="submit">Submit</button>
@@ -227,14 +229,10 @@ include '../src/connection.php';
 	    	</div>
 				<br>
 			</form>
-			<div class="row px-3 justify-content-end">
-				<p><span class="requiredField">*</span> = Required Field</p>
-			</div>
+			<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
 		</div> <!--Close flex-container-->
-</body>
+
 <?php
 include ('../includes/footer.html');
 $con->close();
 ?>
-
-<script src="newstudentform.js" type="text/javascript"></script>
