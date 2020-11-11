@@ -1,6 +1,6 @@
 window.onload = function () {
-   document.getElementById('securityClearanceYes').addEventListener('click', securityClearanceYes, false);
-   document.getElementById('securityClearanceNo').addEventListener('click', securityClearanceNo, false);
+   document.getElementById('securityClearanceYes').addEventListener('click', securityClearanceYes, false); 
+   document.getElementById('securityClearanceNo').addEventListener('click', securityClearanceNo, false); 
 };
 
 function securityClearanceYes() {
@@ -12,7 +12,7 @@ function securityClearanceNo() {
     var div = document.getElementById('securityAttributes');
     var radioAttributes = document.getElementsByName('securityAttributes');
     var radioCurrent = document.getElementsByName('securityCurrent');
-
+    
     for (var i=0; i < radioAttributes.length; i++) {
         if (radioAttributes[i].type == "radio") {
             radioAttributes[i].checked = false;
@@ -23,54 +23,44 @@ function securityClearanceNo() {
             radioCurrent[i].checked = false;
         }
     }
-
+    
     div.style.display = "none";
 }
 
+$(function () {
+       		$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajorsType").show();
+            	} else {
+                $("#dvMajorsType").hide();
+            	}
+             	});
+            	});
+            	$(function () {
+       		$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajors").show();
+            	} else {
+                $("#dvMajors").hide();
+            	}
+             	});
+            	});
+                  $(function () {
+       	 	$("#majors").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvMajorsSchool").show();
+            	} else {
+                $("#dvMajorsSchool").hide();
+            	}
+            	 });
+            	});
 
-$(function() {
-  var  $majors = $('#majors'),
-       $dvMajors = $('#dvMajors'),
-       $dvMajorsType = $('#dvMajorsType'),
-       $dvMajorsSchool = $('#dvMajorsSchool'),
-       $dvCertification = $('#dvCertification');
-
-  $('.requiredField') .addClass('text-danger');
-
-  $majors .on('click', function () {
-      if ($(this).is(":checked")) {
-        $dvMajorsType .show();
-        $dvMajors.show();
-        $dvMajorsSchool.show();
-        $dvCertification.show();
-      } else {
-        $dvMajorsType .hide();
-        $dvMajors.hide();
-        $dvMajorsSchool.hide();
-        $dvCertification.hide();
-      }
-   });
-
-   $('#floating_submit') .on('click', function(event) {
-     event.preventDefault();
-     var form_data = $('#new_student_form') .serialize();
-
-     $.ajax({
-       type: 'POST',
-       url: 'test_student_submit.php',
-       data: form_data,
-       timeout: 2000,
-       success: function(data) {
-         $('#confirmation_msg')
-         .html('<h1>Registration Successful</h1>')
-         .addClass('text-success');
-       },
-       error: function() {
-         $('#confirmation_msg')
-         .html('<h1>Registration Unsuccessful</h1>')
-         .addClass('text-danger');
-       }
-     });
-   });
-
-});
+             $(function () {
+        	$("#certification").click(function () {
+            	if ($(this).is(":checked")) {
+                $("#dvCertification").show();
+           	 } else {
+                $("#dvCertification").hide();
+          	  }
+          	   });
+          	  });
