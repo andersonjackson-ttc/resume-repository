@@ -104,16 +104,7 @@
       }
     }
   }
-try {
-  updateStudent($con, $profile_id);
-  updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
-  updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
-  updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
-  updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
-  $con->close();
-} catch(exception $e) {
-  echo "Error: " . $e->getMessage();
-}
+
 
   function test_input($data) {
     $data = trim($data);
@@ -126,10 +117,27 @@ try {
    VALUES ($studentId , '$firstName', '$middleInitial', '$lastName', '$email', '$phone', $gradStatus, '$gradDate', '$resumePath', $milStatus, $clearance);";
 
 if ($con->query($sql) == TRUE) {
+	
+	try {
+  updateStudent($con, $profile_id);
+  updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
+  updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
+  updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
+  updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
+  $con->close();
+} catch(exception $e) {
+  echo "Error: " . $e->getMessage();
+}
+	
+	
   header("Location: ../student_form.php");
 } else {
   echo "Error: " . $sql . "<br>" . $con->error;
 }
+
+
+
+
 
 
 $con->close();
