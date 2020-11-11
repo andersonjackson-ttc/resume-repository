@@ -118,15 +118,7 @@
 
 if ($con->query($sql) == TRUE) {
 	
-	try {
-  updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
-  updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
-  updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
-  updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
-  
-} catch(exception $e) {
-  echo "Error: " . $e->getMessage();
-}
+	
 	
 	
   header("Location: ../student_form.php");
@@ -135,7 +127,20 @@ if ($con->query($sql) == TRUE) {
 }
 
 
+try {
+	
 
+	$q = "SELECT MAX(profile_id) FROM students;";
+	$profile_id = @mysqli_query($con, $q);
+	
+  updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
+  updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
+  updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
+  updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
+  
+} catch(exception $e) {
+  echo "Error: " . $e->getMessage();
+}
 
 
 

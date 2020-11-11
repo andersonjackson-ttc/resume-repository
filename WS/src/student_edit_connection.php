@@ -62,7 +62,7 @@
   $studentJobInterestsResult = mysqli_query($con, $sqlSelectStudentJobInterests);
 
   #Pull List of Job Interests from Database
-  $sqlSelectJobInterests = "SELECT job_id, job_name FROM job_interests";
+  $sqlSelectJobInterests = "SELECT job_id, job_name FROM job_interest";
   $jobInterestsResult = mysqli_query($con, $sqlSelectJobInterests);
 
   #Pull List of Certificates using profile ID
