@@ -1,6 +1,7 @@
 <!--Nicholas Justus 11/06/20: This is a basic page that just includes the search bar and filter options-->
 <?php
   $page_title = 'Student Search';
+  session_start();
   include ('../includes/header.html');
 ?>
 

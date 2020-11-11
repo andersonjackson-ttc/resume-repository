@@ -1,5 +1,6 @@
 <?php
 $page_title = 'Create a New Student Form';
+session_start();
 include ('../includes/header.html');
 include '../src/connection.php';
 ?>
