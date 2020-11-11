@@ -2,7 +2,7 @@
   include_once '../src/connection.php';
 
   
-  
+  /*
   function deleteTechSkill($con, $skill_id) {
   $stmt = $con->prepare("DELETE FROM student_tech_skills (skill_id)
   WHERE  skill_id = (?)");
@@ -14,6 +14,7 @@
   
   $stmt->close();
 }
+*/
   
   if(isset($_POST['submit'])) {    
     $newTechSkill = test_input($_POST['newTechSkill']);
