@@ -3,7 +3,7 @@
 
   #if no session variable is set redirect user to index.php
   if(!isset($_SESSION['profile_id'])) {
-    require('../includes/'); #TODO require login functions
+    require('../includes/login_functions.php'); 
     redirect_user();
   } else {
     $_SESSION = [];

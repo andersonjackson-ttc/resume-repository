@@ -1,20 +1,20 @@
 <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require('../includes/');  #TODO get login functions file location
-    requre('../src/connection.php');
+    require('../includes/login_functions.php');
+    require('../src/connection.php');
 
     $errors = [];
 
     #validate login form input
-    if (empty($_POST['email']) {
+    if (empty($_POST['email'])) {
       $errors[] = 'Email field is empty';
-    }) else {
+    } else {
       $email = mysqli_real_escape_string($con, trim($_POST['email']));
     }
 
-    if (empty($_POST['password']) {
+    if (empty($_POST['password'])) {
       $errors[] = 'Password field is empty';
-    }) else {
+    } else {
       $password = mysqli_real_escape_string($con, trim($_POST['password']));
     }
 
@@ -40,5 +40,5 @@
     mysqli_close($con);
   }
 
-  include('..includes/'); #TODO include login html page
+  include('login_form.php'); #TODO include login html page
 ?>
