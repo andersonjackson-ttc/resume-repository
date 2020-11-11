@@ -33,9 +33,7 @@
   include ('../includes/footer.html');
   exit();
 }
-  $sqlSelectStudent = "SELECT profile_id, student_id, first_name, middle_initial, last_name,
-   email, phone, graduated, graduation_date, military_status, security_clearance
-   FROM students WHERE profile_id = ".$profile_id;
+  $sqlSelectStudent = "SELECT * FROM students WHERE profile_id = ".$profile_id;
   $studentResult = mysqli_query($con, $sqlSelectStudent);
 
   #Pull Student Technical Skills using profile ID
@@ -73,5 +71,14 @@
   #Pull List of Certificates from Database
   $sqlSelectCerts = "SELECT certificate_id, certificate_name FROM certificates";
   $certsResult = mysqli_query($con, $sqlSelectCerts);
+
+  #Pull List of Majors using profile ID
+  $sqlSelectStudentMajors = "SELECT major_id FROM student_majors
+  WHERE profile_id=".$profile_id;
+  $studentMajorsResult = mysqli_query($con, $sqlSelectStudentMajors);
+
+  #Pull List of Majors from database
+  $sqlSelectMajors = "SELECT major_id, major_name FROM majors";
+  $majorsResult = mysqli_query($con, $sqlSelectMajors);
 
  ?>

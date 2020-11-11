@@ -20,6 +20,15 @@ include ('editstudentform_functions.php');?>
     <br>
     <div class="border border-info" style="background-color: #5bc0de;">
       <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
+        <h4 class="text-muted">Majors</h4>
+        <div class="row align-items-start no-gutters" style="margin-left: 25px;">
+          <?php injectMajors($majorsResult, $studentMajorsResult); ?>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="border border-info">
+      <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
         <h4 class="text-muted">Technical Skills</h4>
           <div class="row align-items-start no-gutters" style="margin-left: 25px;">
             <?php injectTechSkills($skillsResult, $studentSkillsResult); ?>
@@ -27,7 +36,7 @@ include ('editstudentform_functions.php');?>
       </div>
     </div>
     <br>
-    <div class="border border-info">
+    <div class="border border-info" style="background-color: #5bc0de;">
       <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
         <ul class="list-unstyled">
           <h4 class="text-muted">Professional Skills</h4>
@@ -35,7 +44,7 @@ include ('editstudentform_functions.php');?>
       </div>
     </div>
     <br>
-    <div class="border border-info" style="background-color: #5bc0de;">
+    <div class="border border-info">
       <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
         <h4 class="text-muted">Job Interests</h4>
         <div class="row align-items-start no-gutters">
@@ -44,7 +53,7 @@ include ('editstudentform_functions.php');?>
       </div>
     </div>
     <br>
-    <div class="border border-info">
+    <div class="border border-info" style="background-color: #5bc0de;">
       <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
         <h4 class="text-muted">Certifications</h4>
         <div class="row align-items-start no-gutters">

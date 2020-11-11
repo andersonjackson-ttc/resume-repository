@@ -1,16 +1,22 @@
 <?php
 function updateStudent($con, $profile_id) {
   $stmt = $con->prepare("UPDATE students SET student_id=?, first_name=?, middle_initial=?,
-    last_name=?, email=?, phone=?, military_status=?, security_clearance=?
+    last_name=?, email=?, phone=?, graduated=?, graduation_date=?, military_status=?,
+    security_clearance=?, work_hours=?, work_time=?
     WHERE profile_id=".$profile_id);
-  $stmt->bind_param('isssssii', $studentID, $firstName, $middleInitial,
-  $lastName, $email, $phone, $militaryStatus, $securityClearance);
+  $stmt->bind_param('isssssisiiii', $studentID, $firstName, $middleInitial,
+  $lastName, $email, $phone, $graduated, $grad_date,
+  $militaryStatus, $securityClearance, $workHours, $workTime);
   $studentID = $_POST['studentID'];
   $firstName = $_POST['firstName'];
   $middleInitial = $_POST['middleInitial'];
   $lastName = $_POST['lastName'];
   $email = $_POST['studentEmail'];
   $phone = $_POST['studentPhone'];
+  $graduated = $_POST['gradStatus'];
+  $gradDate = date('Y-m-d', strtotime(str_replace('-','/', $_POST['gradDate'])));
+  $workHours = $_POST['workHours'];
+  $workTime = $_POST['workTime'];
   if($_POST['militaryStatus']=='no'){
     $militaryStatus = 0;
   } else {
@@ -29,6 +35,48 @@ function updateStudent($con, $profile_id) {
       }
     }
   }
+  $stmt->execute();
+  $stmt->close();
+}
+
+function updateMajors($con, $profile_id, $majorsResult, $studentMajorsResult) {
+  $stmt = $con->prepare("INSERT INTO student_majors (profile_id, major_id)
+  VALUES (?,?)");
+  $stmt->bind_param('ii', $profile_id, $major_id);
+  mysqli_data_seek($majorsResult, 0);
+  while($majorsRow = mysqli_fetch_array($majorsResult)){
+    $str = $majorsRow['major_name'];
+    $currentMajor = str_replace(' ', '', $str);
+    if(isset($_POST[$currentMajor])){
+      mysqli_data_seek($studentMajorsResult, 0);
+      $found=0;
+      while($studentMajorsRow = mysqli_fetch_Array($studentMajorsResult)){
+        if($majorsRow['major_id'] == $studentMajorsRow['major_id']) {
+          $found=1;
+          break;
+        }
+      }
+      if($found == 0) {
+        $major_id = $majorsRow['major_id'];
+        $stmt->execute();
+      }
+    } else { #If is not set, checks to see if skill is to be removed from joiner table
+      mysqli_data_seek($studentMajorsResult, 0);
+      while($studentMajorsRow = mysqli_fetch_Array($studentMajorsResult)){
+        if($majorsRow['major_id'] == $studentMajorsRow['major_id']) {
+          $major_id = $majorsRow['major_id'];
+          deleteMajors($con, $profile_id, $major_id);
+        }
+      }
+    }
+  }
+  $stmt->close();
+}
+
+function deleteMajors($con, $profile_id, $major_id) {
+  $stmt = $con->prepare("DELETE FROM student_majors
+  WHERE profile_id=? AND major_id=? LIMIT 1");
+  $stmt->bind_param('ii', $profile_id, $major_id);
   $stmt->execute();
   $stmt->close();
 }
