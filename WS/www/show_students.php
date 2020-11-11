@@ -12,7 +12,7 @@ echo '<h1>Students</h1>';
 require('../src/connection.php');
 
 // Records per page:
-$display = 25;
+$display = 200;
 
 
 

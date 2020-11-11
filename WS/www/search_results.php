@@ -9,7 +9,7 @@
 <?php
   if (isset($_POST['submit-search'])) {
       //mysqli_real_escape_string to take all inputs as literal strings and prevent manipulation
-      $search = mysqli_real_escape_string($conn, $_POST['search']);
+      $search = mysqli_real_escape_string($con, $_POST['search']);
       echo "<a href='search_home.php' style='text-decoration:none;'><button>Return Home</button></a><br>";
 
       $conditions = array();
@@ -50,7 +50,7 @@
         }
 
         //echo $sql;
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($con, $sql);
         $queryResult = mysqli_num_rows($result);
         //Prints result count
         //Lists all results
