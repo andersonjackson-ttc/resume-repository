@@ -121,9 +121,9 @@ include '../src/connection.php';
 												<label>" . $row['skill_name'] . "</label>
 											</div>
 											<div>
-												<input type='radio' name="' . $row['skill_name'] . '" value='1'> Fair
-												<input type='radio' name="' . $row['skill_name'] . '" value='2' style='margin-left: 30px;'> Good
-												<input type='radio' name="' . $row['skill_name'] . '" value='3' style='margin-left: 30px;'> Excellent
+												<input type='radio' name='" . $row['skill_name'] . "' value='1'> Fair
+												<input type='radio' name='" . $row['skill_name'] . "' value='2' style='margin-left: 30px;'> Good
+												<input type='radio' name='" . $row['skill_name'] . "' value='3' style='margin-left: 30px;'> Excellent
 											</div>
 										</li>";
 						}
