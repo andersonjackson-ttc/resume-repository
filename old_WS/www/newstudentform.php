@@ -516,8 +516,6 @@
 				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
 			</fieldset>
 		</form>
-
-		 <script src="../includes/new_student_regex.js" type="text/javascript"></script>
 		<?php
 		include ('../includes/footer.html');
 		?>
