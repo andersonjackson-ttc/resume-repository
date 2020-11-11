@@ -2,7 +2,8 @@
   include_once '../src/connection.php';
 
   $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $gradStatusErr = $resumePathErr = $milStatusErr = $clearanceErr = "";
-  $studentId = $firstName = $middleInitial = $lastName = $email = $phone = "";
+  $studentId = 0;
+  $firstName = $middleInitial = $lastName = $email = $phone = "";
 
   if(isset($_POST['submit'])) {
     $studentId = test_input($_POST['studentId']);
@@ -109,7 +110,7 @@
    VALUES ($studentId , '$firstName', '$middleInitial', '$lastName', '$email', '$phone', $gradStatus, '$gradDate', '$resumePath', $milStatus, $clearance);";
 
 if ($con->query($sql) == TRUE) {
-  header("Location: ../www/student_form.php");
+  header("Location: ../student_form.php");
 } else {
   echo "Error: " . $sql . "<br>" . $con->error;
 }
