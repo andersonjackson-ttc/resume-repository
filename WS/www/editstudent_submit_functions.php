@@ -110,7 +110,7 @@ function updateProfSkills($con, $profile_id, $profSkills, $studentProfSkills) {
 } #End of Function
 
 function updateJobInterests($con, $profile_id, $jobResult, $studentJobResult) {
-  $stmt = $con->prepare("INSERT INTO student_job_interest (profile_id, job_id)
+  $stmt = $con->prepare("INSERT INTO student_jobs (profile_id, job_id)
   VALUES (?,?)");
   $stmt->bind_param('ii', $profile_id, $job_id);
   mysqli_data_seek($jobResult, 0);
