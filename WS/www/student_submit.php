@@ -109,7 +109,7 @@
    VALUES ($studentId , '$firstName', '$middleInitial', '$lastName', '$email', '$phone', $gradStatus, '$gradDate', '$resumePath', $milStatus, $clearance);";
 
 if ($con->query($sql) == TRUE) {
-  header("Location: ../www/test_studentform.php");
+  header("Location: ../www/student_form.php");
 } else {
   echo "Error: " . $sql . "<br>" . $con->error;
 }
