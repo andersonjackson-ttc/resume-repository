@@ -11,7 +11,7 @@
  
   function deleteTechSkill($con) {
   $stmt = $con->prepare("DELETE FROM student_tech_skills (profile_id, skill_id)
-  WHERE  skill_id = (?)");
+  WHERE  skill_id = ?");
   
    $stmt->bind_param('i', $skill_id);
   
@@ -37,7 +37,7 @@
 
  function deleteTechSkillInstances($con) {
   $stmt = $con->prepare("DELETE FROM tech_skills (*)
-  WHERE  skill_id = (?)");
+  WHERE  skill_id = ?");
   
    $stmt->bind_param('i', $skill_id);
   
