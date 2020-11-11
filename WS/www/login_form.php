@@ -49,6 +49,10 @@ form
   width: 600px;
 }
 </style>
+<?php
+  include('../includes/header.html');
+ ?>
+
 <body>
 <form action="login.php" method="post">
   <h1>User Login</h1>
@@ -68,3 +72,7 @@ form
 </div>
 </div>
 </body>
+
+<?php
+  include('../includes/footer.html');
+ ?>
