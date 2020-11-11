@@ -1,12 +1,14 @@
 <?php
   include_once '../src/connection.php';
-  include 'editstudent_submit_functions.php';
+  include 'student_submit_functions.php';
 
   $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $gradStatusErr = $resumePathErr = $milStatusErr = $clearanceErr = "";
-  
+
   $firstName = $middleInitial = $lastName = $email = $phone = "";
 
-  if(isset($_POST['submit'])) {    
+  $resumePath="path";
+
+  if(isset($_POST['submit'])) {
     $middleInitial = test_input($_POST['middleInitial']);
     if(!empty($_POST['studentId'])) {
       $studentId = test_input($_POST['studentId']);
@@ -70,28 +72,32 @@
       }
     }
     if(isset($_POST['gradStatus'])) {
-      switch ($_POST['gradStatus']) {
-        case 'graduated':
-          $gradStatus = 1;
-          break;
-        case 'notGraduated':
-          $gradStatus = 0;
-      }
+      $gradStatus = $_POST['gradStatus'];
       if($gradStatus == 1) {
         $gradDate = mysqli_real_escape_string($con, $_POST['gradDate']);
-        $gradDate = date('Y-m-d', strtotime(str_replace('-','/', $gradDate)));
+        $gradDate = date('Y-m-d', strtotime(str_replace('-','/', $_POST['gradDate'])));
       }else{
-        $gradDate = 'null';
+        $gradDate = date('Y-m-d', strtotime(00000000));
       }
     }else{
       $gradStatusErr = "Must select graduated or not graduated";
+    }
+    if(isset($_POST['workHours'])) {
+      $workHours = $_POST['workHours'];
+    } else {
+      $workHours = 'null';
+    }
+    if(isset($_POST['workTime'])) {
+      $workTime = $_POST['workTime'];
+    } else {
+      $workTime = 'null';
     }
     if(isset($_FILES['attachments'])) {
       $file_name = $_FILES['attachments']['name'];
       $file_size = $_FILES['attachments']['size'];
       $file_tmp = $_FILES['attachments']['tmp_name'];
       $file_type = $_FILES['attachments']['type'];
-      $file_ext=strtolower(end(explode('.',$_FILES['attachments']['name'])));
+      //$file_ext=strtolower(end(explode('.',$_FILES['attachments']['name'])));
 
       $extensions = array("pdf");
 
@@ -103,11 +109,6 @@
       }
     }
   }
-  
-  
-  
-
-
   function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -115,42 +116,28 @@
     return $data;
   }
 
-  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name, email, phone, graduated, graduation_date, resume_path, military_status, security_clearance)
-   VALUES ($studentId , '$firstName', '$middleInitial', '$lastName', '$email', '$phone', $gradStatus, '$gradDate', '$resumePath', $milStatus, $clearance);";
+  $sql = "INSERT INTO students (student_id, first_name, middle_initial, last_name,
+    email, phone, graduated, graduation_date, resume_path, military_status, security_clearance,
+  work_hours, work_time)
+   VALUES ($studentId , '$firstName', '$middleInitial', '$lastName', '$email',
+     '$phone', $gradStatus, '$gradDate', '$resumePath', $milStatus, $clearance,
+   $workHours, $workTime);";
 
 if ($con->query($sql) == TRUE) {
-	
-	
-	
-	
-  header("Location: ../student_form.php");
+  try {
+    $profile_id = mysqli_insert_id($con);
+    echo('ProfileID is: '.$profile_id);
+    insertTechSkills($con, $profile_id);
+    insertProfSkills($con, $profile_id);
+    insertJobInterests($con, $profile_id);
+    insertCertifications($con, $profile_id);
+    insertMajors($con, $profile_id);
+    header("Location: student_form.php");
+  } catch(exception $e) {
+    echo "Error: " . $e->getMessage();
+  }
 } else {
   echo "Error: " . $sql . "<br>" . $con->error;
 }
-
-
-
-
-$selectStudent = "SELECT LAST_INSERT_ID()";
-$studentResult = mysqli_query($con, $selectStudent);
-$studentRow = mysqli_fetch_row($result);
-$profile_id = $row[0];
-	
-try {
-	
-
-	
-	
-  updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
-  updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
-  updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
-  updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
-  
-} catch(exception $e) {
-  echo "Error: " . $e->getMessage();
-}
-
-
-
 $con->close();
 ?>
