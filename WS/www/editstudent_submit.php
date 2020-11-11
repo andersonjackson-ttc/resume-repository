@@ -3,6 +3,7 @@ include_once '../src/student_edit_connection.php';
 include 'editstudent_submit_functions.php';
 try {
   updateStudent($con, $profile_id);
+  updateMajors($con, $profile_id, $majorsResult, $studentMajorsResult);
   updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
   updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
   updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
