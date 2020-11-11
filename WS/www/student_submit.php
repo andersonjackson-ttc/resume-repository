@@ -1,6 +1,5 @@
 <?php
   include_once '../src/connection.php';
-  include_once '../src/student_edit_connection.php';
   include 'editstudent_submit_functions.php';
 
   $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $gradStatusErr = $resumePathErr = $milStatusErr = $clearanceErr = "";
@@ -104,6 +103,9 @@
       }
     }
   }
+  
+  
+  
 
 
   function test_input($data) {
