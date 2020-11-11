@@ -231,6 +231,8 @@ include '../src/connection.php';
 			</form>
 			<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>
 		</div> <!--Close flex-container-->
+		
+<script src="newstudentform.js" type="text/javascript"></script>
 
 <?php
 include ('../includes/footer.html');
