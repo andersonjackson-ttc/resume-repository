@@ -12,7 +12,7 @@ function injectStudentInfo($studentResult){
         <label class="sr-only" for="studentID">Student ID</label>
         <input name="studentID" id="studentID" type="text" class="form-control"
         style="width: 45vw;"
-        value="<?php echo(htmlspecialchars($studentRow['student_id']))?>" readonly>
+        value="<?php echo(htmlspecialchars($studentRow['student_id']))?>">
       </div>
     </div>
     <br>
@@ -22,7 +22,7 @@ function injectStudentInfo($studentResult){
           <span class="requiredField">*</span></label>
         <input required name="firstName" type="text" class="form-control"
         style="width: 40vw;"
-        value="<?php echo(htmlspecialchars($studentRow['first_name']))?>" readonly>
+        value="<?php echo(htmlspecialchars($studentRow['first_name']))?>">
 
         <label class="sr-only" for="middleInitial">MI</label>
         <input name="middleInitial" type="text" class="form-control"
@@ -31,13 +31,13 @@ function injectStudentInfo($studentResult){
         echo(htmlspecialchars($studentRow['middle_initial']));
         } else {
         echo("");
-      } ?>" readonly>
+      } ?>">
 
         <label class="sr-only" for="lastName">Last Name
           <span class="requiredField">*</span></label>
         <input required name="lastName" type="text" class="form-control"
         style="width: 40vw;"
-        value="<?php echo(htmlspecialchars($studentRow['last_name']))?>" readonly>
+        value="<?php echo(htmlspecialchars($studentRow['last_name']))?>">
       </div>
     </div>
     <br>
@@ -47,13 +47,13 @@ function injectStudentInfo($studentResult){
           <span class="requiredField">*</span></label>
         <input required name="studentEmail" id="studentEmail" type="email" class="form-control"
         style="width: 45vw;"
-        value="<?php echo(htmlspecialchars($studentRow['email']))?>" readonly>
+        value="<?php echo(htmlspecialchars($studentRow['email']))?>">
 
         <label class="sr-only" for="studentPhone">Phone Number
           <span class="requiredField">*</span></label>
         <input required name="studentPhone" id="studentPhone" type="phone" class="form-control"
         style="width: 45vw;"
-        value="<?php echo(htmlspecialchars($studentRow['phone']))?>" readonly>
+        value="<?php echo(htmlspecialchars($studentRow['phone']))?>">
       </div>
     </div>
     <?php
