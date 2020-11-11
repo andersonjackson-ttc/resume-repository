@@ -1,6 +1,7 @@
 <?php
   include_once '../src/connection.php';
 
+$newTechSkill = "";
   
   /*
   function deleteTechSkill($con, $skill_id) {

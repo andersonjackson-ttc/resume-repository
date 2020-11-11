@@ -17,11 +17,11 @@ function deleteTechSkill($con, $skill_id) {
 
 <h4 class="text-muted">Technical Skills</h4>
 					<p>Add new</p>
-					<label class="sr-only" for="firstName">New Tech Skill</label>
-					<input required name="newTechSkill" id="newTechSkill" type="text" class="form-control" style="width: 40vw;" placeholder="Tech Skill" value="<?php if (isset($_POST['newTechSkill'])) echo $_POST['newTechSkill']; ?>">
+					<label class="sr-only" for="newTechSkill">New Tech Skill</label>
+					<input name="newTechSkill" id="newTechSkill" type="text" class="form-control" style="width: 40vw;" placeholder="Tech Skill" value="<?php if (isset($_POST['newTechSkill'])) echo $_POST['newTechSkill']; ?>">
 
 					
-					
+					<p>Check to Delete Permanently</p>
 					
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
