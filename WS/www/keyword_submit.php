@@ -9,16 +9,13 @@
     return $data;
   }
  
-    function deleteTechSkill($con) {
-  $stmt = $con->prepare("DELETE FROM student_tech_skills (skill_id)
+  function deleteTechSkill($con) {
+  $stmt = $con->prepare("DELETE FROM student_tech_skills (profile_id,, skill_id)
   WHERE  skill_id = (?)");
   
    $stmt->bind_param('i', $skill_id);
   
-     $stmt2 = $con->prepare("DELETE FROM tech_skills (skill_id)
-  WHERE  skill_id = (?)");
-  
-   $stmt2->bind_param('i', $skill_id);
+    
   
   $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
   $skillsResult = mysqli_query($con, $sqlSelectSkills);
@@ -36,14 +33,44 @@
  
   
   $stmt->close();
-  $stmt2->close();
+  
+}
+
+ function deleteTechSkillInstances($con) {
+  $stmt = $con->prepare("DELETE FROM tech_skills (*)
+  WHERE  skill_id = (?)");
+  
+   $stmt->bind_param('i', $skill_id);
+  
+    
+  
+  $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
+  $skillsResult = mysqli_query($con, $sqlSelectSkills);
+  while($skillsRow = mysqli_fetch_array($skillsResult)) {
+    $str = $skillsRow['skill_name'];
+    $skillNameNoSpaces = str_replace(' ', '', $str);
+    if(isset($_POST[$skillNameNoSpaces])) {
+      $skill_id = $skillsRow['skill_id'];
+	  
+      $stmt->execute();
+	  $stmt2->execute();
+
+    }
+  }
+ 
+  
+  $stmt->close();
+  
 }
 
 
 
 
+
+
+
 	deleteTechSkill($con);
-  
+    deleteTechSkillInstances($con);
   
 	if(!empty($_POST['newTechSkill'])) {
 		$newTechSkill = test_input($_POST['newTechSkill']);
