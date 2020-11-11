@@ -1,5 +1,7 @@
 <?php
   include_once '../src/connection.php';
+  include_once '../src/student_edit_connection.php';
+  include 'editstudent_submit_functions.php';
 
   $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $gradStatusErr = $resumePathErr = $milStatusErr = $clearanceErr = "";
   
@@ -102,6 +104,16 @@
       }
     }
   }
+try {
+  updateStudent($con, $profile_id);
+  updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
+  updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
+  updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
+  updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
+  $con->close();
+} catch(exception $e) {
+  echo "Error: " . $e->getMessage();
+}
 
   function test_input($data) {
     $data = trim($data);
