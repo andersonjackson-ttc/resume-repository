@@ -4,6 +4,12 @@ include ('../includes/header.html');
 include_once '../src/student_edit_connection.php';
 include ('editstudentform_functions.php');?>
 <script src="editstudentform.js"></script>
+<style>
+		.requiredField{
+		color: red;
+		font-weight: bold;
+		}
+</style>
 <div class="container-fluid">
   <form method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>">
     <br>

@@ -3,7 +3,12 @@ $page_title = 'Create a New Student Form';
 include ('../includes/header.html');
 include '../src/connection.php';
 ?>
-
+		<style>
+		.requiredField{
+		color: red;
+		font-weight: bold;
+		}
+		</style>
 		<div class="container-fluid">
 			<form name="student_form.php" method="POST" action="student_submit.php" enctype="multipart/form-data">
 				<br>

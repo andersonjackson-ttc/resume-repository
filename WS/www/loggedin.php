@@ -15,7 +15,7 @@
 <div class="row justify-content-center text-success">
   <div class="col">
     <h1 class="display-3">Login Successful</h1>
-    <p>Hello, user <?php {$_SESSION['user_id']} ?>, you are now logged in. </p>
+    <p>Hello, user <?php echo $_SESSION['user_id']; ?>, you are now logged in. </p>
   </div>
 </div>
 
