@@ -27,9 +27,10 @@
 
       //Actual search happens here:
       //If search is not empty
-      //Finds all first names, last names, profile ids, and student ids that contain keywords in the user input, as per Mr. Anderson
+      //Finds all first names, last names, full names, first + last names, profile ids, and student ids that contain keywords in the user input, as per Mr. Anderson
       //Starting a search with ! will only return exact matches instead of anything containing the search, similar to typing "" in google
-      if (($search != null)&&($search != " ")){
+      //If The search is not blank OR if there are any filters (You can submit an empty search if a filter is chosen)
+      if ((($search != null)&&($search != " "))||(count($conditions)) > 0){
         if (strpos($search, '!')===0){   //If search started with an ! (Exact results only)
           $search = trim($search, '!');  //Cut off the ! for variable and printing purposes
           if ((isset($conditions))&&(count($conditions)) > 0) {   //If the conditions array is populated and there are any conditions
@@ -55,7 +56,11 @@
         //Prints result count
         //Lists all results
         if ($queryResult > 0) {
-          echo "Showing ".$queryResult." result(s) for '".$search."':";
+          if (($search == null)||($search == " ")){
+            echo "Showing ".$queryResult." result(s):";
+          }else{
+            echo "Showing ".$queryResult." result(s) for '".$search."':";
+          }
           while ($row = mysqli_fetch_assoc($result)) {
             echo "
               <div style='border:2px solid black;margin-bottom:8px;'>
