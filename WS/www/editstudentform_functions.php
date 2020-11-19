@@ -118,6 +118,8 @@ function injectStudentGeneralInfo($studentResult) {
         <?php echo($studentRow['work_time']==1 ? 'checked' : '');?>></label>
       <label>Nights<input name="workTime" type="radio" value="2"
         <?php echo($studentRow['work_time']==2 ? 'checked' : '');?>></label>
+        <label>Both<input name="workTime" type="radio" value="3"
+          <?php echo($studentRow['work_time']==2 ? 'checked' : '');?>></label>
     </div>
     <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
       <h4 class="text-muted">Graduation</h4>
