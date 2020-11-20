@@ -8,6 +8,7 @@ try {
   updateProfSkills($con, $profile_id, $profSkillsResult, $studentProfSkillsResult);
   updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
   updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
+  updatePriorEducation($con, $profile_id, $educationResult);
   $con->close();
   include '../includes/header.html';
   createHTML($profile_id);
