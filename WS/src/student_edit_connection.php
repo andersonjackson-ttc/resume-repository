@@ -81,4 +81,9 @@
   $sqlSelectMajors = "SELECT major_id, major_name FROM majors";
   $majorsResult = mysqli_query($con, $sqlSelectMajors);
 
+  #Pull Prior Education information from Database
+  $sqlSelectEducation = "SELECT * FROM prior_education
+  WHERE profile_id=".$profile_id;
+  $educationResult = mysqli_query($con, $sqlSelectEducation);
+
  ?>
