@@ -68,10 +68,10 @@ CREATE TABLE student_certificates (
 
 CREATE TABLE prior_education (
 	profile_id INT UNSIGNED NOT NULL,
-	degree_level VARCHAR(40) NOT NULL,
+	degree_level INT UNSIGNED NOT NULL,
 	degree_type VARCHAR(40) NOT NULL,
 	school_name VARCHAR(40) NOT NULL,
-	PRIMARY KEY (profile_id),
+	CONSTRAINT education UNIQUE (profile_id,degree_level,degree_type,school_name)
 	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
 );
 
