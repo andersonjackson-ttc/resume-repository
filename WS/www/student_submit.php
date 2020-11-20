@@ -92,7 +92,7 @@
     } else {
       $workTime = 'null';
     }
-    if(isset($_FILES['attachments'])) {
+    /*if(isset($_FILES['attachments'])) {
       $file_name = $_FILES['attachments']['name'];
       $file_size = $_FILES['attachments']['size'];
       $file_tmp = $_FILES['attachments']['tmp_name'];
@@ -107,7 +107,7 @@
         move_upload_file($file_tmp,"".$file_name);
         $resumePath = $file_tmp;
       }
-    }
+    }*/
   }
   function test_input($data) {
     $data = trim($data);
@@ -126,12 +126,12 @@
 if ($con->query($sql) == TRUE) {
   try {
     $profile_id = mysqli_insert_id($con);
-    echo('ProfileID is: '.$profile_id);
     insertTechSkills($con, $profile_id);
     insertProfSkills($con, $profile_id);
     insertJobInterests($con, $profile_id);
     insertCertifications($con, $profile_id);
     insertMajors($con, $profile_id);
+    insertPriorEducation($con, $profile_id);
     header("Location: student_form.php");
   } catch(exception $e) {
     echo "Error: " . $e->getMessage();
