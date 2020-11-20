@@ -104,6 +104,18 @@ CREATE TABLE student_jobs(
 	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
 );
 
+CREATE TABLE users (
+	user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	first_name VARCHAR(20) NOT NULL,
+	last_name VARCHAR(40) NOT NULL,
+	user_email VARCHAR(60) NOT NULL,
+	user_password VARCHAR(255) NOT NULL,
+	user_level TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	registration_date DATETIME NOT NULL,
+	PRIMARY KEY (user_id),
+	UNIQUE KEY (user_email)
+);
+
 INSERT INTO tech_skills (skill_name) VALUES ('MySQL');
 INSERT INTO tech_skills (skill_name) VALUES ('A+');
 INSERT INTO tech_skills (skill_name) VALUES ('C++');
