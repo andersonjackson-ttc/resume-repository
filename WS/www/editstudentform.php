@@ -6,10 +6,10 @@ include_once '../src/student_edit_connection.php';
 include ('editstudentform_functions.php');?>
 <script src="editstudentform.js"></script>
 <style>
-		.requiredField{
-		color: red;
-		font-weight: bold;
-		}
+  .requiredField{
+    color: red;
+    font-weight: bold;
+  }
 </style>
 <div class="container-fluid">
   <form method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>">
@@ -22,7 +22,7 @@ include ('editstudentform_functions.php');?>
     </div>
     <br>
     <div class="border border-info">
-      <?php injectStudentGeneralInfo($studentResult); ?>
+      <?php injectStudentGeneralInfo($studentResult, $educationResult); ?>
     </div>
     <br>
     <div class="border border-info" style="background-color: #5bc0de;">
