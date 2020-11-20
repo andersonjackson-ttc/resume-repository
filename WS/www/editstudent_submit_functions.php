@@ -241,4 +241,66 @@ function deleteCertificate($con, $profile_id, $cert_id) {
   $stmt->close();
 }
 
+function updatePriorEducation($con, $profile_id, $educationResult) {
+  $numRows = mysqli_num_rows($educationResult);
+  $degreeArray = $_POST['majorsType'];
+  $degreeTypeArray = $_POST['majors'];
+  $schoolNameArray = $_POST['majorsSchool'];
+  $formRows = count($degreeArray);
+  $currentIndex = 0;
+
+  $stmt = $con->prepare("UPDATE prior_education SET degree_level=?, degree_type=?, school_name=?
+  WHERE profile_id=? AND degree_level=? AND degree_type=? AND school_name=?");
+  $stmt->bind_param('issiiss', $degree_level, $degree_type, $school_name, $profile_id,
+  $old_degree_level, $old_degree_type, $old_school_name);
+
+  $insertStmt = $con->prepare("INSERT INTO prior_education (profile_id, degree_level, degree_type, school_name)
+  VALUES (?,?,?,?)");
+  $insertStmt->bind_param('iiss', $profile_id, $degree_level, $degree_type, $school_name);
+
+  if($numRows > 0) {
+    mysqli_data_seek($educationResult, 0);
+    while($educationRow = mysqli_fetch_array($educationResult)){
+      $old_degree_level = $educationRow['degree_level'];
+      $old_degree_type = $educationRow['degree_type'];
+      $old_school_name = $educationRow['school_name'];
+      if($currentIndex < $formRows){
+        $i = $currentIndex;
+        if(isset($degreeArray[$i]) && isset($degreeTypeArray[$i]) && isset($schoolNameArray[$i])) {
+          if($degreeArray[$i] != $old_degree_level || $degreeTypeArray[$i] != $old_degree_type
+          || $schoolNameArray[$i] != $old_school_name) {
+            $degree_level = $degreeArray[$i];
+            $degree_type = $degreeTypeArray[$i];
+            $school_name = $schoolNameArray[$i];
+            $stmt->execute();
+          }
+        }
+      } else {
+        deletePriorEducation($con, $profile_id, $old_degree_level, $old_degree_type, $old_school_name);
+      }
+      $currentIndex++;
+    }
+  }
+  while($currentIndex < $formRows) {
+    $i = $currentIndex;
+    if(isset($degreeArray[$i]) && isset($degreeTypeArray[$i]) && isset($schoolNameArray[$i])) {
+      $degree_level = $degreeArray[$i];
+      $degree_type = $degreeTypeArray[$i];
+      $school_name = $schoolNameArray[$i];
+      $insertStmt->execute();
+    }
+    $currentIndex++;
+  }
+  $stmt->close();
+  $insertStmt->close();
+}
+
+function deletePriorEducation($con, $profile_id, $old_degree_level, $old_degree_type, $old_school_name) {
+  $stmt = $con->prepare("DELETE FROM prior_education
+  WHERE profile_id=? AND degree_level=? AND degree_type=? AND school_name=? LIMIT 1");
+  $stmt->bind_param('iiss', $profile_id, $old_degree_level, $old_degree_type, $old_school_name);
+  $stmt->execute();
+  $stmt->close();
+}
+
 ?>
