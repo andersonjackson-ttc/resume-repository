@@ -84,3 +84,21 @@ function insertMajors($con, $profile_id) {
   }
   $stmt->close();
 }
+
+function insertPriorEducation($con, $profile_id) {
+  $stmt = $con->prepare("INSERT INTO prior_education (profile_id, degree_level, degree_type, school_name)
+  VALUES (?,?,?,?)");
+  $stmt->bind_param('iiss', $profile_id, $degreeLevel, $degreeType, $schoolName);
+  $degreeArray = $_POST['majorsType'];
+  $degreeTypeArray = $_POST['majors'];
+  $schoolNameArray = $_POST['majorsSchool'];
+  for($i=0; $i < count($degreeArray); $i++){
+    if(isset($degreeArray[$i]) && isset($degreeTypeArray[$i]) && isset($schoolNameArray[$i])) {
+      $degreeLevel = $degreeArray[$i];
+      $degreeType = $degreeTypeArray[$i];
+      $schoolName = $schoolNameArray[$i];
+      $stmt->execute();
+    }
+  }
+  $stmt->close();
+}
