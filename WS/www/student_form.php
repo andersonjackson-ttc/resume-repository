@@ -5,11 +5,12 @@ include ('../includes/header.html');
 include '../src/connection.php';
 ?>
 		<style>
-		.requiredField{
-		color: red;
-		font-weight: bold;
-		}
+			.requiredField{
+				color: red;
+				font-weight: bold;
+			}
 		</style>
+		<script src="newstudentform.js"></script>
 		<div class="container-fluid">
 			<form name="student_form.php" method="POST" action="student_submit.php" enctype="multipart/form-data">
 				<br>
@@ -88,13 +89,14 @@ include '../src/connection.php';
 						<label>Work Time <span class="requiredField">*</span><br></label>
 						<label>Days <input name="workTime" type="radio" value="1"></label>
 						<label>Nights <input name="workTime" type="radio" value="2"></label>
+						<label>Both <input name="workTime" type="radio" value="3"></label>
 					</div>
 					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
 						<h4 class="text-muted">Graduation</h4>
 						<div class="row align-items-start no-gutters">
 							<div class="col col-lg-3">
 								<label for="gradStatus">Graduation Status <span class="requiredField">*</span><br></label><br>
-								<select name="gradStatus" id="gradStatus" class="gradFields">
+								<select name="gradStatus" id="gradStatus" class="gradFields" required>
 									<option disabled selected value="">-- select an option --</option>
 									<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="1">Graduated</option>
 									<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="0">Not Graduated</option>
@@ -109,19 +111,28 @@ include '../src/connection.php';
 			      <h4 class="text-muted">Prior Education</h4>
 						<input type="checkbox" id="majors" name="majors" value="majors">
 						<label for="majors">Prior Degrees</label><br>
-						<div id="dvMajorsType" class="form-check form-check-inline" style="display: none; padding-bottom: 10px;">
-							<select class="form-control" name="dvMajorsType" id="dvMajorsType" style="width: 30vw;">
-								<option value="associates">Associates</option>
-								<option value="bachelors">Bachelors</option>
-								<option value="masters">Masters</option>
-								<option value="phd">PHD</option>
+						<div id="dvMajorsType" class="form-check" style="display: none; padding-bottom: 10px;">
+							<div class="form-check form-check-inline" name="education[]">
+							<select class="form-control" name="majorsType[]" style="width: 30vw;">
+								<option value="1">Associates</option>
+								<option value="2">Bachelors</option>
+								<option value="3">Masters</option>
+								<option value="4">PHD</option>
 					     </select>
 
 							<label class="sr-only" for="txtMajors">Type of degree:</label>
-							<input name="majors" type="text" id="txtMajors" class="form-control" style="width: 30vw;" placeholder="Type of Degree" value="<?php if (isset($_POST['degree_type'])) echo $_POST['degree_type']; ?>">
+							<input name="majors[]" type="text" class="form-control" style="width: 30vw;" placeholder="Type of Degree"
+							value="" maxlength="40">
 
 							<label class="sr-only" for="txtMajorsSchool">Name of Institution:</label>
-							<input name="majors" type="text" id="txtMajorsSchool" class="form-control" style="width: 30vw;" placeholder="Name of Institution" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>">
+							<input name="majorsSchool[]" type="text" class="form-control" style="width: 30vw;" placeholder="Name of Institution"
+							value="" maxlength="40">
+						</div>
+						<div id="educationBtnDiv" style="padding-top: 10px;">
+							<button class="btn btn-primary" type="button" name="addEducation"
+							id="addEducationBtn">Add Education</button>
+							<button class="btn btn-secondary" type="button" name="removeEducation"
+							id="removeEducationBtn" style="display: none;">Remove Education</button>
 						</div>
 					</div>
 				</div>
