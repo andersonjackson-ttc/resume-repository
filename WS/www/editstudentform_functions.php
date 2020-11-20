@@ -60,7 +60,9 @@ function injectStudentInfo($studentResult){
   }
 }
 
-function injectStudentGeneralInfo($studentResult) {
+function injectStudentGeneralInfo($studentResult, $educationResult) {
+  $priorEdu = mysqli_num_rows($educationResult);
+  echo($priorEdu);
   mysqli_data_seek($studentResult, 0);
   while($studentRow = mysqli_fetch_array($studentResult)){
     ?>
@@ -118,8 +120,8 @@ function injectStudentGeneralInfo($studentResult) {
         <?php echo($studentRow['work_time']==1 ? 'checked' : '');?>></label>
       <label>Nights<input name="workTime" type="radio" value="2"
         <?php echo($studentRow['work_time']==2 ? 'checked' : '');?>></label>
-        <label>Both<input name="workTime" type="radio" value="3"
-          <?php echo($studentRow['work_time']==3 ? 'checked' : '');?>></label>
+      <label>Both<input name="workTime" type="radio" value="3"
+        <?php echo($studentRow['work_time']==3 ? 'checked' : '');?>></label>
     </div>
     <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
       <h4 class="text-muted">Graduation</h4>
@@ -130,24 +132,12 @@ function injectStudentGeneralInfo($studentResult) {
     <br>
     <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
       <h4 class="text-muted">Prior Education</h4>
-      <input type="checkbox" id="majors" name="majors" value="majors">
+      <input type="checkbox" id="majors" name="majors" value="majors"
+      <?php echo($priorEdu > 1 ? 'checked' : '');?>>
       <label for="majors">Prior Degrees</label><br>
-      <div id="dvMajorsType" class="form-check form-check-inline" style="display: none; padding-bottom: 10px;">
-        <select class="form-control" name="dvMajorsType" id="dvMajorsType" style="width: 30vw;">
-          <option value="associates">Associates</option>
-          <option value="bachelors">Bachelors</option>
-          <option value="masters">Masters</option>
-          <option value="phd">PHD</option>
-         </select>
-
-        <label class="sr-only" for="txtMajors">Type of degree:</label>
-        <input name="degreeType" type="text" id="txtMajors" class="form-control" style="width: 30vw;"
-        placeholder="Type of Degree" value="<?php if (isset($_POST['degree_type'])) echo $_POST['degree_type']; ?>">
-
-        <label class="sr-only" for="txtMajorsSchool">Name of Institution:</label>
-        <input name="institutionName" type="text" id="txtMajorsSchool" class="form-control" style="width: 30vw;"
-        placeholder="Name of Institution" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>">
-      </div>
+      <div id="dvMajorsType" class="form-check"
+      style="<?php echo($priorEdu > 1 ? '' : 'display: none');?>; padding-bottom: 10px;">
+        <?php injectPriorEducation($educationResult, $priorEdu) ?>
     </div>
     <?php
   }
@@ -298,6 +288,75 @@ function injectGraduation($studentResult) {
     echo('<label>Graduation Date <span class="requiredField">* </span>');
     echo('<input class="gradFields" name="gradDate" type="date"
     value="'.date('Y-m-d', $date).'"></label></div>');
+  }
+}
+
+function injectPriorEducation($educationResult, $priorEdu) {
+  mysqli_data_seek($educationResult, 0);
+  if($priorEdu > 0) {
+    $count = 0;
+    while($educationRow = mysqli_fetch_array($educationResult)) {
+      $degreeLevel = $educationRow['degree_level'];
+      $degreeType = $educationRow['degree_type'];
+      $schoolName = $educationRow['school_name'];
+      if($count == 0) {
+      echo('<div class="form-check form-check-inline" name="education[]"
+      style="padding-top: 10px;">');
+    } else {
+      echo('<div class="form-check form-check-inline" name="education[]"
+      id="edu'.$count.'" style="padding-top: 10px;">');
+    }
+      echo('<select class="form-control" name="majorsType[]" style="width: 30vw;">');
+      echo('<option value="1" '.($educationRow['degree_level']==1 ? "selected" : "").'>Associates</option>');
+      echo('<option value="2" '.($educationRow['degree_level']==2 ? "selected" : "").'>Bachelors</option>');
+      echo('<option value="3" '.($educationRow['degree_level']==3 ? "selected" : "").'>Masters</option>');
+      echo('<option value="4" '.($educationRow['degree_level']==4 ? "selected" : "").'>PHD</option>');
+      echo('</select>');
+
+      echo('<label class="sr-only" for="txtMajors">Type of degree:</label>');
+      echo('<input name="majors[]" type="text" class="form-control" style="width: 30vw;" placeholder="Type of Degree"');
+      echo('value="'.$degreeType.'" maxlength="40">');
+
+      echo('<label class="sr-only" for="txtMajorsSchool">Name of Institution:</label>');
+      echo('<input name="majorsSchool[]" type="text" class="form-control" style="width: 30vw;" placeholder="Name of Institution"');
+      echo('value="'.$schoolName.'" maxlength="40">');
+      echo('</div>');
+      $count++;
+    }
+    ?>
+      <div id="educationBtnDiv" style="padding-top: 10px;">
+      <button class="btn btn-primary" type="button" name="addEducation"
+      id="addEducationBtn">Add Education</button>
+      <button class="btn btn-secondary" type="button" name="removeEducation"
+      id="removeEducationBtn"
+      style="<?php echo($priorEdu > 1 ? "" : "display: none;")?>">Remove Education</button>
+      </div>
+    <?php
+  } else {
+    ?>
+    <div class="form-check form-check-inline" name="education[]" style="padding-top: 10px;">
+    <select class="form-control" name="majorsType[]" style="width: 30vw;">
+      <option value="1">Associates</option>
+      <option value="2">Bachelors</option>
+      <option value="3">Masters</option>
+      <option value="4">PHD</option>
+     </select>
+
+    <label class="sr-only" for="txtMajors">Type of degree:</label>
+    <input name="majors[]" type="text" class="form-control" style="width: 30vw;" placeholder="Type of Degree"
+    value="" maxlength="40">
+
+    <label class="sr-only" for="txtMajorsSchool">Name of Institution:</label>
+    <input name="majorsSchool[]" type="text" class="form-control" style="width: 30vw;" placeholder="Name of Institution"
+    value="" maxlength="40">
+    </div>
+    <div id="educationBtnDiv" style="padding-top: 10px;">
+    <button class="btn btn-primary" type="button" name="addEducation"
+    id="addEducationBtn">Add Education</button>
+    <button class="btn btn-secondary" type="button" name="removeEducation"
+    id="removeEducationBtn" style="display: none;">Remove Education</button>
+    </div>
+    <?php
   }
 }
 
