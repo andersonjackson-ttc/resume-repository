@@ -62,7 +62,6 @@ function injectStudentInfo($studentResult){
 
 function injectStudentGeneralInfo($studentResult, $educationResult) {
   $priorEdu = mysqli_num_rows($educationResult);
-  echo($priorEdu);
   mysqli_data_seek($studentResult, 0);
   while($studentRow = mysqli_fetch_array($studentResult)){
     ?>
