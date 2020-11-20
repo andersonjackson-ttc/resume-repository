@@ -132,10 +132,10 @@ function injectStudentGeneralInfo($studentResult, $educationResult) {
     <div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
       <h4 class="text-muted">Prior Education</h4>
       <input type="checkbox" id="majors" name="majors" value="majors"
-      <?php echo($priorEdu > 1 ? 'checked' : '');?>>
+      <?php echo($priorEdu >= 1 ? 'checked' : '');?>>
       <label for="majors">Prior Degrees</label><br>
       <div id="dvMajorsType" class="form-check"
-      style="<?php echo($priorEdu > 1 ? '' : 'display: none');?>; padding-bottom: 10px;">
+      style="<?php echo($priorEdu >= 1 ? '' : 'display: none');?>; padding-bottom: 10px;">
         <?php injectPriorEducation($educationResult, $priorEdu) ?>
     </div>
     <?php
