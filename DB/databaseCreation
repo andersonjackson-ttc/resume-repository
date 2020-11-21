@@ -112,6 +112,8 @@ CREATE TABLE users (
 	user_password VARCHAR(255) NOT NULL,
 	user_level TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	registration_date DATETIME NOT NULL,
+	last_login_date DATETIME NOT NULL,
+	last_password_date DATETIME NOT NULL,
 	PRIMARY KEY (user_id),
 	UNIQUE KEY (user_email)
 );
