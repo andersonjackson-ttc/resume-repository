@@ -12,8 +12,9 @@ include ('editstudentform_functions.php');?>
   }
 </style>
 <div class="container-fluid">
-  <form method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>">
+  <form id="myform" method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>">
     <br>
+    <input type="hidden" id="changed" name="changed" value="yes" />
     <div class="border border-info" style="background-color: #5bc0de;">
       <div class="form-check" style="padding: 20px;">
         <h1>Edit Student Form</h1>
@@ -77,6 +78,7 @@ include ('editstudentform_functions.php');?>
     <br>
   </form>
 </div>
+<script src="pagedeparture.js"></script>
 <?php
 $con->close();
 include ('../includes/footer.html');

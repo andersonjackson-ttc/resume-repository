@@ -12,8 +12,9 @@ include '../src/connection.php';
 		</style>
 		<script src="newstudentform.js"></script>
 		<div class="container-fluid">
-			<form name="student_form.php" method="POST" action="student_submit.php" enctype="multipart/form-data">
+			<form name="student_form.php" id="myform" method="POST" action="student_submit.php" enctype="multipart/form-data">
 				<br>
+				<input type="hidden" id="changed" name="changed" value="yes" />
 				<div class="border border-info" style="background-color: #5bc0de;">
 					<div class="form-check" style="padding: 20px;">
 						<h1>Create a New Student Form</h1>
@@ -272,6 +273,7 @@ include '../src/connection.php';
 		</div> <!--Close flex-container-->
 
 <script src="newstudentform.js" type="text/javascript"></script>
+<script src="pagedeparture.js"></script>
 
 <?php
 include ('../includes/footer.html');
