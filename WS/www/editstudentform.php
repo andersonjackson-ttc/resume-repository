@@ -14,6 +14,9 @@ include ('editstudentform_functions.php');?>
 <div class="container-fluid">
   <form id="myform" method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>">
     <br>
+    <button id="editBtn" class="btn btn-primary" type="button" name="edit">Edit Student</button>
+    <fieldset id="viewSetting" disabled="false">
+    <br>
     <input type="hidden" id="changed" name="changed" value="yes" />
     <div class="border border-info" style="background-color: #5bc0de;">
       <div class="form-check" style="padding: 20px;">
@@ -70,8 +73,10 @@ include ('editstudentform_functions.php');?>
       </div>
     </div>
     <br>
+    </fieldset>
+    <br>
     <div class="form-check">
-      <button class="btn btn-primary" type="submit" name="update">Update Student</button>
+      <button id="updateBtn" class="btn btn-primary" type="submit" name="update" style="display: none;">Update Student</button>
       <a href='studentDisplay.php'><input class="btn btn-secondary" type="button"
         name="cancel" value="Cancel and Exit"></a>
     </div>
