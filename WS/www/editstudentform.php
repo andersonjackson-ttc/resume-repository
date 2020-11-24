@@ -15,7 +15,7 @@ include ('editstudentform_functions.php');?>
   <form id="myform" method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>">
     <br>
     <button id="editBtn" class="btn btn-primary" type="button" name="edit">Edit Student</button>
-    <fieldset id="viewSetting" disabled="false">
+    <fieldset id="viewSetting" disabled="disabled">
     <br>
     <input type="hidden" id="changed" name="changed" value="yes" />
     <div class="border border-info" style="background-color: #5bc0de;">
