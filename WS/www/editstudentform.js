@@ -3,6 +3,7 @@ window.onload = function () {
    document.getElementById('securityClearanceNo').addEventListener('click', securityClearanceNo, false);
    document.getElementById('addEducationBtn').addEventListener('click', addEducation, false);
    document.getElementById('removeEducationBtn').addEventListener('click', removeEducation, false);
+   document.getElementById('editBtn').addEventListener('click', enableEditing, false);
 };
 
 function securityClearanceYes() {
@@ -44,10 +45,10 @@ function addEducation() {
 	'</select>' +
 	'<label class="sr-only" for="txtMajors">Type of degree:</label>' +
 	'<input name="majors[]" type="text" class="form-control" style="width: 30vw;" placeholder="Type of Degree"' +
-	'value="" maxlength="40">' +
+	'maxlength="40">' +
 	'<label class="sr-only" for="txtMajorsSchool">Name of Institution:</label>' +
 	'<input name="majorsSchool[]" type="text" class="form-control" style="width: 30vw;" placeholder="Name of Institution"' +
-	'value="" maxlength="40">' +
+	'maxlength="40">' +
 	'</div>');
   if(window.getComputedStyle(removeBtn).display === "none") {
     removeBtn.style.display = "inline";
@@ -61,4 +62,11 @@ function removeEducation() {
   if(education.length < 2) {
     $('#removeEducationBtn').hide();
   }
+}
+
+function enableEditing() {
+  $('#editBtn').hide();
+  $('#viewSetting').prop('disabled', false);
+  $('#updateBtn').show();
+  $('#titleHeader').text("Edit Student Form");
 }
