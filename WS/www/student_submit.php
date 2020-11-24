@@ -45,7 +45,7 @@
           break;
       }
     }else{
-      $milStatusErr = "Military status is required";
+      $milStatus = 0;
     }
     if(isset($_POST['securityClearance'])) {
       switch ($_POST['securityClearance']) {
@@ -63,13 +63,15 @@
                 break;
             }
           }else{
-            $clearanceErr = "Security clearance is required if applicable";
+            $clearance = 0;
           }
           break;
         case 'no':
           $clearance = 0;
           break;
       }
+    } else {
+      $clearance = 0;
     }
     if(isset($_POST['gradStatus'])) {
       $gradStatus = $_POST['gradStatus'];
@@ -80,7 +82,7 @@
         $gradDate = date('Y-m-d', strtotime(00000000));
       }
     }else{
-      $gradStatusErr = "Must select graduated or not graduated";
+      $gradStatus = 0;
     }
     if(isset($_POST['workHours'])) {
       $workHours = $_POST['workHours'];
@@ -132,7 +134,9 @@ if ($con->query($sql) == TRUE) {
     insertCertifications($con, $profile_id);
     insertMajors($con, $profile_id);
     insertPriorEducation($con, $profile_id);
-    header("Location: student_form.php");
+    include '../includes/header.html';
+    createHTML();
+    include '../includes/footer.html';
   } catch(exception $e) {
     echo "Error: " . $e->getMessage();
   }
@@ -140,4 +144,22 @@ if ($con->query($sql) == TRUE) {
   echo "Error: " . $sql . "<br>" . $con->error;
 }
 $con->close();
-?>
+
+function createHTML(){
+  ?>
+  <br>
+  <div class="container-fluid">
+    <h3>Student Created Successfully!</h3>
+    <br>
+    <div class="form-check">
+      <a href="studentDisplay.php">
+        <button class="btn btn-primary" name="return">
+          Return to Student List</button></a>
+      <a href="student_form.php">
+      <input class="btn btn-secondary" type="button"
+        name="addAnother" value="Add Another Student"></a>
+    </div>
+  </div>
+  <br>
+  <?php
+} ?>
