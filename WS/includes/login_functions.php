@@ -29,7 +29,7 @@ function check_login($con, $user_email = '', $user_password = '') {
 
 	if (empty($errors)) {
 		//Find the user that matches input information
-		$query = "SELECT user_id FROM users WHERE user_email='$e' AND user_password=SHA1('$p')";
+		$query = "SELECT user_id, first_name, user_password, user_level, last_login_date FROM users WHERE user_email='$e' AND user_password=SHA1('$p')";
 		$result = @mysqli_query($con, $query);
 
 		if (mysqli_num_rows($result) == 1) {
