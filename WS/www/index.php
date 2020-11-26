@@ -23,7 +23,7 @@ include('../includes/header.html');
 <?php
   if (isset($_SESSION['user_id'])) {
     echo '<div class="row" style="min-height:50vh;">';
-    echo "<p class='col align-self-end row justify-content-end'>Last login: " . $_SESSION['last_login_date'] . "</p></div>";
+     echo "<p class='col align-self-end row justify-content-end'>Last login: " . date_format(new DateTime($_SESSION['last_login_date']), 'm/d/y h:ia') . "</p></div>";
   }
 
 include('../includes/footer.html');
