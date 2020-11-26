@@ -56,7 +56,7 @@ form
     foreach ($errors as $msg) {
       echo " - $msg<br>\n";
     }
-    echo '</p><p>Please try again.</p>';
+    echo '</p><p class="text-danger">Please try again.</p>';
   }
  ?>
 

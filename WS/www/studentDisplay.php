@@ -6,7 +6,6 @@
 <?php
 // Set page title:
 $page_title = 'StudentsTable';
-session_start();
 // Add header to page:
 include ('../includes/header.html');
 

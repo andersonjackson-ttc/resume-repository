@@ -1,6 +1,5 @@
 <?php
 $page_title = 'Edit Student Form';
-session_start();
 include ('../includes/header.html');
 include_once '../src/student_edit_connection.php';
 include ('editstudentform_functions.php');?>

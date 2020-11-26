@@ -1,7 +1,6 @@
 <?php
   $page_title = 'Change Password';
   include('../includes/login_functions.php');
-  session_start();
   include('../includes/header.html');
 
   $errors = [];
@@ -112,4 +111,4 @@
 
 <?php
   include('../includes/footer.html');
- ?> 
+ ?>

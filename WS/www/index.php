@@ -2,7 +2,6 @@
 
 <?php
 $page_title = 'Resume Repository Home';
-session_start();
 include('../includes/header.html');
 ?>
 
