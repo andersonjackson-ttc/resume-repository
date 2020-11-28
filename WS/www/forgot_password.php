@@ -79,6 +79,7 @@
         </fieldset>
         <div class="row justify-content-end p-3">
           <input class="btn btn-secondary btn-outline-light" type="submit" name="submit" value="Submit">
+          <a href="index.php"><button class="btn btn-secondary btn-outline-light mx-2" type="button">Cancel</button></a>
         </div>
       </form>
     </div>
