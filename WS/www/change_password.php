@@ -80,25 +80,34 @@
 ?>
 <div class="row justify-content-center">
   <div class="col col-lg-7">
-    <h1>Change Your Password</h1>
+    <h1 class="text-secondary">Change Your Password</h1>
     <hr>
 
-    <div class="text-center">
+    <div class="">
       <form class="border border-secondary rounded col bg-info" action="change_password.php" method="post">
         <fieldset class="border border-secondary rounded mt-2 p-3 bg-light">
           <div class="form-inline">
-            <label class="col-form-label-lg col-5 justify-content-start text-info">Password</label>
-            <input class="form-control col-7" type="password" name="old_password">
+            <label class="col-form-label-lg col-5 justify-content-start text-secondary" style="font-weight:bold;">Password</label>
+            <div class="col px-0">
+              <input class="form-control" type="password" name="old_password" style="width:100%;" id="old_password">
+              <div class="err_msg small pt-0 mt-0 text-danger" id="err_old_password">Field is required</div>
+            </div>
           </div>
         </fieldset>
         <fieldset class="border border-secondary rounded mt-2 p-3 bg-light">
           <div class="form-inline">
-            <label class="col-form-label-lg col-5 justify-content-start text-info">New Password</label>
-            <input class="form-control col-7" type="password" name="password1">
+            <label class="col-form-label-lg col-5 justify-content-start text-secondary" style="font-weight:bold;">New Password</label>
+            <div class="col px-0">
+              <input class="form-control" type="password" name="password1" style="width:100%" id="password1">
+              <div class="err_msg small pt-0 mt-0 text-danger" id="err_password1">Field is required</div>
+            </div>
           </div>
           <div class="form-inline">
-            <label class="col-form-label-lg col-5 justify-content-start text-info">Confirm New Password</label>
-            <input class="form-control col-7" type="password" name="password2">
+            <label class="col-form-label-lg col-5 justify-content-start text-secondary" style="font-weight:bold;">Confirm New Password</label>
+            <div class="col px-0">
+              <input class="form-control" type="password" name="password2" style="width:100%" id="password2">
+              <div class="err_msg small pt-0 mt-0 text-danger" id="err_password2">Field is required</div>
+            </div>
           </div>
         </fieldset>
         <div class="row justify-content-end p-3">
@@ -112,3 +121,4 @@
 <?php
   include('../includes/footer.html');
  ?>
+<script src="../includes/change_password.js" type="text/javascript"></script>
