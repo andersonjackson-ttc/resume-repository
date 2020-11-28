@@ -76,6 +76,7 @@ form
 
     <button type="submit">Login</button>
    <input type="checkbox" checked="checked" name="rememberMe"> Remember Me </label>
+   <br><a href="forgot_password.php" class="small">Forgot Password?</a>
 </div>
 </div>
 </body>

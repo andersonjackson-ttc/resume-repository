@@ -31,4 +31,10 @@ $(document) .ready(function() {
       }) .on('focus', function() {
         $err_password2 .slideUp();
       });
+
+      $reset_email .on('blur', function() {
+        $err_reset_email .slideDown();
+      }) .on('focus', function() {
+        $err_reset_email .slideUp();
+      });
 });
