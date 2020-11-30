@@ -101,7 +101,7 @@
 	 $filename = $_FILES['myfile']['name'];
 
     // destination of the file on the server
-    $destination = 'uploads/' . $filename;
+    $destination = '../uploads/' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -117,7 +117,7 @@
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $resumePath = $destination;
+            $resumePath = $filename;
 			
 		 }
 	}

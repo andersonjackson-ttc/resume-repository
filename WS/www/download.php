@@ -4,7 +4,7 @@
 if (isset($_GET['file_id'])) {
     $file = $_GET['file_id'];
 
-if (file_exists($file)) {
+if (file_exists('../uploads/' . $file)) {
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename="'.basename($file).'"');
