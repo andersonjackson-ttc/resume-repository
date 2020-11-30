@@ -94,22 +94,40 @@
     } else {
       $workTime = 'null';
     }
-    /*if(isset($_FILES['attachments'])) {
-      $file_name = $_FILES['attachments']['name'];
-      $file_size = $_FILES['attachments']['size'];
-      $file_tmp = $_FILES['attachments']['tmp_name'];
-      $file_type = $_FILES['attachments']['type'];
-      //$file_ext=strtolower(end(explode('.',$_FILES['attachments']['name'])));
+    
+	  
+	  
+	  
+	 $filename = $_FILES['myfile']['name'];
 
-      $extensions = array("pdf");
+    // destination of the file on the server
+    $destination = 'uploads/' . $filename;
 
-      if(in_array($file_ext,$extensions)===false){
-        $resumePathErr = "extension not allowed, please choose pdf format";
-      }else{
-        move_upload_file($file_tmp,"".$file_name);
-        $resumePath = $file_tmp;
-      }
-    }*/
+    // get the file extension
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+    // the physical file on a temporary uploads directory on the server
+    $file = $_FILES['myfile']['tmp_name'];
+    $size = $_FILES['myfile']['size'];
+
+    if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
+        echo "You file extension must be .zip, .pdf or .docx";
+    } elseif ($_FILES['myfile']['size'] > 100000000) { // file shouldn't be larger than 1Megabyte
+        echo "File too large!";
+    } else {
+        // move the uploaded (temporary) file to the specified destination
+        if (move_uploaded_file($file, $destination)) {
+            $resumePath = $destination;
+			
+		 }
+	}
+	  
+	  
+	  
+	  
+	  
+	  
+    
   }
   function test_input($data) {
     $data = trim($data);

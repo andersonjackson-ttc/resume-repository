@@ -256,7 +256,7 @@ include '../src/connection.php';
 					<div class="file-field">
     				<div class="btn btn-outline-info waves-effect btn-sm float-left">
       				<span>Choose files</span>
-      				<input type="file" name="attachments">
+      				<input type="file" name="myfile">
     				</div>
   				</div>
 				</div>
