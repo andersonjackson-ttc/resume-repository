@@ -72,8 +72,26 @@ include ('editstudentform_functions.php');?>
       </div>
     </div>
     <br>
+	<br>
+	
+	
+	<br>
+				<div class="form-check">
+					<div class="file-field">
+    				<div class="btn btn-outline-info waves-effect btn-sm float-left">
+      				<span>Choose files</span>
+      				<input type="file" name="myfile">
+    				</div>
+  				</div>
+				</div>
+				<br>
+				<br>
+				<br>
     </fieldset>
     <br>
+	
+
+	
     <div class="form-check">
       <button id="updateBtn" class="btn btn-primary" type="submit" name="update" style="display: none;">Update Student</button>
       <a href='studentDisplay.php'><input class="btn btn-secondary" type="button"

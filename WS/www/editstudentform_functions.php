@@ -56,6 +56,9 @@ function injectStudentInfo($studentResult){
         value="<?php echo(htmlspecialchars($studentRow['phone']))?>">
       </div>
     </div>
+	
+	<a href="download.php?file_id=<?php echo $studentRow['resume_path'] ?>">Download</a></td>
+	
     <?php
   }
 }
@@ -138,6 +141,11 @@ function injectStudentGeneralInfo($studentResult, $educationResult) {
       style="<?php echo($priorEdu >= 1 ? '' : 'display: none');?>; padding-bottom: 10px;">
         <?php injectPriorEducation($educationResult, $priorEdu) ?>
     </div>
+	
+	
+	
+	
+	
     <?php
   }
 }
@@ -358,5 +366,8 @@ function injectPriorEducation($educationResult, $priorEdu) {
     <?php
   }
 }
+
+
+
 
 ?>
