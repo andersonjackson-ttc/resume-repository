@@ -11,6 +11,17 @@ function redirect_user($page = 'index.php') {
 	exit();
 }
 
+function redirect_reset($page = 'change_password.php') {
+  //Create URL definition
+	$url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+	//Sprucing up the URL
+	$url = rtrim($url, '/\\');
+	$url .= '/' . $page;
+	//Redirect to url value
+	header("Location: $url");
+	exit();
+}
+
 function check_login($con, $user_email = '', $user_password = '') {
 
 	$errors = [];
