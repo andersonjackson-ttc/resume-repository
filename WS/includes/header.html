@@ -3,7 +3,7 @@
   ob_start();
   //initialize session
   session_start();
- ?> 
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +29,7 @@
               <a class="nav-link" href="student_form.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">New Student</button></a>
               <a class="nav-link" href="studentDisplay.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">View Students</button></a>
               <?php if( (isset($_SESSION['user_id'])) && (basename($_SERVER['PHP_SELF']) != 'logout.php')) {
+                echo '<a class="nav-link" href="new_user.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">New User</button></a>'; 
                 echo '<a class="nav-link" href="change_password.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">Change Password</button></a>';
                 echo '<a class="nav-link" href="logout.php"><button type="button" class="btn btn-secondary btn_autosize btn-block btn-outline-light">Logout</button></a>';
               } else {
