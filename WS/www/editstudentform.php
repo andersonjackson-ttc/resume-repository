@@ -11,7 +11,7 @@ include ('editstudentform_functions.php');?>
   }
 </style>
 <div class="container-fluid">
-  <form id="myform" method="post" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>" enctype="multipart/form-data">
+  <form id="myform" method="post" enctype="multipart/form-data" action="<?php echo('editstudent_submit.php?id='.$profile_id);?>" >
     <br>
     <button id="editBtn" class="btn btn-primary" type="button" name="edit">Edit Student</button>
     <fieldset id="viewSetting" disabled="disabled">
