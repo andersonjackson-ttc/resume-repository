@@ -70,30 +70,50 @@
   }
 ?>
 
-<h1>New User Registration</h1>
-<hr>
-
 <div class="row justify-content-center">
-  <form class="border border-secondary rounded p-3 bg-info" action="new_user.php" method="post">
-    <fieldset class="border border-secondary rounded bg-light p-3">
-      <div class="form-inline">
-        <input class="form-control" type="text" name="first_name" value="<?php if (isset($trimmed['first_name'])) {echo $trimmed['first_name'];} else {echo 'First Name';}?>">
-        <input class="form-control" type="text" name="last_name" value="Last Name">
-      </div>
-      <div class="form-inline">
-        <input class="form-control" type="email" name="email" value="Email">
-        <select name="new_user_level" class="form-control" style="min-width:50%;">
-          <option selected>User Level</option>
-          <option value="1">Faculty</option>
-          <option value="0">Administrator</option>
-        </select>
-      </div>
-    </fieldset>
-    <div class="row justify-content-end pr-3 pt-2">
-      <input class="btn btn-secondary btn-outline-light mr-2" type="submit" name="submit" value="Submit">
-      <a href="index.php"><button class="btn btn-secondary btn-outline-light" type="button">Cancel</button></a>
+  <div class="col col-lg-7">
+    <h1 class="text-secondary">New User Registration</h1>
+    <hr>
+
+    <div class="row justify-content-center">
+      <form class="border border-secondary rounded p-3 bg-info col-11" action="new_user.php" method="post">
+        <fieldset class="border border-secondary rounded bg-light p-3">
+          <div class="row form-inline p-2">
+            <div class="col-6 pr-1">
+              <label class="justify-content-start text-secondary pb-0" for="first_name" style="font-weight:bold;">First Name<span class="required_field">*</span></label>
+              <input class="form-control py-0" type="text" name="first_name" id="first_name" style="min-width:100%;">
+              <br><span class="small pt-0 mt-0 text-danger err_span" id="first_name_err">Field is required</span>
+            </div>
+            <div class="col-6 pl-1">
+              <label class="justify-content-start text-secondary pb-0" for="last_name" style="font-weight:bold;">Last Name<span class="required_field">*</span></label>
+              <input class="form-control py-0" type="text" name="last_name" id="last_name" style="min-width:100%;">
+              <br><span class="small pt-0 mt-0 text-danger err_span" id="last_name_err">Field is required</span>
+            </div>
+          </div>
+          <div class="row form-inline p-2">
+            <div class="col-6 pr-1">
+              <label class="justify-content-start text-secondary pb-0" for="email" style="font-weight:bold;">Email<span class="required_field">*</span></label>
+              <input class="form-control py-0" type="email" name="email" id="email" style="min-width:100%;">
+              <br><span class="small pt-0 mt-0 text-danger err_span" id="email_err">Field is required</span>
+            </div>
+            <div class="col-6 pl-1">
+              <label class="justify-content-start text-secondary pb-0" for="new_user_level" style="font-weight:bold;">User Level</label>
+              <select name="new_user_level" id="new_user_level" class="form-control" style="min-width:100%;">
+                <option selected>Select</option>
+                <option value="1">Faculty</option>
+                <option value="0">Administrator</option>
+              </select>
+          </div>
+          </div>
+        </fieldset>
+        <div class="row justify-content-end pr-3 pt-2">
+          <input class="btn btn-secondary btn-outline-light mr-2" type="submit" name="submit" value="Submit">
+          <a href="index.php"><button class="btn btn-secondary btn-outline-light" type="button">Cancel</button></a>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
 
+<script src="../includes/new_user.js" type="text/javascript"></script>
 <?php include('../includes/footer.html'); ?>
