@@ -12,7 +12,7 @@ try {
   
   
 
-	if(isset($_FILES){
+	if(isset($_FILES)){
 	  
 	$filename = $_FILES['myfile']['name'];
 
@@ -36,15 +36,16 @@ try {
             $resumePath = $filename;
 			
 			
-			 $sql = "UPDATE students
-					SET resume_path = $filename
-					WHERE profile_id = $profile_id; ";
-					mysqli_query($con, $sql);
+			$stmt = $con->prepare("UPDATE students SET resume_path=? WHERE profile_id=".$profile_id);
+			$stmt->bind_param('s', $resumePath);
+			
+			$stmt->execute();
+			$stmt->close();
 			
 		 }
 	}
 	}
-}
+		
   
   $con->close();
   include '../includes/header.html';
