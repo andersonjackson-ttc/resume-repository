@@ -100,7 +100,7 @@ include ('editstudentform_functions.php');?>
     <br>
   </form>
 </div>
-<script src="pagedeparture.js"></script>
+
 <?php
 $con->close();
 include ('../includes/footer.html');
