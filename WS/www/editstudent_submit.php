@@ -44,7 +44,7 @@ try {
 		 }
 	}
 	}
-		
+}
   
   $con->close();
   include '../includes/header.html';
