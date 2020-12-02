@@ -10,7 +10,10 @@
   if (isset($_POST['submit-search'])) {
     if(isset($_POST['skillToggle'])){
       $search = mysqli_real_escape_string($con, $_POST['search']);
-      echo "<a href='search_home.php' style='text-decoration:none;'><button>Return Home</button></a><br>";
+      echo "<br>
+      <a href='search_home.php'><input class='btn btn-secondary' type='button'
+      name='return' value='Return Home'></a>
+      <br>";
       if ((($search != null)&&($search != " "))){
         if (strpos($search, '!')===0){
           $search = trim($search, '!');
@@ -72,62 +75,36 @@
           }else{
             echo "Showing ".$queryResult." result(s) for '".$search."':";
           }
-          while ($row = mysqli_fetch_assoc($result)) {
-            echo "
-              <div style='border:2px solid black;margin-bottom:8px;'>
-              <a href='student_preview.php?profile=".$row['profile_id']."'>
-              <p>Name: ".$row['first_name']." ".$row['middle_initial']." ".$row['last_name']."</p>
-              <p>Profile ID: ".$row['profile_id']."</p>
-              <p>Student ID: ".$row['student_id']."</p>
-              <p>Email: ".$row['email']."</p>
-              <p>Phone: ".$row['phone']."</p>";
-              if ($row['graduated'] == 1){
-                echo "<p>Graduated: Yes</p>
-                <p>Graduation Date: ".$row['graduation_date']."</p>";
-              }else{
-                echo "<p>Graduated: No</p>";
-              }
-              if ($row['military_status'] == 1){
-                echo "<p>Military: Yes</p>";
-              }else{
-                echo "<p>Military: No</p>";
-              }
-              if ($row['security_clearance'] >= 1){
-                $value = $row['security_clearance'];
-                if($value == 1) {
-                  echo "<p>Clearance: Secret</p>";
-                } else if ($value == 2){
-                  echo "<p>Clearance: Top-Secret</p>";
-                } else {
-                  echo "<p>Clearance: Classified</p>";
-                }
-              }else{
-                echo "<p>Clearance: No</p>";
-              }
-              if ($row['work_hours'] >= 1){
-                $value = $row['work_hours'];
-                if($value == 1) {
-                  echo "<p>Hours: Part-Time</p>";
-                } else {
-                  echo "<p>Hours: Full-Time</p>";
-                }
-              }else{
-                echo "<p>Hours: Not Set</p>";
-              }
-              if ($row['work_time'] >= 1){
-                $value = $row['work_hours'];
-                if($value == 1) {
-                  echo "<p>Time: Days</p>";
-                } else if($value == 2) {
-                  echo "<p>Time: Night</p>";
-                } else {
-                  echo "<p>Time: Both</p>";
-                }
-              }else{
-                echo "<p>Time: Not Set</p>";
-              }
-            echo "</div>";
-          }
+          echo '<table align="center" cellspacing="0" cellpadding="5" width="100%">
+          <tr>
+          <td style="text-align:left"><b>Profile ID</b></td>
+          <td style="text-align:left"><b>First Name</b></td>
+          <td style="text-align:left"><b>Middle Initial</b></td>
+          <td style="text-align:left"><b>Last Name</b></td>
+          <td style="text-align:right"><b>Graduated Y/N</b></td>
+          <td style="text-align:right"><b>Graduation Date</b></td>
+          <td style="text-align:right"><b>Military Status</b></td>
+          <td style="text-align:right"><b>Security Clearance</b></td>
+          </tr>';
+
+            // Fetch and print records:
+            $bg = '#eeeeee';
+            mysqli_data_seek($result, 0);
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+            {
+              $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
+              echo
+              '<tr bgcolor="' . $bg . '">
+              <td style="text-align:left"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
+              <td style="text-align:left">' . $row['first_name'] . '</td>
+              <td style="text-align:left">' . $row['middle_initial'] . '</td>
+              <td style="text-align:left">' . $row['last_name'] . '</td>
+              <td style="text-align:right">' . $row['graduated'] . '</td>
+              <td style="text-align:right">' . $row['graduation_date'] . '</td>
+              <td style="text-align:right">' . $row['military_status'] . '</td>
+              <td style="text-align:right">' . $row['security_clearance'] . '</td>
+              </tr>';
+            }
 
         } else {
           echo "There are no results matching '".$search."'.";
@@ -140,7 +117,10 @@
     } else {
       //mysqli_real_escape_string to take all inputs as literal strings and prevent manipulation
       $search = mysqli_real_escape_string($con, $_POST['search']);
-      echo "<a href='search_home.php' style='text-decoration:none;'><button>Return Home</button></a><br>";
+      echo "<br>
+      <a href='search_home.php'><input class='btn btn-secondary' type='button'
+      name='return' value='Return Home'></a>
+      <br>";
 
       $conditions = array();
 
@@ -216,62 +196,36 @@
           }else{
             echo "Showing ".$queryResult." result(s) for '".$search."':";
           }
-          while ($row = mysqli_fetch_assoc($result)) {
-            echo "
-              <div style='border:2px solid black;margin-bottom:8px;'>
-              <a href='student_preview.php?profile=".$row['profile_id']."'>
-              <p>Name: ".$row['first_name']." ".$row['middle_initial']." ".$row['last_name']."</p>
-              <p>Profile ID: ".$row['profile_id']."</p>
-              <p>Student ID: ".$row['student_id']."</p>
-              <p>Email: ".$row['email']."</p>
-              <p>Phone: ".$row['phone']."</p>";
-              if ($row['graduated'] == 1){
-                echo "<p>Graduated: Yes</p>
-                <p>Graduation Date: ".$row['graduation_date']."</p>";
-              }else{
-                echo "<p>Graduated: No</p>";
-              }
-              if ($row['military_status'] == 1){
-                echo "<p>Military: Yes</p>";
-              }else{
-                echo "<p>Military: No</p>";
-              }
-              if ($row['security_clearance'] >= 1){
-                $value = $row['security_clearance'];
-                if($value == 1) {
-                  echo "<p>Clearance: Secret</p>";
-                } else if ($value == 2){
-                  echo "<p>Clearance: Top-Secret</p>";
-                } else {
-                  echo "<p>Clearance: Classified</p>";
-                }
-              }else{
-                echo "<p>Clearance: No</p>";
-              }
-              if ($row['work_hours'] >= 1){
-                $value = $row['work_hours'];
-                if($value == 1) {
-                  echo "<p>Hours: Part-Time</p>";
-                } else {
-                  echo "<p>Hours: Full-Time</p>";
-                }
-              }else{
-                echo "<p>Hours: Not Set</p>";
-              }
-              if ($row['work_time'] >= 1){
-                $value = $row['work_hours'];
-                if($value == 1) {
-                  echo "<p>Time: Days</p>";
-                } else if($value == 2) {
-                  echo "<p>Time: Night</p>";
-                } else {
-                  echo "<p>Time: Both</p>";
-                }
-              }else{
-                echo "<p>Time: Not Set</p>";
-              }
-            echo "</div>";
-          }
+          echo '<table align="center" cellspacing="0" cellpadding="5" width="100%">
+            <tr>
+            <td style="text-align:left"><b>Profile ID</b></td>
+            <td style="text-align:left"><b>First Name</b></td>
+            <td style="text-align:left"><b>Middle Initial</b></td>
+            <td style="text-align:left"><b>Last Name</b></td>
+            <td style="text-align:right"><b>Graduated Y/N</b></td>
+            <td style="text-align:right"><b>Graduation Date</b></td>
+            <td style="text-align:right"><b>Military Status</b></td>
+            <td style="text-align:right"><b>Security Clearance</b></td>
+            </tr>';
+
+            // Fetch and print records:
+            $bg = '#eeeeee';
+            mysqli_data_seek($result, 0);
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+            {
+              $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
+              echo
+              '<tr bgcolor="' . $bg . '">
+              <td style="text-align:left"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
+              <td style="text-align:left">' . $row['first_name'] . '</td>
+              <td style="text-align:left">' . $row['middle_initial'] . '</td>
+              <td style="text-align:left">' . $row['last_name'] . '</td>
+              <td style="text-align:right">' . $row['graduated'] . '</td>
+              <td style="text-align:right">' . $row['graduation_date'] . '</td>
+              <td style="text-align:right">' . $row['military_status'] . '</td>
+              <td style="text-align:right">' . $row['security_clearance'] . '</td>
+              </tr>';
+            }
         }else{
           echo "There are no results matching '".$search."'.";
         }
