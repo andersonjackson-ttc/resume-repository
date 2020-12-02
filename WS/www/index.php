@@ -17,6 +17,7 @@ include('../includes/header.html');
 <a href="../phpsqldemo.php">PHP Demo</a><br>
 <a href="../keyword.php">Edit Demo</a><br>
 <a href="../zzz.php">Search Frontend Demo</a><br>
+<a href="../search_home.php">Search Frontend Demo</a><br>
 
 
 
