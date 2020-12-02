@@ -12,38 +12,39 @@ try {
   
   
 
-			 $filename = $_FILES['myfile']['name'];
+	if(isset($_FILES){
+	  
+	$filename = $_FILES['myfile']['name'];
 
-			// destination of the file on the server
-			$destination = 'uploads/' . $filename;
+    // destination of the file on the server
+    $destination = '../uploads/' . $filename;
 
-			// get the file extension
-			$extension = pathinfo($filename, PATHINFO_EXTENSION);
+    // get the file extension
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
 
-			// the physical file on a temporary uploads directory on the server
-			$file = $_FILES['myfile']['tmp_name'];
-			$size = $_FILES['myfile']['size'];
+    // the physical file on a temporary uploads directory on the server
+    $file = $_FILES['myfile']['tmp_name'];
+    $size = $_FILES['myfile']['size'];
 
-			if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
-				echo "You file extension must be .zip, .pdf or .docx";
-			} elseif ($_FILES['myfile']['size'] > 100000000) { // file shouldn't be larger than 1Megabyte
-				echo "File too large!";
-			} else {
-				// move the uploaded (temporary) file to the specified destination
-				if (move_uploaded_file($file, $destination)) {
-					$resumePath = $destination;
-					
-					 $sql = "UPDATE students
-					SET resume_path = $filename
-					WHERE profile_id = $profile_id; ";
-					mysqli_query($con, $sql);
-                
-            
-					
-					
-				 }
+    if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
+        echo "You file extension must be .zip, .pdf or .docx";
+    } elseif ($_FILES['myfile']['size'] > 100000000) { // file shouldn't be larger than 1Megabyte
+        echo "File too large!";
+    } else {
+        // move the uploaded (temporary) file to the specified destination
+        if (move_uploaded_file($file, $destination)) {
+            $resumePath = $filename;
 			
-			}
+			
+			$stmt = $con->prepare("UPDATE students SET resume_path=? WHERE profile_id=".$profile_id);
+			$stmt->bind_param('s', $resumePath);
+			
+			$stmt->execute();
+			$stmt->close();
+			
+		 }
+	}
+	}
 		
   
   $con->close();
