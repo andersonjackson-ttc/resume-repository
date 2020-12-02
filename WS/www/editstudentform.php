@@ -19,7 +19,7 @@ include ('editstudentform_functions.php');?>
     <input type="hidden" id="changed" name="changed" value="yes" />
     <div class="border border-info" style="background-color: #5bc0de;">
       <div class="form-check" style="padding: 20px;">
-        <h1>Edit Student Form</h1>
+        <h1 id="titleHeader">View Student Form</h1>
         <?php injectStudentInfo($studentResult); ?>
       </div>
     </div>
@@ -73,8 +73,8 @@ include ('editstudentform_functions.php');?>
     </div>
     <br>
 	<br>
-	
-	
+
+
 	<br>
 				<div class="form-check">
 					<div class="file-field">
@@ -89,9 +89,9 @@ include ('editstudentform_functions.php');?>
 				<br>
     </fieldset>
     <br>
-	
 
-	
+
+
     <div class="form-check">
       <button id="updateBtn" class="btn btn-primary" type="submit" name="update" style="display: none;">Update Student</button>
       <a href='studentDisplay.php'><input class="btn btn-secondary" type="button"
