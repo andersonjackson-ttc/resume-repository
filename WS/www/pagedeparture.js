@@ -58,31 +58,43 @@ function FormChanges(form)
        }
 
 
-   var form = document.getElementById("myform");
+       var form = document.getElementById("myform");
+       var formSubmit =  false;
 
-   form.onsubmit = function()
-   {
-       if(FormChanges(form).length == 0)
-         {
-
-           document.getElementById("changed").value = "no";
-         }
-
-       return true;
-   }
-
-
-   window.onbeforeunload = function()
-   {
-       var changed = FormChanges("myform");
-
-   if(changed.length != 0)
+       form.onsubmit = function()
        {
-           var confirmationMessage = 'It looks like you have been editing something. '
-           + 'If you leave before saving, your changes will be lost.';
+       	  formSubmit = true;
 
-           return confirmationMessage;
+           if(FormChanges(form).length == 0)
+             {
+
+               document.getElementById("changed").value = "no";
+
+             }
+
+             return true;
        }
 
-       return null;
-   };
+   	window.onload = function()
+   	{
+         window.addEventListener("beforeunload", function (e) {
+
+         	 var changed = FormChanges("myform");
+
+             if(formSubmit) {
+
+                 return undefined;
+             }
+
+
+             if(changed.length != 0)
+             {
+                 var confirmationMessage = 'It looks like you have been editing something. '
+                 + 'If you leave before saving, your changes will be lost.';
+
+                 (e || window.event).returnValue = confirmationMessage;
+             }
+
+         });
+
+   	};
