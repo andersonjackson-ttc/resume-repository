@@ -9,6 +9,9 @@
     //and save in $trimmmed array
     $trimmed = array_map('trim', $_POST);
 
+    //default user password
+    $new_user_password = SHA1('password');
+
     $first_name = $last_name = $email = $user_level = FALSE;
     $errors = [];
 
@@ -31,22 +34,11 @@
       $errors[] = 'Please enter your email';
     }
 
-    if (isset($_POST['user_level'])) {
-      switch ($_POST['user_level']) {
-        case 'faculty';
-          $user_level = 1;
-          break;
-        case 'administrator':
-          $user_level = 0;
-          break;
-      }
+    if (isset($_POST['new_user_level'])) {
+      $user_level = $_POST['new_user_level'];
     } else {
       $user_level = 0;
     }
-
-    // if (isset($_POST['user_level'])) {
-    //   $user_level = $_POST['user_level'];
-    // }
 
     if (empty($errors)) {
       //make sure email is unique
@@ -54,8 +46,8 @@
       $result = mysqli_query($con, $query) or trigger_error("Query: $query\n<br>MySql Error: " . mysqli_error($con));
       if (mysqli_num_rows($result) == 0) { //no matches found
         //add user to db
-        $query = "INSERT INTO users (first_name, last_name, user_email, user_level, registration_date) VALUES
-                                    ('$first_name', '$last_name', '$email', '$user_level', NOW());";
+        $query = "INSERT INTO users (first_name, last_name, user_email, user_password, user_level, registration_date) VALUES
+                                    ('$first_name', '$last_name', '$email', '$new_user_password', '$user_level', NOW());";
         $result = mysqli_query($con, $query) or trigger_error("Query: $query\n<br>MySql Error: " . mysqli_error($con));
         if (mysqli_affected_rows($con) == 1) {
           //success
@@ -90,7 +82,7 @@
       </div>
       <div class="form-inline">
         <input class="form-control" type="email" name="email" value="Email">
-        <select class="form-control" style="min-width:50%;">
+        <select name="new_user_level" class="form-control" style="min-width:50%;">
           <option selected>User Level</option>
           <option value="1">Faculty</option>
           <option value="0">Administrator</option>
