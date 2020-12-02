@@ -52,7 +52,7 @@
 
     #set password
     if ($p && empty($errors)) {
-      $query = "UPDATE users SET user_password='$p' WHERE user_id={$_SESSION['user_id']} LIMIT 1";
+      $query = "UPDATE users SET user_password='$p', last_password_date=NOW() WHERE user_id={$_SESSION['user_id']} LIMIT 1";
       $result = mysqli_query($con, $query) or trigger_error("Query: $query\n<br>MySql Error: " . mysqli_error($con));
 
       #success

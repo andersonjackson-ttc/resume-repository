@@ -31,7 +31,7 @@
       //$p = bin2hex(random_bytes($length));
       $p_hashed = SHA1($p);
 
-      $query = "UPDATE users SET user_password='$p_hashed' WHERE user_id=$user LIMIT 1";
+      $query = "UPDATE users SET user_password='$p_hashed', last_password_date=NOW() WHERE user_id=$user LIMIT 1";
       $result = mysqli_query($con, $query) or trigger_error("Query: $query\n<br>MySql Error: " . mysqli_error($con));
 
       if (mysqli_affected_rows($con) == 1) {
