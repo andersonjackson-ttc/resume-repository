@@ -36,11 +36,10 @@ try {
             $resumePath = $filename;
 			
 			
-			$stmt = $con->prepare("UPDATE students SET resume_path=? WHERE profile_id=".$profile_id);
-			$stmt->bind_param('s', $resumePath);
-			
-			$stmt->execute();
-			$stmt->close();
+			 $sql = "UPDATE students
+					SET resume_path = $filename
+					WHERE profile_id = $profile_id; ";
+					mysqli_query($con, $sql);
 			
 		 }
 	}
