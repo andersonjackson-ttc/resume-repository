@@ -1,5 +1,11 @@
-
-
+<!--10/5/20 -->
+<!-- <!doctype HTML>
+<html> -->
+	<head>
+		<link rel="stylesheet" href="../includes/newstudentform.css" type="text/css" media="screen" />
+		<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script src="newstudentform.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 		<?php
 		$page_title = 'Create a New Student Form';
@@ -7,93 +13,77 @@
 		include ('../includes/header.html');
 
 		?>
-		
-		
+		</head>
+		<body>
+		<div class="box">
 
-		<form name="test_studentform.php" method="POST" action="test_student_submit.php">
+		<form name="test_student_submit.php" method="POST" action="test_student_submit.php">
+		<h3>General</h3>
 		<fieldset>
+		
 		<legend>Create a New Student Form</legend>
 		
-		<label>Student ID <br><input name="studentID" type="number" size="30" maxlength="100" value="<?php if (isset($_POST['studentID'])) echo $_POST['studentID']; ?>"></label>
+		<label>Student ID <br><input name="studentId" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['studentId'])) echo $_POST['studentId']; ?>" ></label>
 		
 		<!--Submits-->
-		<label>First Name *<br><input required name="firstName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>"></label>
+		<label>First Name *<br><input required name="firstName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>" ></label>
 		
 		
-		<label>MI<br><input name="middleInitial" type="text" size="5" maxlength="100" value="<?php if (isset($_POST['middleInitial'])) echo $_POST['middleInitial']; ?>"></label>
+		<label>MI<br><input name="middleInitial" type="text" size="5" maxlength="100" value="<?php if (isset($_POST['middleInitial'])) echo $_POST['middleInitial']; ?>" ></label>
 
 		<!--Submits-->
-		<label>Last Name *<br><input required name="lastName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['lastName'])) echo $_POST['lastName']; ?>"></label>
+		<label>Last Name *<br><input required name="lastName" type="text" size="30" maxlength="100" value="<?php if (isset($_POST['lastName'])) echo $_POST['lastName']; ?>" ></label>
 
 
-		<label>Email <span class="requiredField">*</span><br><input required name="studentEmail" type="email" size="30" maxlength="100" value="<?php if (isset($_POST['studentEmail'])) echo $_POST['studentEmail']; ?>"></label>
+		<label>Email <span class="requiredField">*</span><br><input required name="email" type="email" size="30" maxlength="100" value="<?php if (isset ($_POST['email'])) echo $_POST['email']; ?>" ></label>
 
-		<label>Phone Number <span class="requiredField">*</span><br><input required name="studentPhone" type="phone" size="30" maxlength="100" value="<?php if (isset($_POST['studentPhone'])) echo $_POST['studentPhone']; ?>"></label>
+		<label>Phone Number <span class="requiredField">*</span><br><input required name="phone" type="phone" size="30" maxlength="100" value="<?php if (isset($_POST['phone'])) echo $_POST['phone']; ?>" ></label>
 
 		
 		
-		<div id="inputField" class="choiceList">
+		<div id="inputField" class="checkboxes">
 					<ul style="list-style-type: none;">
-						<h3>General</h3>
-						<div id="checkbox" style="margin-top: 15px;">
-		  			  <label>Military Veteran <span class="requiredField">*</span><br></label>
+						
+						<div id="radio" style="margin-top: 15px;" class="checkboxes">
+		  			  <label style="font-weight: bold">Military Veteran <span class="requiredField">*</span><br></label>
 		   			  <label for="militaryStatus">Yes<input name="militaryStatus" type="radio" value="yes"></label>
 		  			  <label for="militaryStatus">No<input name="militaryStatus" type="radio" value="no"></label>
 						  <br>
 		  			</div>
-		  			<div id="checkbox" style="margin-top: 15px;">
-							<label>Security Clearance <span class="requiredField">*</span><br></label>
-		   			 	<label for="securityClearance">Yes<input id="securityClearanceYes" name="securityClearance" type="radio" value="yes"></label>
-		  				<label for="securityClearance">No<input id="securityClearanceNo" name="securityClearance" type="radio" value="no"></label>
+		  			<div id="radio" style="margin-top: 15px;" class="checkboxes">
+						<label style="font-weight: bold">Security Clearance <span class="requiredField">*</span></label>
+		   			 	<label for="securityClearance"><input id="securityClearanceYes" name="securityClearance" type="radio" value="yes"><span>Yes</span></label>
+		  				<label for="securityClearance"><input id="securityClearanceNo" name="securityClearance" type="radio" value="no"><span>No</span></label>
 		    			<div id="securityAttributes" style="display: none; margin-top: 5px;">
 		      			<label>Select One:
-			    				<label for="securityAttributes">Secret<input name="securityAttributes" type="radio" value="secret"></label>
-			            <label for="securityAttributes">Top-Secret<input name="securityAttributes" type="radio" value="top-secret"></label>
-			    				<label for="securityAttributes">Confidential<input name="securityAttributes" type="radio" value="confidential"></label>
+			    				<label for="securityAttributes"><input name="securityAttributes" type="radio" value="secret"><span>Secret</span></label>
+			            <label for="securityAttributes"><input name="securityAttributes" type="radio" value="top-secret"><span>Top-Secret</span></label>
+			    				<label for="securityAttributes"><input name="securityAttributes" type="radio" value="confidential"><span>Confidential</span></label>
 		      			</label>
-		      			<label><br>Currently Active?:
-			    				<label for="securityCurrent">Yes<input name="securityCurrent" type="radio" value="yes"></label>
-			    				<label for="securityCurrent">No<input name="securityCurrent" type="radio" value="no"></label>
+		      			<label style="font-weight: bold"><br>Currently Active?:
+			    				<label for="securityCurrent"><input name="securityCurrent" type="radio" value="yes"><span>Yes</span></label>
+			    				<label for="securityCurrent"><input name="securityCurrent" type="radio" value="no"><span>No</span></label>
 		      			</label>
 		    			</div>
 						</div>
-						<div id="radio" style="margin-top: 15px;">
-							<label>Work Hours <span class="requiredField">*</span><br></label>
+						<div id="radio" style="margin-top: 15px;" class="checkboxes">
+							<label style="font-weight: bold">Work Hours <span class="requiredField">*</span><br></label>
 							<label>Full-Time <input name="workHours" type="radio" value="fullTime"></label>
 							<label> Part-Time <input name="workHours" type="radio" value="partTime"></label>
 						</div>
-						<div id="radio" style="margin-top: 15px;">
-							<label>Work Time <span class="requiredField">*</span><br></label>
-							<label>Days <input name="workTime" type="radio" value="days"></label>
-							<label>Nights <input name="workTime" type="radio" value="nights"></label>
+						<div id="radio" style="margin-top: 15px;" class="checkboxes">
+							<label style="font-weight: bold">Work Time <span class="requiredField">*</span><br></label>
+							<label><input name="workTime" type="radio" value="days"><span>Days</span></label>
+							<label><input name="workTime" type="radio" value="nights"><span>Nights</span></label>
 						</div>
-					</ul>
+					
 				</div>
 				
-				
-				
-				<div class="checkboxes">
-                    		<h4>Technical Skills</h4>					
-				<?php 		
-				
-				include '../src/connection.php';
-				
-				$q = "SELECT * FROM skills;";
-				$r = @mysqli_query($con, $q);
-					 
-				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-					echo "<input name='skill' type='checkbox' id='skill' value='{$row['skill_id']}'>" . $row['skill_name'] . '</br>'; 	
-				}
- 				$con->close();
-				?>
-				<br>
-              			</div>
-						
-						
-						
-						<!-- Start of Professional Skills Ratings -->
-					<div>
-						<ul style="list-style-type: none;">
+		</div>		
+					<!-- Start of Professional Skills Ratings -->
+			
+						<div >			
+						<ul style="list-style-type: none;" class="skills" id="box1">
 							<h3>Professional Skills</h3>
 							<li style="column-count: 2;">
 								<div>
@@ -241,79 +231,111 @@
 								<div>
 									<label>Troubleshooting</label>
 								</div>
+								<div>
 									<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="fair">
 									<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="good" style="margin-left: 30px;">
 									<input type="radio" id="skillTroubleshootingRating" name="skillTroubleshootingRating" value="excellent" style="margin-left: 40px;">
+								</div>
 							</li>
 						</ul>
 					</div> <!-- End of Professional Skills Ratings -->
-				</div>
-				
-				<div id="inputField" class="choiceList">
-					<!-- Job Interest Checkboxes -->
-					<div id="jobInterest">
-						<ul style="list-style-type: none;">
-								<h3>Job Interests</h3>
-								<li>
-										<input type="checkbox" id="itDirector" name="itDirector" value="itDirector">
-										<label for="itDirector">IT Director</label>
-								</li>
-								<li>
-										<input type="checkbox" id="dataAnalyst" name="dataAnalyst" value="dataAnalyst">
-										<label for="dataAnalyst">Data Analyst</label>
-								</li>
-								<li>
-										<input type="checkbox" id="cyberSecurity" name="cyberSecurity" value="cyberSecurity">
-										<label for="cyberSecurity">Cyber Security</label>
-								</li>
-								<li>
-										<input type="checkbox" id="applicationsEngineer" name="applicationsEngineer" value="applicationsEngineer">
-										<label for="applicationsEngineer">Applications Engineer</label>
-								</li>
-						</ul>
-						<ul style="list-style-type: none;">
-									<li>
-											<input type="checkbox" id="supportSpecialist" name="supportSpecialist" value="supportSpecialist">
-											<label for="supportSpecialist">Support Specialist</label>
-									</li>
-									<li>
-											<input type="checkbox" id="networkEngineer" name="networkEngineer" value="networkEngineer">
-											<label for="networkEngineer">Network Engineer</label>
-									</li>
-									<li>
-											<input type="checkbox" id="webDeveloper" name="webDeveloper" value="webDeveloper">
-											<label for="webDeveloper">Web Developer</label>
-									</li>
-									<li>
-											<input type="checkbox" id="dataAdministrator" name="dataAdministrator" value="dataAdministrator">
-											<label for="dataAdministrator">Database Administrator</label>
-									</li>
-						</ul>
-					</div><!-- End of Job Interest Checkboxes -->
-				</div>
-				
-				
-                		
-				
-				<div class="checkboxes">
-                    		<h4>Certifications</h4>					
-				<?php 		
-				
-				include '../src/connection.php';
-				
-				$q = "SELECT * FROM certificates;";
-				$r = @mysqli_query($con, $q);
-					 
-				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-					echo "<input name='certification' type='checkbox' id='certification' value='{$row['certificate_id']}'>" . $row['certificate_name'] . '</br>'; 	
+			
+		<div class="box1">
+			<h4>Skills</h4>	
+				<?php
+			$skillsArr=array('Programming Languages (1 or more)','Project Management','Data Analysis','Technical Writing','Logistics Management', 'Adobe Software', 'CAD Software', 'Bookkeeping Software');
+		$arr=array();
+		if(isset($_POST['submit'])){
+			$arr=$_POST['skills'];
+			echo implode(", ",$arr);
+			echo "<br/><br/>";
+		}
+	
+		?>
+		
+			<?php foreach($skillsArr as $list){?>
+				<?php if(in_array($list,$arr)){
+					?><?php echo $list?> <input checked="checked" type="checkbox" name="skills[]" value="<?php echo $list?>"/><br/><?php
+				}else{
+					?><?php echo $list?> <input type="checkbox" name="skills[]" value="<?php echo $list?>"/><br/><?php
 				}
- 				$con->close();
 				?>
+			<?php } ?>
+			<br/><br/>
+			
+				
+		</div>
+
+							
+
+			<!-- End of Technical Skills Checkboxes -->
+                   		
+	 
+				   										   	
+			
+<div class="box1">
+
+                    		<h4>Job Interest</h4>	
+
+<?php
+			$jobsArr=array('IT Director','Data Analyst','Cyber Security','Application Engineer','Support Specialist', 'Network Engineer', 'Web Developer', 'Database Adminstrator');
+		$arr=array();
+		if(isset($_POST['submit'])){
+			$arr=$_POST['job_interest'];
+			echo implode(", ",$arr);
+			echo "<br/><br/>";
+		}
+	
+		?>
+		
+			<?php foreach($jobsArr as $list){?>
+				<?php if(in_array($list,$arr)){
+					?><?php echo $list?> <input checked="checked" type="checkbox" name="job_interest[]" value="<?php echo $list?>"/><br/><?php
+				}else{
+					?><?php echo $list?> <input type="checkbox" name="job_interest[]" value="<?php echo $list?>"/><br/><?php
+				}
+				?>
+			<?php } ?>
+
+              			
+			
+			  				</div><!-- End of Job Interest Checkboxes -->
+			
+					
+		<div class="box1">	
+		<div class="checkboxes">
+                   		 <h4>Certifications</h4>
+		
+<?php
+			$certificationArr=array('CompTIA A+','Certified Scrum master (CSM)','Certified data professional (CDP)','Certified ethical hacker (CEH)','Project management professional (PMP)', 'CISM – Certified Information Security Manager', 'CISA – Certified Information Systems Auditor', 'ITIL® Foundation ');
+		$arr=array();
+		if(isset($_POST['submit'])){
+			$arr=$_POST['certification'];
+			echo implode(", ",$arr);
+			echo "<br/><br/>";
+		}
+	
+		?>
+		
+			<?php foreach($certificationArr as $list){?>
+				<?php if(in_array($list,$arr)){
+					?><?php echo $list?> <input checked="checked" type="checkbox" name="certification[]" value="<?php echo $list?>"/><br/><?php
+				}else{
+					?><?php echo $list?> <input type="checkbox" name="certification[]" value="<?php echo $list?>"/><br/><?php
+				}
+				?>
+			<?php } ?>
+				<br>
 				<br>
               			</div>
 						
-						
+	</div>
+								
+				
+                		
+									
 				<br>
+				<div class="box1">
 				<div id="inputField" class="eduList">
 					<div>
 						<label><h3>Graduation</h3></label>
@@ -328,27 +350,27 @@
 						<label>Graduation Date <span class="requiredField">*</span><br><input class="gradFields" name="gradDate" type="date" value="<?php if (isset($_POST['gradDate'])) echo $_POST['gradDate']; ?>"></label>
 					</div>
 				</div>
-				<br>
+			</div>
 				<!--End fifth row-->
                 					
 				
-				
-				<div id="inputField" class="majors">
+			<div class="box2">	
+			
                     <h4>Prior Education</h4>
                     <input type="checkbox" id="majors" name="majors" value="majors">
                     <label for="majors">Prior Degrees</label><br>
 
                     <div id="dvMajorsType" class="checkboxes" style="display: none">
 
-                    <label for="securityAttributes"><input  name="associates" type="checkbox" id="associates" size="30" maxlength="100" value="<?php if (isset($_POST['associates'])) echo $_POST['associates']; ?>"><span>Associates</span></label>
+                    <label for="securityAttributes"><input  name="associates" type="checkbox" id="associates" value="<?php if (isset($_POST['associates'])) echo $_POST['associates']; ?>"><span>Associates</span></label>
 
-                    <label for="securityAttributes"><input  name="bacholers" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['bacholers'])) echo $_POST['bacholers']; ?>"><span>Bachelors</span></label>
+                    <label for="securityAttributes"><input  name="bacholers" type="checkbox" id="bacholers" value="<?php if (isset($_POST['bacholers'])) echo $_POST['bacholers']; ?>"><span>Bachelors</span></label>
 
-                    <label for="securityAttributes"><input  name="master" type="checkbox" id="master" size="30" maxlength="100" value="<?php if (isset($_POST['master'])) echo $_POST['master']; ?>"><span>Masters</span></label>
+                    <label for="securityAttributes"><input  name="master" type="checkbox" id="master"  value="<?php if (isset($_POST['master'])) echo $_POST['master']; ?>"><span>Masters</span></label>
 
-                    <label for="securityAttributes"><input name="doctorate" type="checkbox" id="bacholers" size="30" maxlength="100" value="<?php if (isset($_POST['doctorate'])) echo $_POST['doctorate']; ?>"><span>Doctorate</span></label>
+                    <label for="securityAttributes"><input name="doctorate" type="checkbox" id="bacholers"  value="<?php if (isset($_POST['doctorate'])) echo $_POST['doctorate']; ?>"><span>Doctorate</span></label>
 
-                    <label for="securityAttributes"><input name="phd" type="checkbox" id="phd" size="30" maxlength="100" value="<?php if (isset($_POST['phd'])) echo $_POST['phd']; ?>"><span>PHD</span></label><br>
+                    <label for="securityAttributes"><input name="phd" type="checkbox" id="phd"  value="<?php if (isset($_POST['phd'])) echo $_POST['phd']; ?>"><span>PHD</span></label><br>
 
                     </div>
 
@@ -358,29 +380,33 @@
 
                     <div id="dvMajorsSchool" style="display: none">
                         <label>Name of Institution:<br><input name="majors" type="text" id="txtMajorsSchool" size="30" maxlength="100" value="<?php if (isset($_POST['school_name'])) echo $_POST['school_name']; ?>"></label>
-                    </div>
+                   </div>
 					
-			<br>
-			
-			
+
+			</div>
+		
 			<br>
 
-		<div id="inputField">
 		<label>Upload Resume <span class="requiredField">*</span><br><input name="attachments" type="file"></label>
 		</div>
 				<!--Submit button and Exit button-->
 				<br>
 				<br>
 
-					 
+
 			<!--Submit button and Exit button-->
 			<button type="submit" name="submit">Submit</button>
-			<a href="index.php"><input type="button" value="Cancel and Exit"></a>			
+			<a href="index.php"><input type="button" value="Cancel and Exit"></a>
                 </div>
 		</fieldset>
 		</form>
-				<div style="float: right;"><span class="requiredField">*</span> = Required Field</div>		
+		
+		<div class="row px-3 justify-content-end">
+			<p><span class="requiredField">*</span> = Required Field</p>
+		</div>
 
 		<?php
 		include ('../includes/footer.html');
 		?>
+
+		<script src="newstudentform.js" type="text/javascript"></script>

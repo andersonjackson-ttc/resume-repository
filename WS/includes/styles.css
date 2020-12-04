@@ -35,3 +35,19 @@ body {
 .footer-text {
   margin: 20px 0;
 }
+
+.btn_autosize {
+  padding: 4px 0px;
+  font-size: 18px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+@media screen and (min-width: 992px) {
+  .btn_autosize {
+    padding: 10px 16px;
+    font-size: 20px;
+    line-height: 1.33;
+    border-radius: 6px;
+  }
+}
