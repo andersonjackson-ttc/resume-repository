@@ -88,4 +88,4 @@
 
 <?php include('../includes/footer.html'); ?>
 
-<script src="../includes/change_password.js" type="text/javascript"></script>
+<script src="change_password.js" type="text/javascript"></script>
