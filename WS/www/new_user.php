@@ -115,5 +115,5 @@
   </div>
 </div>
 
-<script src="" type="text/javascript"></script>
+<script src="new_user.js" type="text/javascript"></script>
 <?php include('../includes/footer.html'); ?>
