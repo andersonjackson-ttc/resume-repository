@@ -4,6 +4,7 @@ include ('../includes/header.html');
 include_once '../src/student_edit_connection.php';
 include ('editstudentform_functions.php');?>
 <script src="editstudentform.js"></script>
+<script src="pagedeparture.js"></script>
 <style>
   .requiredField{
     color: red;

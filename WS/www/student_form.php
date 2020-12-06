@@ -272,6 +272,7 @@ include '../src/connection.php';
 		</div> <!--Close flex-container-->
 
 <script src="newstudentform.js" type="text/javascript"></script>
+<script src="pagedeparture.js"></script>
 
 
 <?php
