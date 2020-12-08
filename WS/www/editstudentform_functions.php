@@ -4,61 +4,60 @@ function injectStudentInfo($studentResult){
     ?>
     <div class="form-inline">
       <div class="form-group">
-        <label class="sr-only" for="profileID">Profile ID</label>
-        <input name="profileID" id="profileID" type="text" class="form-control"
-        style="width: 45vw;"
-        value="<?php echo(htmlspecialchars($studentRow['profile_id']))?>" readonly>
+        <label for="profileID"><strong>Profile ID</label>
+        <text name="profileID" id="profileID" style="margin-left: 10px; margin-right: 50px; font-size: 1.5em; color:red;" readonly>
+          <?php echo(htmlspecialchars($studentRow['profile_id']))?></text></strong>
 
-        <label class="sr-only" for="studentID">Student ID</label>
+        <label for="studentID"><strong>Student ID</strong></label>
         <input name="studentID" id="studentID" type="text" class="form-control"
-        style="width: 45vw;"
+        style="width: 20vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['student_id']))?>">
       </div>
     </div>
     <br>
     <div class="form-inline">
       <div class="form-group">
-        <label class="sr-only" for="firstName">First Name
-          <span class="requiredField">*</span></label>
+        <label for="firstName"><strong>First Name
+          <span class="requiredField">*</strong></span></label>
         <input required name="firstName" type="text" class="form-control"
-        style="width: 40vw;"
+        style="width: 35vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['first_name']))?>">
 
-        <label class="sr-only" for="middleInitial">MI</label>
+        <label for="middleInitial" style="margin-left: 50px;"><strong>MI</strong></label>
         <input name="middleInitial" type="text" class="form-control"
-        style="width: 10vw;"
+        style="width: 5vw;margin-left: 10px;"
         value="<?php if($studentRow['middle_initial'] != null){
         echo(htmlspecialchars($studentRow['middle_initial']));
         } else {
         echo("");
       } ?>" maxlength="1">
 
-        <label class="sr-only" for="lastName">Last Name
-          <span class="requiredField">*</span></label>
+        <label for="lastName" style="margin-left: 50px;"><strong>Last Name
+          <span class="requiredField">*</strong></span></label>
         <input required name="lastName" type="text" class="form-control"
-        style="width: 40vw;"
+        style="width: 35vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['last_name']))?>">
       </div>
     </div>
     <br>
     <div class="form-inline">
       <div class="form-group">
-        <label class="sr-only" for="studentEmail">Email
-          <span class="requiredField">*</span></label>
+        <label for="studentEmail"><strong>Email
+          <span class="requiredField">*</strong></span></label>
         <input required name="studentEmail" id="studentEmail" type="email" class="form-control"
-        style="width: 45vw;"
+        style="width: 40vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['email']))?>">
 
-        <label class="sr-only" for="studentPhone">Phone Number
-          <span class="requiredField">*</span></label>
+        <label for="studentPhone" style="margin-left: 50px;"><strong>Phone Number
+          <span class="requiredField">*</strong></span></label>
         <input required name="studentPhone" id="studentPhone" type="phone" class="form-control"
-        style="width: 45vw;"
+        style="width: 40vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['phone']))?>">
       </div>
     </div>
-	
+
 	<a href="download.php?file_id=<?php echo $studentRow['resume_path'] ?>">Download</a></td>
-	
+
     <?php
   }
 }
@@ -141,11 +140,11 @@ function injectStudentGeneralInfo($studentResult, $educationResult) {
       style="<?php echo($priorEdu >= 1 ? '' : 'display: none');?>; padding-bottom: 10px;">
         <?php injectPriorEducation($educationResult, $priorEdu) ?>
     </div>
-	
-	
-	
-	
-	
+
+
+
+
+
     <?php
   }
 }
