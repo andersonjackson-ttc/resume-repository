@@ -72,7 +72,7 @@ CREATE TABLE prior_education (
 	degree_level INT UNSIGNED NOT NULL,
 	degree_type VARCHAR(40) NOT NULL,
 	school_name VARCHAR(40) NOT NULL,
-	CONSTRAINT education UNIQUE (profile_id,degree_level,degree_type,school_name)
+	CONSTRAINT education UNIQUE (profile_id,degree_level,degree_type,school_name),
 	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
 );
 
