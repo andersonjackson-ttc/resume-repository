@@ -21,9 +21,80 @@ include '../src/connection.php';
 
 							</div>
 						</div>
-						
 						<br>
 
+					</div>
+				</div>
+				<br>
+
+				<div class="border border-info">
+					<div class="form-check" style="padding-top: 10px;">
+						<h4 class="text-muted">General</h4>
+				  	<label>Military Veteran <span  >*</span><br></label>
+				   	<label for="militaryStatus">Yes<input name="militaryStatus" type="radio" value="yes" <?php if (isset($_POST['militaryStatus']) && ($_POST['militaryStatus'] == 'yes')) echo ' checked="checked"'; ?>></label>
+				  	<label for="militaryStatus">No<input name="militaryStatus" type="radio" value="no" <?php if (isset($_POST['militaryStatus']) && ($_POST['militaryStatus'] == 'no')) echo ' checked="checked"'; ?>></label>
+						<br>
+				  </div>
+
+				  <div class="form-check">
+						<label>Security Clearance <span  > </span><br></label>
+				   	<label for="securityClearance">Yes<input id="securityClearanceYes" name="securityClearance" type="radio" value="yes"></label>
+				  	<label for="securityClearance">No<input id="securityClearanceNo" name="securityClearance" type="radio" value="no"></label>
+				    <div id="securityAttributes" style="display: none; margin-top: 5px;">
+							<label for="securityAttributes">Clearance Level:</label>
+							<select class="form-control" name="securityAttributes" id="securityAttributes" style="width: 30vw;">
+								<option value="secret">Secret</option>
+								<option value="top-secret">Top-Secret</option>
+								<option value="confidential">Confidential</option>
+				      </select></br>
+				      <label>Currently Active?:
+					    	<label for="securityCurrent">Yes<input name="securityCurrent" type="radio" value="1"></label>
+					    	<label for="securityCurrent">No<input name="securityCurrent" type="radio" value="0"></label>
+				      </label>
+				    </div>
+					</div>
+
+					<div class="form-check">
+						<label>Work Hours <span  > </span><br></label>
+						<label>Full-Time <input name="workHours" type="radio" value="2"></label>
+						<label> Part-Time <input name="workHours" type="radio" value="1"></label>
+					</div>
+
+					<div class="form-check" style="padding-bottom: 10px;">
+						<label>Work Time <span  > </span><br></label>
+						<label>Days <input name="workTime" type="radio" value="1"></label>
+						<label>Nights <input name="workTime" type="radio" value="2"></label>
+						<label>Both <input name="workTime" type="radio" value="3"></label>
+					</div>
+					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
+						<h4 class="text-muted">Graduation</h4>
+						<div class="row align-items-start no-gutters">
+							<div class="col col-lg-3">
+								<label for="gradStatus">Graduation Status <span  > </span><br></label><br>
+								<select name="gradStatus" id="gradStatus" class="gradFields">
+									<option disabled selected value="">-- select an option --</option>
+									<option <?php if (isset($gradStatus) && $gradStatus=="graduated") echo "selected";?> value="1">Graduated</option>
+									<option <?php if (isset($gradStatus) && $gradStatus=="notGraduated") echo "selected";?> value="0">Not Graduated</option>
+								</select>
+							</div>
+							<div class="col col-lg-3">
+							</div>
+						</div>
+					</div>
+					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
+			      <h4 class="text-muted">Prior Education</h4>
+						<div id="dvMajorsType" class="form-check" style=" padding-bottom: 10px;">
+							
+							<select class="form-control" name="majorsType" style="width: 30vw;">
+								<option value="1">Associates</option>
+								<option value="2">Bachelors</option>
+								<option value="3">Masters</option>
+								<option value="4">PHD</option>
+					     </select>
+						
+					</div>
+				</div>
+				<br>
 				<div class="border border-info" style="background-color: #5bc0de;">
 					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
 			    	<h4 class="text-muted">Majors</h4>
