@@ -1,3 +1,8 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Fetches the required queries from the database for the edit/view form.
+-->
 <?php
   #Call SQL connection
   include_once 'connection.php';
