@@ -24,7 +24,7 @@ include '../src/connection.php';
 
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM tech_skills ORDER BY ASC;";
+							$q = "SELECT * FROM tech_skills ORDER BY skill_nameASC;";
                             $r = @mysqli_query($con, $q);
 
                             while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -52,7 +52,7 @@ include '../src/connection.php';
 
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM job_interest ORDER BY ASC;";
+							$q = "SELECT * FROM job_interest ORDER BY job_name ASC;";
                             $r = @mysqli_query($con, $q);
 
                             while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -79,7 +79,7 @@ include '../src/connection.php';
 
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM certificates ORDER BY ASC;";
+							$q = "SELECT * FROM certificates ORDER BY certificate_name ASC;";
                             $r = @mysqli_query($con, $q);
 
                             while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -107,7 +107,7 @@ include '../src/connection.php';
 
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM prof_skills ORDER BY ASC;";
+							$q = "SELECT * FROM prof_skills ORDER BY skill_name ASC;";
                             $r = @mysqli_query($con, $q);
 
                             while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -141,7 +141,7 @@ include '../src/connection.php';
 
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM majors ORDER BY ASC;";
+							$q = "SELECT * FROM majors ORDER BY major_name ASC;";
                             $r = @mysqli_query($con, $q);
 
                             while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
