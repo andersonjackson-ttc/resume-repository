@@ -1,207 +1,201 @@
+<!--Nicholas Justus 11/06/20: This page prints all the results from search_home.php-->
 <?php
-  include ('../includes/header.html');
   include_once '../src/connection.php';
+  $page_title = 'Search Results';
+  include ('../includes/header.html');
+?>
 
+<div>
+<?php
+  if (isset($_POST['submit-search'])) {
+    if(isset($_POST['skillToggle'])){
+      $search = mysqli_real_escape_string($con, $_POST['search']);
+      echo "<br>
+      <a href='search_home.php'><input class='btn btn-secondary' type='button'
+      name='return' value='Return Home'></a>
+      <br>";
+      if ((($search != null)&&($search != " "))){
+        if (strpos($search, '!')===0){
+          $search = trim($search, '!');
+          $sql = "SELECT prof_skills.skill_name, certificates.certificate_name, job_interest.job_name, majors.major_name, tech_skills.skill_name, students.profile_id AS 'profile_id',
+          students.student_id AS 'student_id', students.first_name AS 'first_name', students.middle_initial AS 'middle_initial',
+          students.last_name AS 'last_name', students.email AS 'email', students.phone AS 'phone', students.graduated AS 'graduated',
+          students.graduation_date AS 'graduation_date', students.military_status AS 'military_status', students.security_clearance AS 'security_clearance',
+          students.work_hours AS 'work_hours', students.work_time AS 'work_time'
+          FROM ((((((((((students
+          LEFT OUTER JOIN student_tech_skills ON students.profile_id = student_tech_skills.profile_id)
+          LEFT OUTER JOIN tech_skills ON student_tech_skills.skill_id = tech_skills.skill_id)
+          LEFT OUTER JOIN student_prof_skills ON students.profile_id = student_prof_skills.profile_id)
+          LEFT OUTER JOIN prof_skills ON student_prof_skills.skill_id = prof_skills.skill_id)
+          LEFT OUTER JOIN student_certificates ON students.profile_id = student_certificates.profile_id)
+          LEFT OUTER JOIN certificates ON student_certificates.certificate_id = certificates.certificate_id)
+          LEFT OUTER JOIN student_majors ON students.profile_id = student_majors.profile_id)
+          LEFT OUTER JOIN majors ON student_majors.major_id = majors.major_id)
+          LEFT OUTER JOIN student_jobs ON students.profile_id = student_jobs.profile_id)
+          LEFT OUTER JOIN job_interest ON student_jobs.job_id = job_interest.job_id)
+          WHERE prof_skills.skill_name='$search'
+          OR tech_skills.skill_name='$search'
+          OR certificates.certificate_name='$search'
+          OR majors.major_name='$search'
+          OR job_interest.job_name='$search'
+          GROUP BY students.profile_id";
+        } else {
+          $sql = "SELECT prof_skills.skill_name, certificates.certificate_name, job_interest.job_name, majors.major_name, tech_skills.skill_name, students.profile_id AS 'profile_id',
+          students.student_id AS 'student_id', students.first_name AS 'first_name', students.middle_initial AS 'middle_initial',
+          students.last_name AS 'last_name', students.email AS 'email', students.phone AS 'phone', students.graduated AS 'graduated',
+          students.graduation_date AS 'graduation_date', students.military_status AS 'military_status', students.security_clearance AS 'security_clearance',
+          students.work_hours AS 'work_hours', students.work_time AS 'work_time'
+          FROM ((((((((((students
+          LEFT OUTER JOIN student_tech_skills ON students.profile_id = student_tech_skills.profile_id)
+          LEFT OUTER JOIN tech_skills ON student_tech_skills.skill_id = tech_skills.skill_id)
+          LEFT OUTER JOIN student_prof_skills ON students.profile_id = student_prof_skills.profile_id)
+          LEFT OUTER JOIN prof_skills ON student_prof_skills.skill_id = prof_skills.skill_id)
+          LEFT OUTER JOIN student_certificates ON students.profile_id = student_certificates.profile_id)
+          LEFT OUTER JOIN certificates ON student_certificates.certificate_id = certificates.certificate_id)
+          LEFT OUTER JOIN student_majors ON students.profile_id = student_majors.profile_id)
+          LEFT OUTER JOIN majors ON student_majors.major_id = majors.major_id)
+          LEFT OUTER JOIN student_jobs ON students.profile_id = student_jobs.profile_id)
+          LEFT OUTER JOIN job_interest ON student_jobs.job_id = job_interest.job_id)
+          WHERE prof_skills.skill_name LIKE '%$search%'
+          OR tech_skills.skill_name LIKE '%$search%'
+          OR certificates.certificate_name LIKE '%$search%'
+          OR majors.major_name LIKE '%$search%'
+          OR job_interest.job_name LIKE '%$search%'
+          GROUP BY students.profile_id";
+        }
 
-  $gradStatusErr  = $milStatusErr = $clearanceErr = "";
-  
-  $search = "";
-
-$t_q = "SELECT profile_id from ( ";
-
-$conditions = [];
-
-$matches = 0;
-$tech_skill_ids = [];
-$prof_skill_ids = [];
-$certificate_ids = [];
-$major_ids = [];
-$job_ids = [];
-
-  
-
- //uniontbl open
- $t_q .= "SELECT profile_id, SUM(cnt) matches FROM ("; 
-	  
-	  
-//tech skills
-
-  
-  
-  
-  $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
-  $skillsResult = mysqli_query($con, $sqlSelectSkills);
-  while($skillsRow = mysqli_fetch_array($skillsResult)) {
-    $str = $skillsRow['skill_name'];
-    $skillNameNoSpaces = str_replace(' ', '', $str);
-    if(isset($_POST[$skillNameNoSpaces])) {
-      $skill_id = $skillsRow['skill_id'];
-	  $tech_skill_ids[] = $skill_id;
-	  
-		$matches += 1;
-    }
-  }
-  if(!empty($tech_skill_ids)){
-  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_tech_skills WHERE skill_id in ";
-  $t_q .= "(" . implode(",", $tech_skill_ids) . ") GROUP BY profile_id";
-
-  }
-	  
-  
-  
-  
-  
-  //prof skills
-  
-  
-  $sqlSelectSkills = "SELECT skill_id, skill_name FROM prof_skills";
-  $skillsResult = mysqli_query($con, $sqlSelectSkills);
-  while($skillsRow = mysqli_fetch_array($skillsResult)) {
-    $str = $skillsRow['skill_name'];
-    $skillNameNoSpaces = str_replace(' ', '', $str);
-    if(isset($_POST[$skillNameNoSpaces])) {
-      //$skill_id = $skillsRow['skill_id'];
-	  $prof_skill_ids[] = "(skill_id = " . $skillsRow['skill_id'] . " AND skill_rating >= " . $_POST[$skillNameNoSpaces];	    	  
-	  $matches += 1;
-    }
-  }
-  
-  
-	if(!empty($prof_skill_ids) && !empty($tech_skill_ids)){
-			$t_q .= " UNION ALL ";
-		}
-	if(!empty($prof_skill_ids)){
-  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_prof_skills WHERE ";
-  $t_q .= implode(" OR ", $prof_skill_ids) . " GROUP BY profile_id";
-  }
-  
-
-//Certs
-
-
-$sqlSelectCerts = "SELECT certificate_id, certificate_name FROM certificates";
-  $certsResult = mysqli_query($con, $sqlSelectCerts);
-  while($certsRow = mysqli_fetch_array($certsResult)) {
-    $str = $certsRow['certificate_name'];
-    $certNameNoSpaces = str_replace(' ', '', $str);
-    if(isset($_POST[$certNameNoSpaces])) {
-      $certificate_id = $certsRow['certificate_id'];
-	  $certificate_ids[] = $certificate_id;
-	  
-	$matches += 1;
-    }
-  }
-  if(!empty($certificate_ids)){
-	  
-	  if(!empty($prof_skill_ids) || (!empty($tech_skill_ids))){
-			$t_q .= " UNION ALL ";
-		}
-	  
-	  
-  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_certificates WHERE certificate_id in ";
-  $t_q .= "(" . implode(",", $certificate_ids) . ") GROUP BY profile_id";
-
-  }
-
-//job interests 
-
-
-$sqlSelectJobs = "SELECT job_id, job_name FROM job_interest";
-  $jobsResult = mysqli_query($con, $sqlSelectJobs);
-  while($jobsRow = mysqli_fetch_array($jobsResult)) {
-    $str = $jobsRow['job_name'];
-    $jobNameNoSpaces = str_replace(' ', '', $str);
-    if(isset($_POST[$jobNameNoSpaces])) {
-      $job_id = $jobsRow['job_id'];
-	  $job_ids[] = $job_id;
-	  
-		$matches += 1;
-    }
-  }
-  if(!empty($job_ids)){
-	  
-	  if(!empty($prof_skill_ids) || !empty($tech_skill_ids) || !empty($certificate_ids)){
-			$t_q .= " UNION ALL ";
-		}
-	  
-	  
-  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_jobs WHERE job_id in ";
-  $t_q .= "(" . implode(",", $job_ids) . ") GROUP BY profile_id";
-
-  }
-
-
-//Majors
-
-
-$sqlSelectMajors = "SELECT major_id, major_name FROM majors";
-  $majorsResult = mysqli_query($con, $sqlSelectMajors);
-  while($majorsRow = mysqli_fetch_array($majorsResult)) {
-    $str = $majorsRow['major_name'];
-    $majorNameNoSpaces = str_replace(' ', '', $str);
-    if(isset($_POST[$majorNameNoSpaces])) {
-      $major_id = $majorsRow['major_id'];
-	  $major_ids[] = $major_id;
-	  
-		$matches += 1;
-    }
-  }
-  if(!empty($major_ids)){
-	  
-	  if(!empty($job_ids) || !empty($prof_skill_ids) || !empty($tech_skill_ids) || !empty($certificate_ids)){
-			$t_q .= " UNION ALL ";
-		}
-	  
-	  
-  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_majors WHERE major_id in ";
-  $t_q .= "(" . implode(",", $major_ids) . ") GROUP BY profile_id";
-
-  }
-  
-  
-  
-  //attempt to integrate Gen checks
-  if(!empty($conditions)){
-	  
-	  if((!empty($major_ids) || !empty($job_ids) || !empty($prof_skill_ids) || !empty($tech_skill_ids) || !empty($certificate_ids))){
-			$t_q .= " UNION ALL ";
-		}
-		
-		
-		
-  }
-
-
-
-//closing of unioned query
-$t_q .= ") AS uniontbl GROUP BY profile_id) matchTbl WHERE matches = " . $matches . ";";
-
- echo $t_q;
- echo "<br>" . $matches;
-  
- 
-
-  echo "<br>";
-  
- $q = $t_q;
-  
-     //echo $sql;
-		If(mysqli_query($con, $t_q)){
-        $result = mysqli_query($con, $t_q);
-  
-  
-		$queryResult = mysqli_num_rows($result);
+        //echo $sql;
+        $result = mysqli_query($con, $sql);
+        $queryResult = mysqli_num_rows($result);
         //Prints result count
-		
-		
-		echo $q . "<br>";
-		
-			
-		
         //Lists all results
-        
+        if ($queryResult > 0) {
+          if (($search == null)||($search == " ")){
+            echo "Showing ".$queryResult." result(s):";
+          }else{
             echo "Showing ".$queryResult." result(s) for '".$search."':";
-          
+          }
+          echo '<table align="center" cellspacing="0" cellpadding="5" width="100%">
+          <tr>
+          <td style="text-align:left"><b>Profile ID</b></td>
+          <td style="text-align:left"><b>First Name</b></td>
+          <td style="text-align:left"><b>Middle Initial</b></td>
+          <td style="text-align:left"><b>Last Name</b></td>
+          <td style="text-align:right"><b>Graduated Y/N</b></td>
+          <td style="text-align:right"><b>Graduation Date</b></td>
+          <td style="text-align:right"><b>Military Status</b></td>
+          <td style="text-align:right"><b>Security Clearance</b></td>
+          </tr>';
+
+            // Fetch and print records:
+            $bg = '#eeeeee';
+            mysqli_data_seek($result, 0);
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+            {
+              $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
+              echo
+              '<tr bgcolor="' . $bg . '">
+              <td style="text-align:left"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
+              <td style="text-align:left">' . $row['first_name'] . '</td>
+              <td style="text-align:left">' . $row['middle_initial'] . '</td>
+              <td style="text-align:left">' . $row['last_name'] . '</td>
+              <td style="text-align:right">' . $row['graduated'] . '</td>
+              <td style="text-align:right">' . $row['graduation_date'] . '</td>
+              <td style="text-align:right">' . $row['military_status'] . '</td>
+              <td style="text-align:right">' . $row['security_clearance'] . '</td>
+              </tr>';
+            }
+
+        } else {
+          echo "There are no results matching '".$search."'.";
+        }
+
+      } else {
+        echo "<br><p>Error: Search cannot be blank</p><br>";
+      }
+
+    } else {
+      //mysqli_real_escape_string to take all inputs as literal strings and prevent manipulation
+      $search = mysqli_real_escape_string($con, $_POST['search']);
+      echo "<br>
+      <a href='search_home.php'><input class='btn btn-secondary' type='button'
+      name='return' value='Return Home'></a>
+      <br>";
+
+      $conditions = array();
+
+      //Checking if a filter option has been chosen, then adding it to the array
+      //Easily extendable by copy/pasting, just make sure there is a corresponding html button
+      //Graduates Only
+      if (!empty($_POST['filterGraduates'])){
+        $conditions[] = " graduated=1";
+      }
+      //Military Only
+      if (!empty($_POST['filterMilitary'])){
+        $conditions[] = " military_status=1";
+      }
+
+      //Security Clearance Only
+      if (!empty($_POST['filterSecurity'])){
+        $conditions[] = " security_clearance>=1";
+      }
+
+      //Work Hours only
+      if (!empty($_POST['filterHours'])){
+        if($_POST['filterHours']==1) {
+          $conditions[] = " work_hours=1";
+        } else {
+          $conditions[] = " work_hours=2";
+        }
+      }
+
+      //Work Time only
+      if (!empty($_POST['filterTime'])){
+        if($_POST['filterTime']==1) {
+          $conditions[] = " work_time=1";
+        } else if($_POST['filterTime']==2){
+          $conditions[] = " work_time=2";
+        } else {
+          $conditions[] = " work_time=3";
+        }
+      }
+
+      //Actual search happens here:
+      //If search is not empty
+      //Finds all first names, last names, full names, first + last names, profile ids, and student ids that contain keywords in the user input, as per Mr. Anderson
+      //Starting a search with ! will only return exact matches instead of anything containing the search, similar to typing "" in google
+      //If The search is not blank OR if there are any filters (You can submit an empty search if a filter is chosen)
+      if ((($search != null)&&($search != " "))||(count($conditions)) > 0){
+        if (strpos($search, '!')===0){   //If search started with an ! (Exact results only)
+          $search = trim($search, '!');  //Cut off the ! for variable and printing purposes
+          if ((isset($conditions))&&(count($conditions)) > 0) {   //If the conditions array is populated and there are any conditions
+            $sql = "SELECT * FROM students WHERE " . implode(' AND ', $conditions) . " AND (first_name='$search' OR last_name='$search' OR CONCAT(first_name, ' ', last_name)='$search' OR
+            CONCAT(first_name, ' ', middle_initial, ' ', last_name)='$search' OR profile_id='$search')";
+          }else{
+            $sql = "SELECT * FROM students WHERE first_name='$search' OR last_name='$search' OR CONCAT(first_name, ' ', last_name)='$search' OR
+            CONCAT(first_name, ' ', middle_initial, ' ', last_name)='$search' OR profile_id='$search'";
+          }
+        }else{  //Else use keyword search
+          if ((isset($conditions))&&(count($conditions)) > 0) {
+            $sql = "SELECT * FROM students WHERE " . implode(' AND ', $conditions) . " AND (first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR CONCAT(first_name, ' ', last_name) LIKE '%$search%' OR
+            CONCAT(first_name, ' ', middle_initial, ' ', last_name) LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%')";
+          }else{
+            $sql = "SELECT * FROM students WHERE first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR CONCAT(first_name, ' ', last_name) LIKE '%$search%' OR
+            CONCAT(first_name, ' ', middle_initial, ' ', last_name) LIKE '%$search%' OR profile_id LIKE '%$search%' OR student_id LIKE '%$search%'";
+          }
+        }
+
+        //echo $sql;
+        $result = mysqli_query($con, $sql);
+        $queryResult = mysqli_num_rows($result);
+        //Prints result count
+        //Lists all results
+        if ($queryResult > 0) {
+          if (($search == null)||($search == " ")){
+            echo "Showing ".$queryResult." result(s):";
+          }else{
+            echo "Showing ".$queryResult." result(s) for '".$search."':";
+          }
           echo '<table align="center" cellspacing="0" cellpadding="5" width="100%">
             <tr>
             <td style="text-align:left"><b>Profile ID</b></td>
@@ -214,18 +208,13 @@ $t_q .= ") AS uniontbl GROUP BY profile_id) matchTbl WHERE matches = " . $matche
             <td style="text-align:right"><b>Security Clearance</b></td>
             </tr>';
 
-
-
             // Fetch and print records:
             $bg = '#eeeeee';
-			
-			foreach($result as $id){
-			echo "id:" . $id['profile_id'] . "<br>";
-			$q = "select * from students where profile_id = " . $id['profile_id'];
-			$presult = mysqli_query($con, $q);
-			$row = mysqli_fetch_array($presult, MYSQLI_ASSOC);
-			
-			echo
+            mysqli_data_seek($result, 0);
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+            {
+              $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
+              echo
               '<tr bgcolor="' . $bg . '">
               <td style="text-align:left"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
               <td style="text-align:left">' . $row['first_name'] . '</td>
@@ -236,14 +225,16 @@ $t_q .= ") AS uniontbl GROUP BY profile_id) matchTbl WHERE matches = " . $matche
               <td style="text-align:right">' . $row['military_status'] . '</td>
               <td style="text-align:right">' . $row['security_clearance'] . '</td>
               </tr>';
-			}		
-			
-			
-			
-		}
-		
-  
-     $con->close();
-	 
-	 include ('../includes/footer.html');
-  ?>
+            }
+        }else{
+          echo "There are no results matching '".$search."'.";
+        }
+      }else{
+        echo "<br><p>Error: Search cannot be blank</p><br>";
+      }
+    }
+    $con->close();
+  }
+
+?>
+</div>

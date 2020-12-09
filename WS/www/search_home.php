@@ -1,155 +1,45 @@
+<!--Nicholas Justus 11/06/20: This is a basic page that just includes the search bar and filter options-->
 <?php
-$page_title = 'Search Students';
-include ('../includes/header.html');
-include '../src/connection.php';
+  $page_title = 'Student Search';
+  include ('../includes/header.html');
 ?>
 
-<div class="container-fluid">
-			<form name="zzz.php" id="zzzform" method="POST" action="zzz_submit.php" enctype="multipart/form-data">
-				<br>
-				<input type="hidden" id="changed" name="changed" value="yes" />
-				<div class="border border-info" style="background-color: #5bc0de;">
-					<div class="form-check" style="padding: 20px;">
-						<h1>Search</h1>
-						
-						
+<h1 style="display:flex;justify-content:center;">Search for a Student</h1>
 
-						<div class="form-inline">
-							<div class="form-group">
-								<label class="sr-only" for="search">Search</label>
-								<input name="search" id="search" type="text" class="form-control" style="width: 40vw;" placeholder="Use . for exact search" value="<?php if (isset($_POST['search'])) echo $_POST['search']; ?>">
+<form action="search_results.php" method="POST" style="display:flex;justify-content:center;">
+  <div>
+    <label><input type="checkbox" name="skillToggle" value="toggle">Non-Student name search</label>
+    <br>
+  <input type="text" name="search" placeholder="Search">
+  <button type="submit" name="submit-search">Go</button>
+  </div>
+  <div>
+  <input type="checkbox" id="filterGraduates" name="filterGraduates" value="Graduates">
+  <label for="filterGraduates"> Graduates</label><br>
 
-							</div>
-						</div>
-						
-						<br>
+  <input type="checkbox" id="filterMilitary" name="filterMilitary" value="Military">
+  <label for="filterMilitary"> Military</label><br>
 
-				<div class="border border-info" style="background-color: #5bc0de;">
-					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
-			    	<h4 class="text-muted">Majors</h4>
-						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
-							<?php
-							$q = "SELECT * FROM majors";
-							$r = mysqli_query($con, $q);
-							while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-								$str = $row['major_name'];
-								$majorNameNoSpaces = str_replace(' ', '', $str);
-								echo "<div class='col col-lg-3'>
-												<input type='checkbox' class='form-check-input' name='".$majorNameNoSpaces.
-												"' id='major' value='{$row['major_id']}'>
-												<label class='form-check-label' for='{$row['major_id']}'>" . $row['major_name'] .
-												"</label>
-											</div>";
-							} ?>
-						</div>
-					</div>
-				</div>
-				<br>
-				<div class="border border-info">
-					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
-			    	<h4 class="text-muted">Technical Skills</h4>
-						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
-							<?php
-							$q = "SELECT * FROM tech_skills;";
-							$r = @mysqli_query($con, $q);
+  <input type="checkbox" id="filterSecurity" name="filterSecurity" value="Security">
+  <label for="filterSecurity"> Security Clearance</label><br>
+  </div>
+  <div>
+  <label> Work Hours
+  <input type="radio" name="filterHours" value="1">
+  <label for="filterHours"> Part-Time</label>
+  <input type="radio" name="filterHours" value="2">
+  <label for="filterHours"> Full-Time</label></label><br>
 
-							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-								$str = $row['skill_name'];
-								$skillNameNoSpaces = str_replace(' ', '', $str);
-								echo "<div class='col col-lg-3'>
-												<input type='checkbox' class='form-check-input' name='".$skillNameNoSpaces.
-												"' id='skill' value='{$row['skill_id']}'>
-												<label class='form-check-label' for='{$row['skill_id']}'>" . $row['skill_name'] .
-												"</label>
-											</div>";
-							}
-							?>
-						</div>
-					</div>
-				</div>
-				<br>
+  <label> Work Time
+  <input type="radio" name="filterTime" value="1">
+  <label for="filterTime"> Days</label>
+  <input type="radio" name="filterTime" value="2">
+  <label for="filterTime"> Nights</label>
+  <input type="radio" name="filterTime" value="3">
+  <label for="filterTime"> Both</label></label><br>
+  </div>
 
-				<div class="border border-info" style="background-color: #5bc0de;">
-					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
-						<ul class="list-unstyled">
-			      <h4 class="text-muted">Professional Skills</h4>
-						<?php
-						$q = "SELECT * FROM prof_skills;";
-						$r = @mysqli_query($con, $q);
-
-						while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-							$str = $row['skill_name'];
-							$skillNameNoSpaces = str_replace(' ', '', $str);
-							echo "<li style='column-count: 2;'>
-											<div>
-												<label>" . $row['skill_name'] . "</label>
-											</div>
-											<div>
-												<input type='radio' name='".$skillNameNoSpaces."' value='1'> Fair
-												<input type='radio' name='".$skillNameNoSpaces."' value='2' style='margin-left: 30px;'> Good
-												<input type='radio' name='".$skillNameNoSpaces."' value='3' style='margin-left: 30px;'> Excellent
-											</div>
-										</li>";
-						}
-						?>
-					</div>
-				</div>
-				<br>
-
-				<div class="border border-info">
-					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
-						<h4 class="text-muted">Job Interests</h4>
-						<div class="row align-items-start no-gutters">
-							<?php
-							$q = "SELECT * FROM job_interest;";
-							$r = @mysqli_query($con, $q);
-
-							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-								$str = $row['job_name'];
-								$jobNameNoSpaces = str_replace(' ', '', $str);
-								echo "<div class='col col-lg-3'>
-												<input name='".$jobNameNoSpaces."' type='checkbox' id='jobInterest'
-												value='{$row['job_id']}'> " . $row['job_name'] .
-											"</div>";
-							}
-							?>
-						</div>
-					</div>
-				</div>
-				<br>
-
-				<div class="border border-info" style="background-color: #5bc0de;">
-					<div class="form-check" style="padding-top: 10px; padding-bottom: 10px;">
-			      <h4 class="text-muted">Certifications</h4>
-						<div class="row align-items-start no-gutters">
-							<?php
-							$q = "SELECT * FROM certificates;";
-							$r = @mysqli_query($con, $q);
-
-							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-								$str = $row['certificate_name'];
-								$certNameNoSpaces = str_replace(' ', '', $str);
-								echo "<div class='col col-lg-3'>
-												<input name='".$certNameNoSpaces."' type='checkbox' id='certification'
-												value='{$row['certificate_id']}'> " . $row['certificate_name'] .
-											"</div>";
-							}
-							?>
-						</div>
-					</div>
-				</div>
-				
-
-				<div class="form-check">
-					<button class="btn btn-primary" type="submit" name="submit">Submit</button>
-						<a href="index.php"><input class="btn btn-secondary" type="button" value="Cancel and Exit"></a>
-	    	</div>
-				<br>
-			</form>
-			
-		</div> <!--Close flex-container-->
-		
-	<?php
-include ('../includes/footer.html');
-$con->close();
-?>
+</form>
+<p style="display:flex;justify-content:center;font-style:italic;opacity:0.4;">Hint: Place ! before a search for exact results.</p>
+</body>
+</html>
