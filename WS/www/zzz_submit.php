@@ -1,17 +1,19 @@
 <?php
   include ('../includes/header.html');
   include_once '../src/connection.php';
-  include 'student_submit_functions.php';
+
 
   $gradStatusErr  = $milStatusErr = $clearanceErr = "";
   
   $search = "";
 
-$q = "SELECT * from STUDENTS";
+$t_q = "SELECT profile_id from ( ";
 
 $conditions[] = "TRUE";
 $orconditions[] = "TRUE";
-
+$matches = 0;
+$tech_skill_ids = [];
+$prof_skill_ids = [];
 
   if(isset($_POST['submit'])) {
 
@@ -79,9 +81,94 @@ if(isset($_POST['search'])) {
   
   }//end of isset
   
+  /*
+  
+  SELECT profile_id FROM ### get the profile_ids that match every checkbox (based on the sum of the counts)
+(
+    SELECT profile_id, SUM(cnt) matches FROM ### sums up the number of matches in the following UNION(s)
+    (
+            SELECT profile_id, COUNT(*) cnt FROM student_level ### counts every match of comp_id and level
+                WHERE (comp_id = 1 AND level >= 0) OR (comp_id = 2 AND level >= 1) ### note AND and OR
+                GROUP BY profile_id ### GROUP BY makes it count every time a profile id makes a match
+    UNION ALL
+            SELECT profile_id, COUNT(*) cnt FROM student_skills ### counts every matching skill id
+                WHERE skill_id in (1,3)
+                GROUP BY profile_id
+    ) AS uniontbl GROUP BY profile_id ### end of the union
+) matchTbl WHERE matches = 4; ### matches is the sum of the count
+  */
+  
+  /*foreach($skillsRow['skill_id'] as $skills_row)  {
+    $str = $skills_row;
+    $skillNameNoSpaces = str_replace(' ', '', $str);
+    if(isset($_POST[$skillNameNoSpaces])) {
+      $skill_id = $skillsRow['skill_id'];
+	  $skill_ids[] = $skill_id;
+	}
+  }*/
+ 
+ $t_q .= "SELECT profile_id, SUM(cnt) matches FROM ("; 
+	  
+	  
+//tech skills
+  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_tech_skills WHERE skill_id in ";
+  
+  
+  $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
+  $skillsResult = mysqli_query($con, $sqlSelectSkills);
+  while($skillsRow = mysqli_fetch_array($skillsResult)) {
+    $str = $skillsRow['skill_name'];
+    $skillNameNoSpaces = str_replace(' ', '', $str);
+    if(isset($_POST[$skillNameNoSpaces])) {
+      $skill_id = $skillsRow['skill_id'];
+	  $tech_skill_ids[] = $skill_id;
+	  
+		$matches += 1;
+    }
+  }
+  $t_q .= "(" . implode(",", $tech_skill_ids) . ") GROUP BY profile_id";
+  
+  
+  //union 
+  $t_q .= " UNION ALL ";
+  //prof skills
+ $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_prof_skills WHERE skill_id in ";
+  
+  
+  $sqlSelectSkills = "SELECT skill_id, skill_name FROM prof_skills";
+  $skillsResult = mysqli_query($con, $sqlSelectSkills);
+  while($skillsRow = mysqli_fetch_array($skillsResult)) {
+    $str = $skillsRow['skill_name'];
+    $skillNameNoSpaces = str_replace(' ', '', $str);
+    if(isset($_POST[$skillNameNoSpaces])) {
+      $skill_id = $skillsRow['skill_id'];
+	  $prof_skill_ids[] = $skill_id;
+	  
+		$matches += 1;
+    }
+  }
+  $t_q .= "(" . implode(",", $prof_skill_ids) . ") GROUP BY profile_id";
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+//closing of unioned query
+$t_q .= ") AS uniontbl GROUP BY profile_id) matchTbl WHERE matches = " . $matches . ";";
+
+//echo $t_q;
+ echo "<br>" . $matches;
   
  
-
+/*
   $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
   $skillsResult = mysqli_query($con, $sqlSelectSkills);
   while($skillsRow = mysqli_fetch_array($skillsResult)) {
@@ -98,29 +185,39 @@ if(isset($_POST['search'])) {
 	  }
     }
   }
+  */
+  
+ /* foreach($skill_ids as $value){
+	  
+	  
+	  
+    echo $value . "<br>";
+  }*/
   
 //. implode(' OR ', $orconditions)
+  echo "<br>";
   
-  
- $q = "SELECT * FROM students WHERE " . implode(' AND ', $conditions) . " AND (first_name='$search' OR last_name='$search' OR CONCAT(first_name, ' ', last_name)='$search' OR
-            CONCAT(first_name, ' ', middle_initial, ' ', last_name)='$search' OR profile_id='$search') AND " . implode(' OR ', $orconditions);
-  
-  
+ $q = $t_q;
   
   
   
   
+	//$q = "select $ from students where profile_id = $profile_id";
   
   
   
      //echo $sql;
-        $result = mysqli_query($con, $q);
+		If(mysqli_query($con, $t_q)){
+        $result = mysqli_query($con, $t_q);
+  
   
 		$queryResult = mysqli_num_rows($result);
         //Prints result count
 		
 		
 		echo $q . "<br>";
+		
+			
 		
         //Lists all results
         
@@ -138,13 +235,18 @@ if(isset($_POST['search'])) {
             <td style="text-align:right"><b>Security Clearance</b></td>
             </tr>';
 
+
+
             // Fetch and print records:
             $bg = '#eeeeee';
-            mysqli_data_seek($result, 0);
-            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-            {
-              $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
-              echo
+			
+			foreach($result as $id){
+			echo "id:" . $id['profile_id'] . "<br>";
+			$q = "select * from students where profile_id = " . $id['profile_id'];
+			$presult = mysqli_query($con, $q);
+			$row = mysqli_fetch_array($presult, MYSQLI_ASSOC);
+			
+			echo
               '<tr bgcolor="' . $bg . '">
               <td style="text-align:left"><a href="editstudentform.php?id=' . $row['profile_id'] . '">' . $row['profile_id'] . '</a></td>
               <td style="text-align:left">' . $row['first_name'] . '</td>
@@ -155,8 +257,12 @@ if(isset($_POST['search'])) {
               <td style="text-align:right">' . $row['military_status'] . '</td>
               <td style="text-align:right">' . $row['security_clearance'] . '</td>
               </tr>';
-            }
-       
+			}		
+			
+			
+			
+		}
+		
   
      $con->close();
 	 
