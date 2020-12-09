@@ -65,7 +65,7 @@ include '../src/connection.php';
 						<ul class="list-unstyled">
 			      <h4 class="text-muted">Professional Skills</h4>
 						<?php
-						$q = "SELECT * FROM prof_skills ORDER BY skill_nameASC;";
+						$q = "SELECT * FROM prof_skills ORDER BY skill_name ASC;";
 						$r = @mysqli_query($con, $q);
 
 						while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
