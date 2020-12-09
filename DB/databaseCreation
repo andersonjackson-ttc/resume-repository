@@ -72,7 +72,7 @@ CREATE TABLE prior_education (
 	degree_level INT UNSIGNED NOT NULL,
 	degree_type VARCHAR(40) NOT NULL,
 	school_name VARCHAR(40) NOT NULL,
-	CONSTRAINT education UNIQUE (profile_id,degree_level,degree_type,school_name)
+	CONSTRAINT education UNIQUE (profile_id,degree_level,degree_type,school_name),
 	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
 );
 
@@ -112,8 +112,9 @@ CREATE TABLE users (
 	user_password VARCHAR(255) NOT NULL,
 	user_level TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	registration_date DATETIME NOT NULL,
-	last_login_date DATETIME NOT NULL,
-	last_password_date DATETIME NOT NULL,
+	last_login_date DATETIME DEFAULT '1000-01-01 00:00:00' NOT NULL,
+	last_password_date DATETIME DEFAULT '1000-01-01 00:00:00' NOT NULL,
+	user_initials VARCHAR(3) AS (CONCAT(SUBSTRING(first_name,1,1), SUBSTRING(last_name,1,1))),
 	PRIMARY KEY (user_id),
 	UNIQUE KEY (user_email)
 );

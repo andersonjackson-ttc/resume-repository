@@ -49,9 +49,9 @@
       $dateToDT = new dateTime("$lastPassDate", new DateTimeZone("UTC"));
       //Convert the object to a string that can be printed and used in arithmatic
       $DTToString = $dateToDT->getTimestamp();
-      //The maximum amount of time a password can be valid, in seconds (5184000 seconds is equal to 60 days)
-      $passwordMaxAge = 5184000;
-      //If the user information is correct, redirect them to the password change page if their password is older than 60 days (default), else proceed as normal
+      //The maximum amount of time a password can be valid, in seconds (7776000 seconds is equal to 90 days)
+      $passwordMaxAge = 7776000;
+      //If the user information is correct, redirect them to the password change page if their password is older than 90 days (default), else proceed as normal
       if (mysqli_affected_rows($con) == 1) {
         if (time() - $DTToString > $passwordMaxAge){
           redirect_reset();

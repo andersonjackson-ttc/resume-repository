@@ -1,3 +1,9 @@
+/*
+	Author:	Khadijah Thompson
+	Program: ResumeRespository
+	Purpose: Displays warning if user tries to leave page without submitting changes
+*/
+
 function FormChanges(form)
    {
            if (typeof form == "string")
@@ -91,6 +97,8 @@ function FormChanges(form)
              {
                  var confirmationMessage = 'It looks like you have been editing something. '
                  + 'If you leave before saving, your changes will be lost.';
+
+                 e.preventDefault();
 
                  (e || window.event).returnValue = confirmationMessage;
              }

@@ -9,11 +9,14 @@
 
 $t_q = "SELECT profile_id from ( ";
 
-$conditions[] = "TRUE";
-$orconditions[] = "TRUE";
+$conditions = [];
+
 $matches = 0;
 $tech_skill_ids = [];
 $prof_skill_ids = [];
+$certificate_ids = [];
+$major_ids = [];
+$job_ids = [];
 
   if(isset($_POST['submit'])) {
 
@@ -77,41 +80,30 @@ if(isset($_POST['search'])) {
 			if(isset($_POST['workTime'])) {
 			  $conditions[] = $_POST['workTime'];
 			} 
+			
+			if(isset($_POST['securityCurrent'])) {
+			  $conditions[] = $_POST['securityCurrent'];
+			  echo $_POST['securityCurrent'];
+			} 
+			if(isset($_POST['majorsType'])) {
+			  $conditions[] = $_POST['majorsType'];
+			  echo $_POST['majorsType'];
+			} 
+			
+			
+			
   }
   
   }//end of isset
   
-  /*
-  
-  SELECT profile_id FROM ### get the profile_ids that match every checkbox (based on the sum of the counts)
-(
-    SELECT profile_id, SUM(cnt) matches FROM ### sums up the number of matches in the following UNION(s)
-    (
-            SELECT profile_id, COUNT(*) cnt FROM student_level ### counts every match of comp_id and level
-                WHERE (comp_id = 1 AND level >= 0) OR (comp_id = 2 AND level >= 1) ### note AND and OR
-                GROUP BY profile_id ### GROUP BY makes it count every time a profile id makes a match
-    UNION ALL
-            SELECT profile_id, COUNT(*) cnt FROM student_skills ### counts every matching skill id
-                WHERE skill_id in (1,3)
-                GROUP BY profile_id
-    ) AS uniontbl GROUP BY profile_id ### end of the union
-) matchTbl WHERE matches = 4; ### matches is the sum of the count
-  */
-  
-  /*foreach($skillsRow['skill_id'] as $skills_row)  {
-    $str = $skills_row;
-    $skillNameNoSpaces = str_replace(' ', '', $str);
-    if(isset($_POST[$skillNameNoSpaces])) {
-      $skill_id = $skillsRow['skill_id'];
-	  $skill_ids[] = $skill_id;
-	}
-  }*/
- 
+
+ //uniontbl open
  $t_q .= "SELECT profile_id, SUM(cnt) matches FROM ("; 
 	  
 	  
 //tech skills
-  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_tech_skills WHERE skill_id in ";
+
+  
   
   
   $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
@@ -126,13 +118,17 @@ if(isset($_POST['search'])) {
 		$matches += 1;
     }
   }
+  if(!empty($tech_skill_ids)){
+  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_tech_skills WHERE skill_id in ";
   $t_q .= "(" . implode(",", $tech_skill_ids) . ") GROUP BY profile_id";
+
+  }
+	  
   
   
-  //union 
-  $t_q .= " UNION ALL ";
+  
+  
   //prof skills
- $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_prof_skills WHERE skill_id in ";
   
   
   $sqlSelectSkills = "SELECT skill_id, skill_name FROM prof_skills";
@@ -141,70 +137,130 @@ if(isset($_POST['search'])) {
     $str = $skillsRow['skill_name'];
     $skillNameNoSpaces = str_replace(' ', '', $str);
     if(isset($_POST[$skillNameNoSpaces])) {
-      $skill_id = $skillsRow['skill_id'];
-	  $prof_skill_ids[] = $skill_id;
+      //$skill_id = $skillsRow['skill_id'];
+	  $prof_skill_ids[] = "(skill_id = " . $skillsRow['skill_id'] . " AND skill_rating >= " . $_POST[$skillNameNoSpaces];	    	  
+	  $matches += 1;
+    }
+  }
+  
+  
+	if(!empty($prof_skill_ids) && !empty($tech_skill_ids)){
+			$t_q .= " UNION ALL ";
+		}
+	if(!empty($prof_skill_ids)){
+  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_prof_skills WHERE ";
+  $t_q .= implode(" OR ", $prof_skill_ids) . " GROUP BY profile_id";
+  }
+  
+
+//Certs
+
+
+$sqlSelectCerts = "SELECT certificate_id, certificate_name FROM certificates";
+  $certsResult = mysqli_query($con, $sqlSelectCerts);
+  while($certsRow = mysqli_fetch_array($certsResult)) {
+    $str = $certsRow['certificate_name'];
+    $certNameNoSpaces = str_replace(' ', '', $str);
+    if(isset($_POST[$certNameNoSpaces])) {
+      $certificate_id = $certsRow['certificate_id'];
+	  $certificate_ids[] = $certificate_id;
+	  
+	$matches += 1;
+    }
+  }
+  if(!empty($certificate_ids)){
+	  
+	  if(!empty($prof_skill_ids) || (!empty($tech_skill_ids))){
+			$t_q .= " UNION ALL ";
+		}
+	  
+	  
+  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_certificates WHERE certificate_id in ";
+  $t_q .= "(" . implode(",", $certificate_ids) . ") GROUP BY profile_id";
+
+  }
+
+//job interests 
+
+
+$sqlSelectJobs = "SELECT job_id, job_name FROM job_interest";
+  $jobsResult = mysqli_query($con, $sqlSelectJobs);
+  while($jobsRow = mysqli_fetch_array($jobsResult)) {
+    $str = $jobsRow['job_name'];
+    $jobNameNoSpaces = str_replace(' ', '', $str);
+    if(isset($_POST[$jobNameNoSpaces])) {
+      $job_id = $jobsRow['job_id'];
+	  $job_ids[] = $job_id;
 	  
 		$matches += 1;
     }
   }
-  $t_q .= "(" . implode(",", $prof_skill_ids) . ") GROUP BY profile_id";
+  if(!empty($job_ids)){
+	  
+	  if(!empty($prof_skill_ids) || !empty($tech_skill_ids) || !empty($certificate_ids)){
+			$t_q .= " UNION ALL ";
+		}
+	  
+	  
+  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_jobs WHERE job_id in ";
+  $t_q .= "(" . implode(",", $job_ids) . ") GROUP BY profile_id";
+
+  }
+
+
+//Majors
+
+
+$sqlSelectMajors = "SELECT major_id, major_name FROM majors";
+  $majorsResult = mysqli_query($con, $sqlSelectMajors);
+  while($majorsRow = mysqli_fetch_array($majorsResult)) {
+    $str = $majorsRow['major_name'];
+    $majorNameNoSpaces = str_replace(' ', '', $str);
+    if(isset($_POST[$majorNameNoSpaces])) {
+      $major_id = $majorsRow['major_id'];
+	  $major_ids[] = $major_id;
+	  
+		$matches += 1;
+    }
+  }
+  if(!empty($major_ids)){
+	  
+	  if(!empty($job_ids) || !empty($prof_skill_ids) || !empty($tech_skill_ids) || !empty($certificate_ids)){
+			$t_q .= " UNION ALL ";
+		}
+	  
+	  
+  $t_q .= "SELECT profile_id, COUNT(*) cnt FROM student_majors WHERE major_id in ";
+  $t_q .= "(" . implode(",", $major_ids) . ") GROUP BY profile_id";
+
+  }
   
   
-
-
-
-
-
-
-
-
+  
+  //attempt to integrate Gen checks
+  if(!empty($conditions)){
+	  
+	  if((!empty($major_ids) || !empty($job_ids) || !empty($prof_skill_ids) || !empty($tech_skill_ids) || !empty($certificate_ids))){
+			$t_q .= " UNION ALL ";
+		}
+		
+		
+		
+  }
 
 
 
 //closing of unioned query
 $t_q .= ") AS uniontbl GROUP BY profile_id) matchTbl WHERE matches = " . $matches . ";";
 
-//echo $t_q;
+ echo $t_q;
  echo "<br>" . $matches;
   
  
-/*
-  $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
-  $skillsResult = mysqli_query($con, $sqlSelectSkills);
-  while($skillsRow = mysqli_fetch_array($skillsResult)) {
-    $str = $skillsRow['skill_name'];
-    $skillNameNoSpaces = str_replace(' ', '', $str);
-    if(isset($_POST[$skillNameNoSpaces])) {
-      $skill_id = $skillsRow['skill_id'];
-      
-	  $stmt = "SELECT profile_id FROM student_tech_skills WHERE skill_id =$skill_id";
-	  $profiles = mysqli_query($con, $stmt);
-	  while($profileRow = mysqli_fetch_array($profiles)) {
-	  
-	  $orconditions[] = "profile_id = " . $profileRow['profile_id'];
-	  }
-    }
-  }
-  */
-  
- /* foreach($skill_ids as $value){
-	  
-	  
-	  
-    echo $value . "<br>";
-  }*/
-  
-//. implode(' OR ', $orconditions)
+
   echo "<br>";
   
  $q = $t_q;
-  
-  
-  
-  
-	//$q = "select $ from students where profile_id = $profile_id";
-  
-  
   
      //echo $sql;
 		If(mysqli_query($con, $t_q)){
