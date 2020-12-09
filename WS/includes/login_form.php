@@ -1,3 +1,8 @@
+<!--
+Author:	Khadijah Thompson
+Program: ResumeRespository
+Purpose: Displays login screen
+-->
 <?php
   $page_title = 'Login Page';
   include('../includes/header.html');

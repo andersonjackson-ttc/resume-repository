@@ -1,3 +1,9 @@
+/*
+	Author:	Khadijah Thompson
+	Program: ResumeRespository
+	Purpose: Displays warning if user tries to leave page without submitting changes
+*/
+
 function FormChanges(form)
    {
            if (typeof form == "string")
