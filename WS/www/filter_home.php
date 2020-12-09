@@ -5,7 +5,7 @@ include '../src/connection.php';
 ?>
 
 <div class="container-fluid">
-			<form name="filter_home.php" id="filter" method="POST" action="filter_submit.php" enctype="multipart/form-data">
+			<form name="filter_home.php" id="filter" method="POST" action="filter_results.php" enctype="multipart/form-data">
 				<br>
 				<input type="hidden" id="changed" name="changed" value="yes" />
 				<div class="border border-info" style="background-color: #5bc0de;">
