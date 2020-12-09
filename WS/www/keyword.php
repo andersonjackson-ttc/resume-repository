@@ -24,7 +24,7 @@ include '../src/connection.php';
 
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM tech_skills ORDER BY skill_nameASC;";
+							$q = "SELECT * FROM tech_skills ORDER BY skill_name ASC;";
                             $r = @mysqli_query($con, $q);
 
                             while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
