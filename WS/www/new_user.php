@@ -46,8 +46,8 @@
       $result = mysqli_query($con, $query) or trigger_error("Query: $query\n<br>MySql Error: " . mysqli_error($con));
       if (mysqli_num_rows($result) == 0) { //no matches found
         //add user to db
-        $query = "INSERT INTO users (first_name, last_name, user_email, user_password, user_level, registration_date, last_login_date, last_password_date) VALUES
-                                    ('$first_name', '$last_name', '$email', '$new_user_password', '$user_level', NOW(), NOW(), NOW());";
+        $query = "INSERT INTO users (first_name, last_name, user_email, user_password, user_level, registration_date) VALUES
+                                    ('$first_name', '$last_name', '$email', '$new_user_password', '$user_level', NOW());";
         $result = mysqli_query($con, $query) or trigger_error("Query: $query\n<br>MySql Error: " . mysqli_error($con));
         if (mysqli_affected_rows($con) == 1) {
           //success
