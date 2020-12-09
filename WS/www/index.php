@@ -19,7 +19,7 @@ include('../includes/header.html');
 
 <?php
 if (isset($_SESSION['user_id'])) {
-  echo '<div class="row justify-content-end mr-2" style="min-height:40vh;"><div class="mt-auto">';
+  echo '<div class="row justify-content-end mr-2" style="min-height:45vh;"><div class="mt-auto">';
   if (date($_SESSION['last_login_date']) != 0) {
     echo "<p>Last login: " . date_format(new DateTime($_SESSION['last_login_date']), 'm/d/y h:ia') . "</p>";
   } else {
