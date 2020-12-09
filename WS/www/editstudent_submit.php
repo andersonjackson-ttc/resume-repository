@@ -39,6 +39,7 @@ try {
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
+			unlink('../uploads/' . $studentRow['resume_path']);
             $resumePath = $filename;
 
 
