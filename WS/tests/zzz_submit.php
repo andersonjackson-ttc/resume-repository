@@ -18,6 +18,83 @@ $certificate_ids = [];
 $major_ids = [];
 $job_ids = [];
 
+  if(isset($_POST['submit'])) {
+
+if(isset($_POST['search'])) {
+	
+	if(!empty($_POST['search'])) {
+		
+	$search = $_POST['search'];
+	
+	
+	
+	
+	}
+}
+
+		if(isset($_POST['militaryStatus'])) {
+			  switch ($_POST['militaryStatus']) {
+				case 'yes':
+				  $conditions[] = " military_status=1";
+				  break;
+				case 'no':
+				  //
+				  break;
+			  }
+			}else{
+			  //
+			}
+			if(isset($_POST['securityClearance'])) {
+			  switch ($_POST['securityClearance']) {
+				case 'yes':
+				  if(isset($_POST['securityAttributes'])) {
+					switch ($_POST['securityAttributes']) {
+					  case 'secret':
+						$conditions[] = " security_clearance>=1";
+						break;
+					  case 'top-secret':
+						$conditions[] = " security_clearance>=2";
+						break;
+					  case 'confidential':
+						$conditions[] = " security_clearance=3";
+						break;
+					}
+				  }else{
+					//$clearance = 0;
+				  }
+				  break;
+				case 'no':
+				 // $clearance = 0;
+				  break;
+			  }
+			}
+			
+			if(isset($_POST['gradStatus'])) {
+			  $gradStatus = $_POST['gradStatus'];
+			  if($gradStatus == 1) {
+				$conditions[] = " graduated=1";
+			}
+			if(isset($_POST['workHours'])) {
+			  $conditions[] = $_POST['workHours'];
+			} 
+			if(isset($_POST['workTime'])) {
+			  $conditions[] = $_POST['workTime'];
+			} 
+			
+			if(isset($_POST['securityCurrent'])) {
+			  $conditions[] = $_POST['securityCurrent'];
+			  echo $_POST['securityCurrent'];
+			} 
+			if(isset($_POST['majorsType'])) {
+			  $conditions[] = $_POST['majorsType'];
+			  echo $_POST['majorsType'];
+			} 
+			
+			
+			
+  }
+  
+  }//end of isset
   
 
  //uniontbl open
