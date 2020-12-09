@@ -1,0 +1,207 @@
+CREATE DATABASE resume_schema
+CHARACTER SET utf8
+COLLATE utf8_general_ci;
+
+USE resume_schema;
+
+CREATE TABLE students (
+	profile_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	student_id INT UNSIGNED NOT NULL,
+	first_name VARCHAR(20) NOT NULL,
+	middle_initial CHAR(1) NOT NULL,
+	last_name VARCHAR(40) NOT NULL,
+	email VARCHAR(60) NOT NULL,
+	phone VARCHAR(20) NOT NULL,
+	graduated TINYINT(1) UNSIGNED NOT NULL,
+	graduation_date DATE,
+	resume_path VARCHAR(60) NOT NULL,
+	military_status TINYINT(1) UNSIGNED NOT NULL,
+	security_clearance TINYINT(1) UNSIGNED NOT NULL,
+	currently_active TINYINT(1) UNSIGNED NULL,
+	work_hours TINYINT(1) UNSIGNED NOT NULL,
+	work_time TINYINT(1) UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id)
+);
+
+CREATE TABLE tech_skills (
+	skill_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	skill_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (skill_id)
+);
+
+CREATE TABLE student_tech_skills (
+	profile_id INT UNSIGNED NOT NULL,
+	skill_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, skill_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id),
+	FOREIGN KEY (skill_id) REFERENCES tech_skills (skill_id)
+);
+
+CREATE TABLE prof_skills(
+    skill_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	skill_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (skill_id)
+        
+);
+CREATE TABLE student_prof_skills (
+	profile_id INT UNSIGNED NOT NULL,
+	skill_id INT UNSIGNED NOT NULL,
+	skill_rating TINYINT(1) UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, skill_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id),
+	FOREIGN KEY (skill_id) REFERENCES prof_skills (skill_id)
+	
+);
+
+CREATE TABLE certificates (
+	certificate_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	certificate_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (certificate_id)
+);
+
+CREATE TABLE student_certificates (
+	profile_id INT UNSIGNED NOT NULL,
+	certificate_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, certificate_id),
+	FOREIGN KEY (certificate_id) REFERENCES certificates (certificate_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
+);
+
+CREATE TABLE prior_education (
+	profile_id INT UNSIGNED NOT NULL,
+	degree_level INT UNSIGNED NOT NULL,
+	degree_type VARCHAR(40) NOT NULL,
+	school_name VARCHAR(40) NOT NULL,
+	CONSTRAINT education UNIQUE (profile_id,degree_level,degree_type,school_name),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
+);
+
+CREATE TABLE majors (
+	major_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	major_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (major_id)
+);
+
+CREATE TABLE student_majors (
+	profile_id INT UNSIGNED NOT NULL,
+	major_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, major_id),
+	FOREIGN KEY (major_id) REFERENCES majors (major_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
+);
+
+CREATE TABLE job_interest(
+	job_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	job_name VARCHAR(40) NOT NULL,
+	PRIMARY KEY (job_id)
+);
+
+CREATE TABLE student_jobs(
+	job_id INT UNSIGNED NOT NULL,
+	profile_id INT UNSIGNED NOT NULL,
+	PRIMARY KEY (profile_id, job_id),
+	FOREIGN KEY (job_id) REFERENCES job_interest (job_id),
+	FOREIGN KEY (profile_id) REFERENCES students (profile_id)
+);
+
+CREATE TABLE users (
+	user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	first_name VARCHAR(20) NOT NULL,
+	last_name VARCHAR(40) NOT NULL,
+	user_email VARCHAR(60) NOT NULL,
+	user_password VARCHAR(255) NOT NULL,
+	user_level TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	registration_date DATETIME NOT NULL,
+	last_login_date DATETIME DEFAULT '1000-01-01 00:00:00' NOT NULL,
+	last_password_date DATETIME DEFAULT '1000-01-01 00:00:00' NOT NULL,
+	user_initials VARCHAR(3) AS (CONCAT(SUBSTRING(first_name,1,1), SUBSTRING(last_name,1,1))),
+	PRIMARY KEY (user_id),
+	UNIQUE KEY (user_email)
+);
+
+INSERT INTO tech_skills (skill_name) VALUES ('MySQL');
+INSERT INTO tech_skills (skill_name) VALUES ('A+');
+INSERT INTO tech_skills (skill_name) VALUES ('C++');
+INSERT INTO tech_skills (skill_name) VALUES ('Python');
+INSERT INTO tech_skills (skill_name) VALUES ('HTML');
+INSERT INTO tech_skills (skill_name) VALUES ('Calculus');
+INSERT INTO tech_skills (skill_name) VALUES ('Graph Theory');
+INSERT INTO tech_skills (skill_name) VALUES ('Counting or Permutations and Combination');
+INSERT INTO tech_skills (skill_name) VALUES ('Ethics');
+INSERT INTO tech_skills (skill_name) VALUES ('PHP');
+INSERT INTO tech_skills (skill_name) VALUES ('BASH');
+INSERT INTO tech_skills (skill_name) VALUES ('Objective-C');
+INSERT INTO tech_skills (skill_name) VALUES ('Ruby');
+INSERT INTO tech_skills (skill_name) VALUES ('CSS');
+INSERT INTO tech_skills (skill_name) VALUES ('Linear Algebra');
+INSERT INTO tech_skills (skill_name) VALUES ('Number Theory');
+INSERT INTO tech_skills (skill_name) VALUES ('Binary Math');
+INSERT INTO tech_skills (skill_name) VALUES ('Java');
+INSERT INTO tech_skills (skill_name) VALUES ('C');
+INSERT INTO tech_skills (skill_name) VALUES ('PERL');
+INSERT INTO tech_skills (skill_name) VALUES ('SQL');
+INSERT INTO tech_skills (skill_name) VALUES ('Basic');
+INSERT INTO tech_skills (skill_name) VALUES ('Abstract Algebra');
+INSERT INTO tech_skills (skill_name) VALUES ('Convex Optimizations');
+INSERT INTO tech_skills (skill_name) VALUES ('Data Analysis');
+INSERT INTO tech_skills (skill_name) VALUES ('JavaScript');
+INSERT INTO tech_skills (skill_name) VALUES ('C#');
+INSERT INTO tech_skills (skill_name) VALUES ('PowerShell');
+INSERT INTO tech_skills (skill_name) VALUES ('UNITY');
+INSERT INTO tech_skills (skill_name) VALUES ('Statistics');
+INSERT INTO tech_skills (skill_name) VALUES ('Probability');
+INSERT INTO tech_skills (skill_name) VALUES ('Propositional Logic and Proofs');
+INSERT INTO tech_skills (skill_name) VALUES ('Data Visualization');
+
+INSERT INTO prof_skills (skill_name) VALUES ('Active Listening');
+INSERT INTO prof_skills (skill_name) VALUES ('Communication');
+INSERT INTO prof_skills (skill_name) VALUES ('Computer Skills');
+INSERT INTO prof_skills (skill_name) VALUES ('Customer Service');
+INSERT INTO prof_skills (skill_name) VALUES ('Interpersonal Skills');
+INSERT INTO prof_skills (skill_name) VALUES ('Leadership');
+INSERT INTO prof_skills (skill_name) VALUES ('Management Skills');
+INSERT INTO prof_skills (skill_name) VALUES ('Problem Solving');
+INSERT INTO prof_skills (skill_name) VALUES ('Time Management');
+INSERT INTO prof_skills (skill_name) VALUES ('Transferable Skills');
+
+INSERT INTO job_interest (job_name) VALUES ('IT Director');
+INSERT INTO job_interest (job_name) VALUES ('Support Specialist');
+INSERT INTO job_interest (job_name) VALUES ('Data Analyst');
+INSERT INTO job_interest (job_name) VALUES ('Network Engineer');
+INSERT INTO job_interest (job_name) VALUES ('Cyber Security');
+INSERT INTO job_interest (job_name) VALUES ('Web Developer');
+INSERT INTO job_interest (job_name) VALUES ('Applications Engineer');
+INSERT INTO job_interest (job_name) VALUES ('Database Administrator');
+
+INSERT INTO certificates (certificate_name) VALUES ('Advanced Manufacturing Technologies');
+INSERT INTO certificates (certificate_name) VALUES ('Certified Logistics Technician');
+INSERT INTO certificates (certificate_name) VALUES ('Computer Numerical Control (CNC)');
+INSERT INTO certificates (certificate_name) VALUES ('Microsoft Excel Specialist');
+INSERT INTO certificates (certificate_name) VALUES ('Certified Logistics Technician');
+INSERT INTO certificates (certificate_name) VALUES ('CNA/PCT');
+INSERT INTO certificates (certificate_name) VALUES ('Graphic Artist');
+INSERT INTO certificates (certificate_name) VALUES ('Microsoft Office Specialist');
+INSERT INTO certificates (certificate_name) VALUES ('Coding for Health Care Professionals');
+INSERT INTO certificates (certificate_name) VALUES ('Digital Photography');
+INSERT INTO certificates (certificate_name) VALUES ('Microsoft Word Specialist');
+INSERT INTO certificates (certificate_name) VALUES ('Advanced Manufacturing Technologies');
+INSERT INTO certificates (certificate_name) VALUES ('Coding Specialist (CS)');
+INSERT INTO certificates (certificate_name) VALUES ('Engineering Graphic Design');
+INSERT INTO certificates (certificate_name) VALUES ('Web Design');
+INSERT INTO certificates (certificate_name) VALUES ('Business Applications Solutions Specialist');
+INSERT INTO certificates (certificate_name) VALUES ('Database Administrator');
+INSERT INTO certificates (certificate_name) VALUES ('Internet Programming');
+INSERT INTO certificates (certificate_name) VALUES ('Microcomputer Programming');
+INSERT INTO certificates (certificate_name) VALUES ('Cisco Certified Network Associate');
+INSERT INTO certificates (certificate_name) VALUES ('CompTIA Systems Specialist');
+INSERT INTO certificates (certificate_name) VALUES ('Cybersecurity');
+INSERT INTO certificates (certificate_name) VALUES ('Enterprise Network Administrator');
+INSERT INTO certificates (certificate_name) VALUES ('Linux Systems Administrator');
+INSERT INTO certificates (certificate_name) VALUES ('Microsoft Network Solutions Associate');
+INSERT INTO certificates (certificate_name) VALUES ('Network Security');
+INSERT INTO certificates (certificate_name) VALUES ('Virtualization and Cloud Computing');
+
+INSERT INTO majors (major_name) VALUES ('Computer Programming');
+INSERT INTO majors (major_name) VALUES ('Information Systems Specialist');
+INSERT INTO majors (major_name) VALUES ('Network Systems Management');
+INSERT INTO majors (major_name) VALUES ('Cybersecurity');
