@@ -1,4 +1,10 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Houses the functions for the editstudentform.php file.
+-->
 <?php
+//Adds the necessary HTML into the edit student form concerning the basic information regarding the profile_id.
 function injectStudentInfo($studentResult){
   while($studentRow = mysqli_fetch_array($studentResult)) {
     ?>
@@ -61,7 +67,7 @@ function injectStudentInfo($studentResult){
     <?php
   }
 }
-
+//Adds the necessary HTML for the general information surrounding the selected profile_id.
 function injectStudentGeneralInfo($studentResult, $educationResult) {
   $priorEdu = mysqli_num_rows($educationResult);
   mysqli_data_seek($studentResult, 0);
@@ -148,7 +154,7 @@ function injectStudentGeneralInfo($studentResult, $educationResult) {
     <?php
   }
 }
-
+//Adds the necessary information into the student form regarding majors.
 function injectMajors($majorsResult, $studentMajorsResult) {
   while($majorsRow = mysqli_fetch_array($majorsResult)){
     $str = $majorsRow['major_name'];
@@ -162,7 +168,7 @@ function injectMajors($majorsResult, $studentMajorsResult) {
       );
   }
 }
-
+//Adds the necessary information into the student form regarding technical skills.
 function injectTechSkills($skillsResult, $studentSkillsResult) {
   while($skillsRow = mysqli_fetch_array($skillsResult)){
     $str = $skillsRow['skill_name'];
@@ -176,7 +182,7 @@ function injectTechSkills($skillsResult, $studentSkillsResult) {
       );
   }
 }
-
+//Validates if a profile has the current major that is being populated onto the page
 function checkMajors($majorID, $studentMajors) {
   mysqli_data_seek($studentMajors, 0);
   while($studentMajorsRow = mysqli_fetch_array($studentMajors)) {
@@ -186,7 +192,7 @@ function checkMajors($majorID, $studentMajors) {
   }
   return('');
 }
-
+//Validates if a profile has the current tech skill that is being populated onto the page
 function checkSkills($skillID, $studentSkills) {
   mysqli_data_seek($studentSkills, 0);
   while($studentSkillsRow = mysqli_fetch_array($studentSkills)) {
@@ -196,7 +202,7 @@ function checkSkills($skillID, $studentSkills) {
   }
   return('');
 }
-
+//Validates if a profile has the current prof skill that is being populated onto the page
 function checkProfSkills($skillID, $studentProfSkills) {
   mysqli_data_seek($studentProfSkills, 0);
   while($studentProfSkillsRow = mysqli_fetch_array($studentProfSkills)) {
@@ -206,7 +212,7 @@ function checkProfSkills($skillID, $studentProfSkills) {
   }
   return(0);
 }
-
+//Adds the necessary information into the student form regarding professional skills.
 function injectProfSkills($profSkillsResult, $studentProfSkillsResult) {
   mysqli_data_seek($studentProfSkillsResult, 0);
   while($profSkillsRow = mysqli_fetch_array($profSkillsResult)){
@@ -230,7 +236,7 @@ function injectProfSkills($profSkillsResult, $studentProfSkillsResult) {
     echo('</div></li>');
   }
 }
-
+//Adds the necessary information into the student form regarding job interests
 function injectJobInterests($jobResult, $studentJobResult) {
   while($jobResultRow = mysqli_fetch_array($jobResult)) {
     $str = $jobResultRow['job_name'];
@@ -243,7 +249,7 @@ function injectJobInterests($jobResult, $studentJobResult) {
     $jobResultRow['job_name'].'</label></div>');
   }
 }
-
+//Validates if a profile has the current job interest that is being populated onto the page
 function jobCheck($jobID, $studentJobResult) {
   mysqli_data_seek($studentJobResult, 0);
   while($studentJobRow = mysqli_fetch_array($studentJobResult)) {
@@ -253,7 +259,7 @@ function jobCheck($jobID, $studentJobResult) {
   }
   return('');
 }
-
+//Adds the necessary information into the student form regarding certifications
 function injectCertifications($certsResult, $studentCertsResult) {
   while($certsResultRow = mysqli_fetch_array($certsResult)) {
     $str = $certsResultRow['certificate_name'];
@@ -266,7 +272,7 @@ function injectCertifications($certsResult, $studentCertsResult) {
     $certsResultRow['certificate_name'].'</label></div>');
   }
 }
-
+//Validates if a profile has the current certificate that is being populated onto the page
 function certCheck($certID, $studentCertsResult) {
   mysqli_data_seek($studentCertsResult, 0);
   while($studentCertsRow = mysqli_fetch_array($studentCertsResult)) {
@@ -276,7 +282,7 @@ function certCheck($certID, $studentCertsResult) {
   }
   return('');
 }
-
+//Adds the necessary information into the student form regarding graduation information
 function injectGraduation($studentResult) {
   mysqli_data_seek($studentResult, 0);
   while($studentRow = mysqli_fetch_array($studentResult)) {
@@ -296,7 +302,7 @@ function injectGraduation($studentResult) {
     value="'.date('Y-m-d', $date).'"></label></div>');
   }
 }
-
+//Adds the necessary information into the student form regarding prior education
 function injectPriorEducation($educationResult, $priorEdu) {
   mysqli_data_seek($educationResult, 0);
   if($priorEdu > 0) {
