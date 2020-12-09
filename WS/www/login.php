@@ -29,6 +29,7 @@
       $_SESSION['password'] = $data['user_password'];
       $_SESSION['user_level'] = $data['user_level'];
       $_SESSION['last_login_date'] = $data['last_login_date'];
+      $_SESSION['user_initials'] = $data['user_initials'];
 
       #store HTTP_USER_AGENT
       $_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
