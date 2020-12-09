@@ -142,7 +142,7 @@ include '../src/connection.php';
 			    	<h4 class="text-muted">Majors</h4>
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM majors";
+							$q = "SELECT * FROM majors ORDER BY ASC;";
 							$r = mysqli_query($con, $q);
 							while($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 								$str = $row['major_name'];
@@ -163,7 +163,7 @@ include '../src/connection.php';
 			    	<h4 class="text-muted">Technical Skills</h4>
 						<div class="row align-items-start no-gutters" style="margin-left: 25px;">
 							<?php
-							$q = "SELECT * FROM tech_skills;";
+							$q = "SELECT * FROM tech_skills ORDER BY ASC;";
 							$r = @mysqli_query($con, $q);
 
 							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -187,7 +187,7 @@ include '../src/connection.php';
 						<ul class="list-unstyled">
 			      <h4 class="text-muted">Professional Skills</h4>
 						<?php
-						$q = "SELECT * FROM prof_skills;";
+						$q = "SELECT * FROM prof_skills ORDER BY ASC;";
 						$r = @mysqli_query($con, $q);
 
 						while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -214,7 +214,7 @@ include '../src/connection.php';
 						<h4 class="text-muted">Job Interests</h4>
 						<div class="row align-items-start no-gutters">
 							<?php
-							$q = "SELECT * FROM job_interest;";
+							$q = "SELECT * FROM job_interest ORDER BY ASC;";
 							$r = @mysqli_query($con, $q);
 
 							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -236,7 +236,7 @@ include '../src/connection.php';
 			      <h4 class="text-muted">Certifications</h4>
 						<div class="row align-items-start no-gutters">
 							<?php
-							$q = "SELECT * FROM certificates;";
+							$q = "SELECT * FROM certificates ORDER BY ASC;";
 							$r = @mysqli_query($con, $q);
 
 							while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
