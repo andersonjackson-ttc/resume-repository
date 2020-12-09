@@ -1,3 +1,7 @@
+
+//Author	:	Joshua Bihlear
+//Program: StudentResume
+//Purpose: Houses the javascript for the editstudentform.php file.
 window.onload = function () {
    document.getElementById('securityClearanceYes').addEventListener('click', securityClearanceYes, false);
    document.getElementById('securityClearanceNo').addEventListener('click', securityClearanceNo, false);
@@ -5,12 +9,12 @@ window.onload = function () {
    document.getElementById('removeEducationBtn').addEventListener('click', removeEducation, false);
    document.getElementById('editBtn').addEventListener('click', enableEditing, false);
 };
-
+//Runs if security clearance is toggled to "Yes"
 function securityClearanceYes() {
     var div = document.getElementById('securityAttributes');
     div.style.display = "block";
 }
-
+//Runs if security clearance is toggled to "No"
 function securityClearanceNo() {
     var div = document.getElementById('securityAttributes');
     var radioAttributes = document.getElementsByName('securityAttributes');
@@ -29,7 +33,7 @@ function securityClearanceNo() {
 
     div.style.display = "none";
 }
-
+//Adds additional prior educations when the "Add Education" button is clicked.
 function addEducation() {
 	var pos = document.getElementById('educationBtnDiv');
   var removeBtn = document.getElementById('removeEducationBtn');
@@ -54,7 +58,7 @@ function addEducation() {
     removeBtn.style.display = "inline";
   }
 }
-
+//Removes additional prior educations when the "Remove Education" button is clicked.
 function removeEducation() {
   var education = document.getElementsByName('education[]');
   var id = education.length-1;
@@ -63,7 +67,7 @@ function removeEducation() {
     $('#removeEducationBtn').hide();
   }
 }
-
+//Converts the form from a "View" form into an "Edit" form.
 function enableEditing() {
   $('#editBtn').hide();
   $('#viewSetting').prop('disabled', false);

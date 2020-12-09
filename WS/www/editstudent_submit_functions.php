@@ -1,4 +1,10 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Houses the necessary functions for editstudent_submit.php.
+-->
 <?php
+//Updates the student information within the database
 function updateStudent($con, $profile_id) {
   $stmt = $con->prepare("UPDATE students SET student_id=?, first_name=?, middle_initial=?,
     last_name=?, email=?, phone=?, graduated=?, graduation_date=?, military_status=?,
@@ -38,7 +44,7 @@ function updateStudent($con, $profile_id) {
   $stmt->execute();
   $stmt->close();
 }
-
+//Updates the student majora within the database
 function updateMajors($con, $profile_id, $majorsResult, $studentMajorsResult) {
   $stmt = $con->prepare("INSERT INTO student_majors (profile_id, major_id)
   VALUES (?,?)");
@@ -72,7 +78,7 @@ function updateMajors($con, $profile_id, $majorsResult, $studentMajorsResult) {
   }
   $stmt->close();
 }
-
+//Deletes any majors from the database for the selected student
 function deleteMajors($con, $profile_id, $major_id) {
   $stmt = $con->prepare("DELETE FROM student_majors
   WHERE profile_id=? AND major_id=? LIMIT 1");
@@ -80,7 +86,7 @@ function deleteMajors($con, $profile_id, $major_id) {
   $stmt->execute();
   $stmt->close();
 }
-
+//Updates the student tech skills within the database
 function updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult){
   $stmt = $con->prepare("INSERT INTO student_tech_skills (profile_id, skill_id)
   VALUES (?,?)");
@@ -114,7 +120,7 @@ function updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult
   }
   $stmt->close();
 }
-
+//Deletes the student tech skills within the database
 function deleteTechSkills($con, $profile_id, $skill_id) {
   $stmt = $con->prepare("DELETE FROM student_tech_skills
   WHERE profile_id=? AND skill_id=? LIMIT 1");
@@ -122,7 +128,7 @@ function deleteTechSkills($con, $profile_id, $skill_id) {
   $stmt->execute();
   $stmt->close();
 }
-
+//Updates the student prof skills within the database
 function updateProfSkills($con, $profile_id, $profSkills, $studentProfSkills) {
   $stmt = $con->prepare("UPDATE student_prof_skills SET skill_rating=?
   WHERE profile_id=? AND skill_id=?");
@@ -157,6 +163,7 @@ function updateProfSkills($con, $profile_id, $profSkills, $studentProfSkills) {
   $insertStmt->close();
 } #End of Function
 
+//Updates the student job interests within the database
 function updateJobInterests($con, $profile_id, $jobResult, $studentJobResult) {
   $stmt = $con->prepare("INSERT INTO student_jobs (profile_id, job_id)
   VALUES (?,?)");
@@ -190,7 +197,7 @@ function updateJobInterests($con, $profile_id, $jobResult, $studentJobResult) {
   }
   $stmt->close();
 }
-
+//Deletes the student job interests within the database
 function deleteJobInterests($con, $profile_id, $job_id) {
   $stmt = $con->prepare("DELETE FROM student_job_interest
   WHERE profile_id=? AND job_id=? LIMIT 1");
@@ -198,7 +205,7 @@ function deleteJobInterests($con, $profile_id, $job_id) {
   $stmt->execute();
   $stmt->close();
 }
-
+//Updates the student certificates within the database
 function updateCertificates($con, $profile_id, $certsResult, $studentCertsResult) {
   $stmt = $con->prepare("INSERT INTO student_certificates (profile_id, certificate_id)
   VALUES (?,?)");
@@ -232,7 +239,7 @@ function updateCertificates($con, $profile_id, $certsResult, $studentCertsResult
   }
   $stmt->close();
 }
-
+//Deletes the student certificates within the database
 function deleteCertificate($con, $profile_id, $cert_id) {
   $stmt = $con->prepare("DELETE FROM student_certificates
   WHERE profile_id=? AND certificate_id=? LIMIT 1");
@@ -240,7 +247,7 @@ function deleteCertificate($con, $profile_id, $cert_id) {
   $stmt->execute();
   $stmt->close();
 }
-
+//Updates the student prior education within the database
 function updatePriorEducation($con, $profile_id, $educationResult) {
   $numRows = mysqli_num_rows($educationResult);
   $degreeArray = $_POST['majorsType'];
@@ -294,7 +301,7 @@ function updatePriorEducation($con, $profile_id, $educationResult) {
   $stmt->close();
   $insertStmt->close();
 }
-
+//Deletes the student prior education within the database
 function deletePriorEducation($con, $profile_id, $old_degree_level, $old_degree_type, $old_school_name) {
   $stmt = $con->prepare("DELETE FROM prior_education
   WHERE profile_id=? AND degree_level=? AND degree_type=? AND school_name=? LIMIT 1");

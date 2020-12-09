@@ -1,3 +1,8 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Edit a student's profile and the fields that are paired with it.
+-->
 <?php
 $page_title = 'Edit Student Form';
 include ('../includes/header.html');
