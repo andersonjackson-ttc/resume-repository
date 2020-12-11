@@ -1,3 +1,9 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: end user session and delete  cookies 
+-->
+
 <?php
   session_start();
 

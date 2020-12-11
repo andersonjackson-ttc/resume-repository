@@ -1,3 +1,9 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: change user password
+--> 
+
 <?php
   $page_title = 'Change Password';
   include('../includes/login_functions.php');

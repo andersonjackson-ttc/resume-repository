@@ -1,4 +1,6 @@
-
+<!--
+  Khalid Smalls
+-->
 
 <?php
 $page_title = 'Resume Repository Home';
@@ -9,6 +11,7 @@ include('../includes/header.html');
 <hr />
 
 <?php
+//if user is logged in display welcome 
   if (isset($_SESSION['user_id'])) {
     echo "<h2>Welcome, " . $_SESSION['first_name'] . "!</h2>";
   }
@@ -18,6 +21,11 @@ include('../includes/header.html');
 
 
 <?php
+/*
+  displays last login date and time
+  if it's the first time the user logs in
+  displays current login date and time
+*/
 if (isset($_SESSION['user_id'])) {
   echo '<div class="row justify-content-end mr-2" style="min-height:45vh;"><div class="mt-auto">';
   if (date($_SESSION['last_login_date']) != 0) {

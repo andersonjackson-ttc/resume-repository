@@ -1,3 +1,9 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: add new users to database 
+-->
+
 <?php
   $page_title = 'Register New User';
   require('../includes/header.html');

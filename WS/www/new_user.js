@@ -1,3 +1,9 @@
+/*
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: displays message if required field is left empty on blur  
+*/
+
 $(document) .ready(function() {
   var $first_name = $('#first_name'),
       $first_name_err = $('#first_name_err'),
@@ -16,7 +22,7 @@ $(document) .ready(function() {
       }) .on('focus', function() {
         $first_name_err .slideUp();
       });
-      
+
       $last_name .on('blur', function() {
         if ($last_name.val() == '') {
           $last_name_err .slideDown();

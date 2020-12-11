@@ -1,3 +1,10 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: login script starts session, sets session variables
+           and password policy, written by Nicholas Justus  
+-->
+
 <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require('../includes/login_functions.php');

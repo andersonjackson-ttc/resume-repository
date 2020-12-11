@@ -1,3 +1,9 @@
+/*
+  author: Khalid Smalls
+  program: TTC resume repository
+  purpose: displays message if required field is left empty on blur
+*/
+
 $(document) .ready(function() {
   var $old_password = $('#old_password'),
       $err_old_password = $('#err_old_password'),
