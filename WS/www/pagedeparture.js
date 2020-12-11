@@ -4,6 +4,7 @@
 	Purpose: Displays warning if user tries to leave page without submitting changes
 */
 
+//Function for checking if any changes have been made to the form
 function FormChanges(form)
    {
            if (typeof form == "string")
@@ -67,6 +68,7 @@ function FormChanges(form)
        var form = document.getElementById("myform");
        var formSubmit =  false;
 
+       //function to update changed value to "no" to avoid database updates if there are no changes on form
        form.onsubmit = function()
        {
        	  formSubmit = true;
@@ -86,13 +88,13 @@ function FormChanges(form)
          window.addEventListener("beforeunload", function (e) {
 
          	 var changed = FormChanges("myform");
-
+           //if statement to allow form to submit without warning flag popping up
              if(formSubmit) {
 
                  return undefined;
              }
 
-
+            //if statement to check if there have been form changes and to display warning flag
              if(changed.length != 0)
              {
                  var confirmationMessage = 'It looks like you have been editing something. '
