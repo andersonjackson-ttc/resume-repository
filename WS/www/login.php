@@ -2,7 +2,7 @@
   author: Khalid Smalls
   program: resume-repository
   purpose: login script starts session, sets session variables
-           and password policy, written by Nicholas Justus  
+           and password policy, written by Nicholas Justus
 -->
 
 <?php
@@ -57,8 +57,10 @@
       $dateToDT = new dateTime("$lastPassDate", new DateTimeZone("UTC"));
       //Convert the object to a string that can be printed and used in arithmatic
       $DTToString = $dateToDT->getTimestamp();
-      //The maximum amount of time a password can be valid, in seconds (7776000 seconds is equal to 90 days)
-      $passwordMaxAge = 7776000;
+      //The maximum amount of time a password can be valid, in days (Entering days is more user friendly than entering seconds)
+      $passwordMaxDays = 90;
+      //Amount of days times the number of seconds in a day for UTC
+      $passwordMaxAge = ($passwordMaxDays * 86400);
       //If the user information is correct, redirect them to the password change page if their password is older than 90 days (default), else proceed as normal
       if (mysqli_affected_rows($con) == 1) {
         if (time() - $DTToString > $passwordMaxAge){
