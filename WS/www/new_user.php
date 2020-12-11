@@ -1,7 +1,7 @@
 <!--
   author: Khalid Smalls
   program: resume-repository
-  purpose: add new users to database 
+  purpose: add new users to database
 -->
 
 <?php
@@ -15,7 +15,7 @@
     //and save in $trimmmed array
     $trimmed = array_map('trim', $_POST);
 
-    //default user password
+    //default user password is "password"
     $new_user_password = SHA1('password');
 
     $first_name = $last_name = $email = $user_level = FALSE;
@@ -117,6 +117,10 @@
           <a href="index.php"><button class="btn btn-secondary btn-outline-light" type="button">Cancel</button></a>
         </div>
       </form>
+    </div>
+    <div>
+      <p class="small text-secondary pt-3">Default new user password is "password".<br>
+        Users will be prompted to change their password at first login.</p>
     </div>
   </div>
 </div>
