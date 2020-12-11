@@ -1,4 +1,12 @@
 <?php
+
+/*
+Author: Noah Adkin
+File: keyword.php
+Purpose: Front end for adding/removing attribute lists on database.
+
+*/
+
 $page_title = 'Keyword list';
 include ('../includes/header.html');
 include '../src/connection.php';

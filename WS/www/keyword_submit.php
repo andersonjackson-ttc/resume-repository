@@ -1,4 +1,12 @@
 <?php
+/*
+Author: Noah Adkin
+File: Keyword_submit.php
+Purpose: Back end for adding/removing attribute lists on database. 
+
+*/
+
+
   include_once '../src/connection.php';
 
 

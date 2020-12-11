@@ -1,4 +1,13 @@
 <?php
+/*
+Author: Noah Adkin
+File: filter_home.php
+Purpose: Front end for filtering students by attributes.
+
+*/
+
+
+
 $page_title = 'Search Students';
 include ('../includes/header.html');
 include '../src/connection.php';

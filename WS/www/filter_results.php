@@ -1,4 +1,11 @@
 <?php
+
+/*
+Author: Noah Adkin
+File: filter_results.php
+Purpose: Back end for filtering students by attributes.
+
+*/
   include ('../includes/header.html');
   include_once '../src/connection.php';
 
