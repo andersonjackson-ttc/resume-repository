@@ -1,3 +1,8 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Fetches the required queries from the database for the edit/view form.
+-->
 <?php
   #Call SQL connection
   include_once 'connection.php';
@@ -42,7 +47,7 @@
   $studentSkillsResult = mysqli_query($con, $sqlSelectStudentSkills);
 
   #Pull List of Technical Skills from database
-  $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills";
+  $sqlSelectSkills = "SELECT skill_id, skill_name FROM tech_skills ORDER BY skill_name ASC";
   $skillsResult = mysqli_query($con, $sqlSelectSkills);
 
   #Pull Student Professional Skills using profile ID
@@ -51,7 +56,7 @@
   $studentProfSkillsResult = mysqli_query($con, $sqlSelectStudentProfSkills);
 
   #Pull List of Professional Skills from database
-  $sqlSelectProfSkills = "SELECT skill_id, skill_name FROM prof_skills";
+  $sqlSelectProfSkills = "SELECT skill_id, skill_name FROM prof_skills ORDER BY skill_name ASC";
   $profSkillsResult = mysqli_query($con, $sqlSelectProfSkills);
 
   #Pull Student Job Interests using profile ID
@@ -60,7 +65,7 @@
   $studentJobInterestsResult = mysqli_query($con, $sqlSelectStudentJobInterests);
 
   #Pull List of Job Interests from Database
-  $sqlSelectJobInterests = "SELECT job_id, job_name FROM job_interest";
+  $sqlSelectJobInterests = "SELECT job_id, job_name FROM job_interest ORDER BY job_name ASC";
   $jobInterestsResult = mysqli_query($con, $sqlSelectJobInterests);
 
   #Pull List of Certificates using profile ID
@@ -69,7 +74,7 @@
   $studentCertsResult = mysqli_query($con, $sqlSelectStudentCerts);
 
   #Pull List of Certificates from Database
-  $sqlSelectCerts = "SELECT certificate_id, certificate_name FROM certificates";
+  $sqlSelectCerts = "SELECT certificate_id, certificate_name FROM certificates ORDER BY certificate_name ASC";
   $certsResult = mysqli_query($con, $sqlSelectCerts);
 
   #Pull List of Majors using profile ID
@@ -78,7 +83,7 @@
   $studentMajorsResult = mysqli_query($con, $sqlSelectStudentMajors);
 
   #Pull List of Majors from database
-  $sqlSelectMajors = "SELECT major_id, major_name FROM majors";
+  $sqlSelectMajors = "SELECT major_id, major_name FROM majors ORDER BY major_name ASC";
   $majorsResult = mysqli_query($con, $sqlSelectMajors);
 
   #Pull Prior Education information from Database

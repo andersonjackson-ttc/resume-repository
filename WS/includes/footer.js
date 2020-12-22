@@ -1,3 +1,10 @@
+/*
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: hide flaoting footer buttons
+           show them if new student form is selected 
+*/
+
 $(document) .ready(function() {
   var $footer_btns = $('#footer_btns'),
       url = $(location).attr('href'),

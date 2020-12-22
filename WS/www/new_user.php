@@ -1,3 +1,9 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: add new users to database
+-->
+
 <?php
   $page_title = 'Register New User';
   require('../includes/header.html');
@@ -9,7 +15,7 @@
     //and save in $trimmmed array
     $trimmed = array_map('trim', $_POST);
 
-    //default user password
+    //default user password is "password"
     $new_user_password = SHA1('password');
 
     $first_name = $last_name = $email = $user_level = FALSE;
@@ -112,8 +118,12 @@
         </div>
       </form>
     </div>
+    <div>
+      <p class="small text-secondary pt-3">Default new user password is "password".<br>
+        Users will be prompted to change their password at first login.</p>
+    </div>
   </div>
 </div>
 
-<script src="../includes/new_user.js" type="text/javascript"></script>
+<script src="new_user.js" type="text/javascript"></script>
 <?php include('../includes/footer.html'); ?>

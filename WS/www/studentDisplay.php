@@ -107,9 +107,15 @@ if (mysqli_num_rows($r) > 0)
 
     // Fetch and print records:
     $bg = '#eeeeee';
-
+    $gradDate = "";
     while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC))
     {
+      if($row['graduation_date']=="1970-01-01" ||
+      $row['graduation_date']=="" || $row['graduation_date']==null){
+        $gradDate = "No";
+      }else{
+        $gradDate = $row['graduation_date'];
+      }
       $bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
       echo
       '<tr bgcolor="' . $bg . '">
@@ -117,10 +123,10 @@ if (mysqli_num_rows($r) > 0)
       <td style="text-align:left">' . $row['first_name'] . '</td>
       <td style="text-align:left">' . $row['middle_initial'] . '</td>
       <td style="text-align:left">' . $row['last_name'] . '</td>
-      <td style="text-align:right">' . $row['graduated'] . '</td>
-      <td style="text-align:right">' . $row['graduation_date'] . '</td>
-      <td style="text-align:right">' . $row['military_status'] . '</td>
-      <td style="text-align:right">' . $row['security_clearance'] . '</td>
+      <td style="text-align:right">' . ($row['graduated']==1 ? "Yes" : "No") . '</td>
+      <td style="text-align:right">' . $gradDate .'</td>
+      <td style="text-align:right">' . ($row['military_status']==1 ? "Yes" : "No") . '</td>
+      <td style="text-align:right">' . ($row['security_clearance']>=1 ? "Yes" : "No") . '</td>
       </tr>';
     } // END WHILE loop.
 

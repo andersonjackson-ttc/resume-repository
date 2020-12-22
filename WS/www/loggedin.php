@@ -1,8 +1,12 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+-->
+
 <?php
-  #user is redirected here from login.php
+  #user used to be redirected here from login.php
   #if no session value is set, redirect user back to index.php
 
-  session_start();
 
   if(!isset($_SESSION['agent']) OR ($_SESSION['agent'] != sha1($_SERVER['HTTP_USER_AGENT']) )) {
     require('../includes/login_functions.php');

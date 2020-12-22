@@ -1,9 +1,15 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Edit a student's profile and the fields that are paired with it.
+-->
 <?php
 $page_title = 'Edit Student Form';
 include ('../includes/header.html');
 include_once '../src/student_edit_connection.php';
 include ('editstudentform_functions.php');?>
 <script src="editstudentform.js"></script>
+<script src="pagedeparture.js"></script>
 <style>
   .requiredField{
     color: red;

@@ -1,3 +1,10 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: login script starts session, sets session variables
+           and password policy, written by Nicholas Justus
+-->
+
 <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require('../includes/login_functions.php');
@@ -29,6 +36,7 @@
       $_SESSION['password'] = $data['user_password'];
       $_SESSION['user_level'] = $data['user_level'];
       $_SESSION['last_login_date'] = $data['last_login_date'];
+      $_SESSION['user_initials'] = $data['user_initials'];
 
       #store HTTP_USER_AGENT
       $_SESSION['agent'] = sha1($_SERVER['HTTP_USER_AGENT']);
@@ -49,9 +57,11 @@
       $dateToDT = new dateTime("$lastPassDate", new DateTimeZone("UTC"));
       //Convert the object to a string that can be printed and used in arithmatic
       $DTToString = $dateToDT->getTimestamp();
-      //The maximum amount of time a password can be valid, in seconds (5184000 seconds is equal to 60 days)
-      $passwordMaxAge = 5184000;
-      //If the user information is correct, redirect them to the password change page if their password is older than 60 days (default), else proceed as normal
+      //The maximum amount of time a password can be valid, in days (Entering days is more user friendly than entering seconds)
+      $passwordMaxDays = 90;
+      //Amount of days times the number of seconds in a day for UTC
+      $passwordMaxAge = ($passwordMaxDays * 86400);
+      //If the user information is correct, redirect them to the password change page if their password is older than 90 days (default), else proceed as normal
       if (mysqli_affected_rows($con) == 1) {
         if (time() - $DTToString > $passwordMaxAge){
           redirect_reset();

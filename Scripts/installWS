@@ -1,0 +1,7 @@
+#!/bin/sh
+# Must be run as super user
+wget https://github.com/andersonjackson-ttc/resume-repository/archive/master.zip
+unzip master.zip resume-repository-master/WS/*
+cp -r resume-repository-master/WS/* /var/www
+rm -rf resume-repository-master
+rm master.zip

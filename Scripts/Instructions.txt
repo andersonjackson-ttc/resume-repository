@@ -1,0 +1,11 @@
+Author: Noah Adkin
+Insturction.txt
+12/11/2020
+
+Instructions
+
+installWS is a bash script that can be run on 
+the webserver machine to download and copy the neccesary components to the var/www directory.
+
+sqlbashscript.bash can be used to install the database machine on the SQL server. mysql must be configured and any 
+old database named resume_schema must first be dropped. 

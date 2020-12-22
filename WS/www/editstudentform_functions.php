@@ -1,68 +1,73 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Houses the functions for the editstudentform.php file.
+-->
 <?php
+//Adds the necessary HTML into the edit student form concerning the basic information regarding the profile_id.
 function injectStudentInfo($studentResult){
   while($studentRow = mysqli_fetch_array($studentResult)) {
     ?>
     <div class="form-inline">
       <div class="form-group">
-        <label class="sr-only" for="profileID">Profile ID</label>
-        <input name="profileID" id="profileID" type="text" class="form-control"
-        style="width: 45vw;"
-        value="<?php echo(htmlspecialchars($studentRow['profile_id']))?>" readonly>
+        <label for="profileID"><strong>Profile ID</label>
+        <text name="profileID" id="profileID" style="margin-left: 10px; margin-right: 50px; font-size: 1.5em; color:red;" readonly>
+          <?php echo(htmlspecialchars($studentRow['profile_id']))?></text></strong>
 
-        <label class="sr-only" for="studentID">Student ID</label>
+        <label for="studentID"><strong>Student ID</strong></label>
         <input name="studentID" id="studentID" type="text" class="form-control"
-        style="width: 45vw;"
+        style="width: 20vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['student_id']))?>">
       </div>
     </div>
     <br>
     <div class="form-inline">
       <div class="form-group">
-        <label class="sr-only" for="firstName">First Name
-          <span class="requiredField">*</span></label>
+        <label for="firstName"><strong>First Name
+          <span class="requiredField">*</strong></span></label>
         <input required name="firstName" type="text" class="form-control"
-        style="width: 40vw;"
+        style="width: 35vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['first_name']))?>">
 
-        <label class="sr-only" for="middleInitial">MI</label>
+        <label for="middleInitial" style="margin-left: 50px;"><strong>MI</strong></label>
         <input name="middleInitial" type="text" class="form-control"
-        style="width: 10vw;"
+        style="width: 5vw;margin-left: 10px;"
         value="<?php if($studentRow['middle_initial'] != null){
         echo(htmlspecialchars($studentRow['middle_initial']));
         } else {
         echo("");
       } ?>" maxlength="1">
 
-        <label class="sr-only" for="lastName">Last Name
-          <span class="requiredField">*</span></label>
+        <label for="lastName" style="margin-left: 50px;"><strong>Last Name
+          <span class="requiredField">*</strong></span></label>
         <input required name="lastName" type="text" class="form-control"
-        style="width: 40vw;"
+        style="width: 35vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['last_name']))?>">
       </div>
     </div>
     <br>
     <div class="form-inline">
       <div class="form-group">
-        <label class="sr-only" for="studentEmail">Email
-          <span class="requiredField">*</span></label>
+        <label for="studentEmail"><strong>Email
+          <span class="requiredField">*</strong></span></label>
         <input required name="studentEmail" id="studentEmail" type="email" class="form-control"
-        style="width: 45vw;"
+        style="width: 40vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['email']))?>">
 
-        <label class="sr-only" for="studentPhone">Phone Number
-          <span class="requiredField">*</span></label>
+        <label for="studentPhone" style="margin-left: 50px;"><strong>Phone Number
+          <span class="requiredField">*</strong></span></label>
         <input required name="studentPhone" id="studentPhone" type="phone" class="form-control"
-        style="width: 45vw;"
+        style="width: 40vw;margin-left: 10px;"
         value="<?php echo(htmlspecialchars($studentRow['phone']))?>">
       </div>
     </div>
-	
+
 	<a href="download.php?file_id=<?php echo $studentRow['resume_path'] ?>">Download</a></td>
-	
+
     <?php
   }
 }
-
+//Adds the necessary HTML for the general information surrounding the selected profile_id.
 function injectStudentGeneralInfo($studentResult, $educationResult) {
   $priorEdu = mysqli_num_rows($educationResult);
   mysqli_data_seek($studentResult, 0);
@@ -141,15 +146,15 @@ function injectStudentGeneralInfo($studentResult, $educationResult) {
       style="<?php echo($priorEdu >= 1 ? '' : 'display: none');?>; padding-bottom: 10px;">
         <?php injectPriorEducation($educationResult, $priorEdu) ?>
     </div>
-	
-	
-	
-	
-	
+
+
+
+
+
     <?php
   }
 }
-
+//Adds the necessary information into the student form regarding majors.
 function injectMajors($majorsResult, $studentMajorsResult) {
   while($majorsRow = mysqli_fetch_array($majorsResult)){
     $str = $majorsRow['major_name'];
@@ -163,7 +168,7 @@ function injectMajors($majorsResult, $studentMajorsResult) {
       );
   }
 }
-
+//Adds the necessary information into the student form regarding technical skills.
 function injectTechSkills($skillsResult, $studentSkillsResult) {
   while($skillsRow = mysqli_fetch_array($skillsResult)){
     $str = $skillsRow['skill_name'];
@@ -177,7 +182,7 @@ function injectTechSkills($skillsResult, $studentSkillsResult) {
       );
   }
 }
-
+//Validates if a profile has the current major that is being populated onto the page
 function checkMajors($majorID, $studentMajors) {
   mysqli_data_seek($studentMajors, 0);
   while($studentMajorsRow = mysqli_fetch_array($studentMajors)) {
@@ -187,7 +192,7 @@ function checkMajors($majorID, $studentMajors) {
   }
   return('');
 }
-
+//Validates if a profile has the current tech skill that is being populated onto the page
 function checkSkills($skillID, $studentSkills) {
   mysqli_data_seek($studentSkills, 0);
   while($studentSkillsRow = mysqli_fetch_array($studentSkills)) {
@@ -197,7 +202,7 @@ function checkSkills($skillID, $studentSkills) {
   }
   return('');
 }
-
+//Validates if a profile has the current prof skill that is being populated onto the page
 function checkProfSkills($skillID, $studentProfSkills) {
   mysqli_data_seek($studentProfSkills, 0);
   while($studentProfSkillsRow = mysqli_fetch_array($studentProfSkills)) {
@@ -207,7 +212,7 @@ function checkProfSkills($skillID, $studentProfSkills) {
   }
   return(0);
 }
-
+//Adds the necessary information into the student form regarding professional skills.
 function injectProfSkills($profSkillsResult, $studentProfSkillsResult) {
   mysqli_data_seek($studentProfSkillsResult, 0);
   while($profSkillsRow = mysqli_fetch_array($profSkillsResult)){
@@ -231,7 +236,7 @@ function injectProfSkills($profSkillsResult, $studentProfSkillsResult) {
     echo('</div></li>');
   }
 }
-
+//Adds the necessary information into the student form regarding job interests
 function injectJobInterests($jobResult, $studentJobResult) {
   while($jobResultRow = mysqli_fetch_array($jobResult)) {
     $str = $jobResultRow['job_name'];
@@ -244,7 +249,7 @@ function injectJobInterests($jobResult, $studentJobResult) {
     $jobResultRow['job_name'].'</label></div>');
   }
 }
-
+//Validates if a profile has the current job interest that is being populated onto the page
 function jobCheck($jobID, $studentJobResult) {
   mysqli_data_seek($studentJobResult, 0);
   while($studentJobRow = mysqli_fetch_array($studentJobResult)) {
@@ -254,7 +259,7 @@ function jobCheck($jobID, $studentJobResult) {
   }
   return('');
 }
-
+//Adds the necessary information into the student form regarding certifications
 function injectCertifications($certsResult, $studentCertsResult) {
   while($certsResultRow = mysqli_fetch_array($certsResult)) {
     $str = $certsResultRow['certificate_name'];
@@ -267,7 +272,7 @@ function injectCertifications($certsResult, $studentCertsResult) {
     $certsResultRow['certificate_name'].'</label></div>');
   }
 }
-
+//Validates if a profile has the current certificate that is being populated onto the page
 function certCheck($certID, $studentCertsResult) {
   mysqli_data_seek($studentCertsResult, 0);
   while($studentCertsRow = mysqli_fetch_array($studentCertsResult)) {
@@ -277,7 +282,7 @@ function certCheck($certID, $studentCertsResult) {
   }
   return('');
 }
-
+//Adds the necessary information into the student form regarding graduation information
 function injectGraduation($studentResult) {
   mysqli_data_seek($studentResult, 0);
   while($studentRow = mysqli_fetch_array($studentResult)) {
@@ -297,7 +302,7 @@ function injectGraduation($studentResult) {
     value="'.date('Y-m-d', $date).'"></label></div>');
   }
 }
-
+//Adds the necessary information into the student form regarding prior education
 function injectPriorEducation($educationResult, $priorEdu) {
   mysqli_data_seek($educationResult, 0);
   if($priorEdu > 0) {

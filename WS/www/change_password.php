@@ -1,3 +1,9 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: change user password
+--> 
+
 <?php
   $page_title = 'Change Password';
   include('../includes/login_functions.php');
@@ -122,4 +128,4 @@
 <?php
   include('../includes/footer.html');
  ?>
-<script src="../includes/change_password.js" type="text/javascript"></script>
+<script src="change_password.js" type="text/javascript"></script>

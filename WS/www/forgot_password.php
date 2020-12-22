@@ -1,3 +1,9 @@
+<!--
+  author: Khalid Smalls
+  program: resume-repository
+  purpose: send email to registered user address for password reset
+-->
+
 <?php
   $page_title = 'Forgot Password';
   include('../includes/header.html');
@@ -26,16 +32,17 @@
     if ($user) {
       //create a random string 10 characters long
       $p = substr(md5(uniqid(rand(), true)), 3, 15);
-      //possible random string alternative
+      //possible random string alternative using bin2hex()
       //$length = 10;
       //$p = bin2hex(random_bytes($length));
       $p_hashed = SHA1($p);
 
+      //set user password to string of random characters
       $query = "UPDATE users SET user_password='$p_hashed', last_password_date=NOW() WHERE user_id=$user LIMIT 1";
       $result = mysqli_query($con, $query) or trigger_error("Query: $query\n<br>MySql Error: " . mysqli_error($con));
 
       if (mysqli_affected_rows($con) == 1) {
-        //TODO set up mail server
+        //send new password to registered email address 
         $body = "Your temporary password for TTC Student Resume Repository is '$p'. Please change your password at next login.";
         mail($_POST['reset_email'], $body, 'From: '); //TODO add return address to from:
 
@@ -88,4 +95,4 @@
 
 <?php include('../includes/footer.html'); ?>
 
-<script src="../includes/change_password.js" type="text/javascript"></script>
+<script src="change_password.js" type="text/javascript"></script>

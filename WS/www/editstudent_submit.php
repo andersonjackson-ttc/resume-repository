@@ -1,7 +1,13 @@
+<!--
+	Author	:	Joshua Bihlear
+	Program: StudentResume
+	Purpose: Submits the information from $_POST into the database. 
+-->
 <?php
 include_once '../src/student_edit_connection.php';
 include 'editstudent_submit_functions.php';
 try {
+  //Sends all of the information from $_POST to the database for updating
   updateStudent($con, $profile_id);
   updateMajors($con, $profile_id, $majorsResult, $studentMajorsResult);
   updateTechSkills($con, $profile_id, $skillsResult, $studentSkillsResult);
@@ -9,11 +15,11 @@ try {
   updateJobInterests($con, $profile_id, $jobInterestsResult, $studentJobInterestsResult);
   updateCertificates($con, $profile_id, $certsResult, $studentCertsResult);
   updatePriorEducation($con, $profile_id, $educationResult);
-  
-  
+
+
 
 	if(isset($_FILES)){
-	  
+
 	$filename = $_FILES['myfile']['name'];
 
     // destination of the file on the server
@@ -33,20 +39,21 @@ try {
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
+			unlink('../uploads/' . $studentRow['resume_path']);
             $resumePath = $filename;
-			
-			
+
+
 			$stmt = $con->prepare("UPDATE students SET resume_path=? WHERE profile_id=".$profile_id);
 			$stmt->bind_param('s', $resumePath);
-			
+
 			$stmt->execute();
 			$stmt->close();
-			
+
 		 }
 	}
 	}
-		
-  
+
+
   $con->close();
   include '../includes/header.html';
   createHTML($profile_id);
@@ -54,7 +61,7 @@ try {
 } catch(exception $e) {
   echo "Error: " . $e->getMessage();
 }
-
+//Populates the page with the required HTML
 function createHTML($profile_id){
   ?>
   <br>
